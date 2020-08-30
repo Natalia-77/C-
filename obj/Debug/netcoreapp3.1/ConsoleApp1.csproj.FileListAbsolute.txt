@@ -1,0 +1,13 @@
+D:\Natalia\Project1\C-Sharp\bin\Debug\netcoreapp3.1\ConsoleApp1.exe
+D:\Natalia\Project1\C-Sharp\bin\Debug\netcoreapp3.1\ConsoleApp1.deps.json
+D:\Natalia\Project1\C-Sharp\bin\Debug\netcoreapp3.1\ConsoleApp1.runtimeconfig.json
+D:\Natalia\Project1\C-Sharp\bin\Debug\netcoreapp3.1\ConsoleApp1.runtimeconfig.dev.json
+D:\Natalia\Project1\C-Sharp\bin\Debug\netcoreapp3.1\ConsoleApp1.dll
+D:\Natalia\Project1\C-Sharp\bin\Debug\netcoreapp3.1\ConsoleApp1.pdb
+D:\Natalia\Project1\C-Sharp\obj\Debug\netcoreapp3.1\ConsoleApp1.csprojAssemblyReference.cache
+D:\Natalia\Project1\C-Sharp\obj\Debug\netcoreapp3.1\ConsoleApp1.AssemblyInfoInputs.cache
+D:\Natalia\Project1\C-Sharp\obj\Debug\netcoreapp3.1\ConsoleApp1.AssemblyInfo.cs
+D:\Natalia\Project1\C-Sharp\obj\Debug\netcoreapp3.1\ConsoleApp1.csproj.CoreCompileInputs.cache
+D:\Natalia\Project1\C-Sharp\obj\Debug\netcoreapp3.1\ConsoleApp1.dll
+D:\Natalia\Project1\C-Sharp\obj\Debug\netcoreapp3.1\ConsoleApp1.pdb
+D:\Natalia\Project1\C-Sharp\obj\Debug\netcoreapp3.1\ConsoleApp1.genruntimeconfig.cache
