@@ -98,8 +98,7 @@ namespace ConsoleApp1
 
             // -----------Розрахунок витрати клею---------
 
-            double kg = 0;
-          
+                  
             Console.WriteLine("Введіть товщину шару клею,в мм:\n");
             double glue = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine("Введіть витрату клея в кг на 1м2:\n");
