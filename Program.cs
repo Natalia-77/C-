@@ -101,15 +101,21 @@ namespace ConsoleApp1
                   
             Console.WriteLine("Введіть товщину шару клею,в мм:\n");
             double glue = Convert.ToDouble(Console.ReadLine());
+
             Console.WriteLine("Введіть витрату клея в кг на 1м2:\n");
             double val = Convert.ToDouble(Console.ReadLine());
+
             double finish = (s + res) * glue * val;
-            Console.WriteLine($"На задану площу необхідно  {Math.Round(finish,0)}  кг клею", finish);
+
+            Console.WriteLine($"На задану площу необхідно  {Math.Ceiling(finish) }  кг клею", finish);
+
             Console.WriteLine("Введіть,скільки кг клею в одному мішку:\n");
             double k = Convert.ToDouble(Console.ReadLine());
+
             double total = finish / k;
-            Console.WriteLine($"Всього на вказану площу потрібно  :{Math.Round(total, 0) } мішків \n", total);
-            
+
+            Console.WriteLine($"Всього на вказану площу потрібно  :{Math.Ceiling(total) } мішків \n", total);
+            Console.WriteLine($"Залишок клею становитиме :{Math.Ceiling(total)*k-finish } кг \n",total,k,finish);
 
 
 
