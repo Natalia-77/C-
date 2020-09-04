@@ -1,64 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Text;
+//using System.Linq;
 
-namespace ConsoleApp1
-{
+//namespace ConsoleApp1
+//{
 
 
-    class Programm
-    {
-        static void CoString(string stroka)
-        {
-            int kol = 0;//лічильник кількості літер в строці.
-            int koldigit = 0, kolprep = 0;
-            int pkol = 0;
-            string punkt = ".,!?";
-            string probel = " ";
+//    class Programm
+//    {
+//        static void CoString(string stroka)
+//        {
+//            int kol = 0;//лічильник кількості літер в строці.
+//            int koldigit = 0, kolprep = 0;
+//            int pkol = 0;
+//            string punkt = ".,!?";
+//            string probel = " ";
            
-            Console.WriteLine("Кількість символів в строці :{0}", stroka.Length);
-            Console.WriteLine("===============================");
-            foreach (var el in stroka)
-            {
-                if (char.IsLetter(el))
-                    kol++;
-                if (char.IsDigit(el))
-                    koldigit++;
-                foreach (char punct in punkt)
-                    if (el == punct)                   
-                        kolprep++;                        
-                foreach(char p in probel)
-                        if(el==p)                   
-                        pkol++;             
+//            Console.WriteLine("Кількість символів в строці :{0}", stroka.Length);
+//            Console.WriteLine("===============================");
+//            foreach (var el in stroka)
+//            {
+//                if (char.IsLetter(el))
+//                    kol++;
+//                if (char.IsDigit(el))
+//                    koldigit++;
+//                foreach (char punct in punkt)
+//                    if (el == punct)                   
+//                        kolprep++;                        
+//                foreach(char p in probel)
+//                        if(el==p)                   
+//                        pkol++;             
 
                 
-            }
-                Console.WriteLine("Кількість літер в строці :{0}", kol);
-                Console.WriteLine("Кількість літер у нижньомі регістрі : " + stroka.Count(Char.IsLower));
-                Console.WriteLine("Кількість літер у верхньому регістрі : " + stroka.Count(Char.IsUpper));
-                Console.WriteLine("Кількість цифр у строці:{0}", koldigit);
-                Console.WriteLine("Кількість знаків пунктуації {0}",kolprep);
-                Console.WriteLine("Кількість пробілів {0}",pkol);
+//            }
+//                Console.WriteLine("Кількість літер в строці :{0}", kol);
+//                Console.WriteLine("Кількість літер у нижньомі регістрі : " + stroka.Count(Char.IsLower));
+//                Console.WriteLine("Кількість літер у верхньому регістрі : " + stroka.Count(Char.IsUpper));
+//                Console.WriteLine("Кількість цифр у строці:{0}", koldigit);
+//                Console.WriteLine("Кількість знаків пунктуації {0}",kolprep);
+//                Console.WriteLine("Кількість пробілів {0}",pkol);
                
                 
             
 
 
-        }
+//        }
 
-        static void Main(string[] args)
-        {
-            Console.OutputEncoding = Encoding.Unicode;
-            Console.InputEncoding = Encoding.Unicode;
+//        static void Main(string[] args)
+//        {
+//            Console.OutputEncoding = Encoding.Unicode;
+//            Console.InputEncoding = Encoding.Unicode;
 
             
 
-            Console.WriteLine("ввести строку =");
-            string s = Console.ReadLine();
-            Console.WriteLine();
-            CoString(s);
-            Console.WriteLine("===================");
+//            Console.WriteLine("ввести строку =");
+//            string s = Console.ReadLine();
+//            Console.WriteLine();
+//            CoString(s);
+//            Console.WriteLine("===================");
+
+
             //Console.WriteLine("ввести символ =");
             //string str = Console.ReadLine();
             //s = s.Replace(str, str.ToUpper());
@@ -133,6 +135,8 @@ namespace ConsoleApp1
 
 
 
-        }
-    }
-}
+
+
+        //}
+    //}
+//}
