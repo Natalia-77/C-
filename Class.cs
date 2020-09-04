@@ -12,7 +12,11 @@ namespace ConsoleApp1
         static void CoString(string stroka)
         {
             int kol = 0;//лічильник кількості літер в строці.
-            int koldigit = 0;
+            int koldigit = 0, kolprep = 0;
+            int pkol = 0;
+            string punkt = ".,!?";
+            string probel = " ";
+           
             Console.WriteLine("Кількість символів в строці :{0}", stroka.Length);
             Console.WriteLine("===============================");
             foreach (var el in stroka)
@@ -21,16 +25,27 @@ namespace ConsoleApp1
                     kol++;
                 if (char.IsDigit(el))
                     koldigit++;
-            }
+                foreach (char punct in punkt)
+                    if (el == punct)                   
+                        kolprep++;                        
+                foreach(char p in probel)
+                        if(el==p)                   
+                        pkol++;             
 
-            Console.WriteLine("Кількість літер в строці :{0}", kol);
-            Console.WriteLine("Кількість літер у нижньомі регістрі : " + stroka.Count(Char.IsLower));
-            Console.WriteLine("Кількість літер у верхньому регістрі : " + stroka.Count(Char.IsUpper));           
-            Console.WriteLine("Кількість цифр у строці:{0}",koldigit);
+                
+            }
+                Console.WriteLine("Кількість літер в строці :{0}", kol);
+                Console.WriteLine("Кількість літер у нижньомі регістрі : " + stroka.Count(Char.IsLower));
+                Console.WriteLine("Кількість літер у верхньому регістрі : " + stroka.Count(Char.IsUpper));
+                Console.WriteLine("Кількість цифр у строці:{0}", koldigit);
+                Console.WriteLine("Кількість знаків пунктуації {0}",kolprep);
+                Console.WriteLine("Кількість пробілів {0}",pkol);
+               
+                
+            
 
 
         }
-
 
         static void Main(string[] args)
         {
@@ -43,6 +58,7 @@ namespace ConsoleApp1
             string s = Console.ReadLine();
             Console.WriteLine();
             CoString(s);
+            Console.WriteLine("===================");
             //Console.WriteLine("ввести символ =");
             //string str = Console.ReadLine();
             //s = s.Replace(str, str.ToUpper());
@@ -56,31 +72,6 @@ namespace ConsoleApp1
             //s = s.Remove(find + 1);
             //Console.WriteLine(s);
             //Console.WriteLine("===================");
-
-
-            //int count = 0;
-            //Console.Write("ввести строку 1 = ");
-            //string s1 = Console.ReadLine();
-            //Console.Write("ввести строку 2 = ");
-            //string s2 = Console.ReadLine();
-
-            //for (int i = 0; i < s1.Length; i++)
-            //{
-            //    for (int j = 0; j < s2.Length; j++)
-            //    {
-            //        if (s1[i] == s2[j])
-            //        {
-            //            s1 = s1.Remove(i, 1);
-
-            //            count++;
-            //            break;
-            //        }
-            //    }
-            //}
-            //Console.WriteLine("Строка 1: {0}", s1);
-            //Console.WriteLine("Строка 2: {0}", s2);
-            //Console.WriteLine("Всього видалено {0}", count);
-            //Console.WriteLine(s1.Length);
 
 
 
