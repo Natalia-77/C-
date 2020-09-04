@@ -9,21 +9,23 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-            //Console.WriteLine("ввести строку =");
-            //string s = Console.ReadLine();
-            //Console.WriteLine("ввести символ =");
-            //string str = Console.ReadLine();
-            //s = s.Replace(str, str.ToUpper());
-            //Console.WriteLine(s);
-            //Console.WriteLine("===================");
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.Unicode;
+            Console.WriteLine("ввести строку =");
+            string s = Console.ReadLine();
+            Console.WriteLine("ввести символ =");
+            string str = Console.ReadLine();
+            s = s.Replace(str, str.ToUpper());
+            Console.WriteLine(s);
+            Console.WriteLine("===================");
 
 
-            //int find = s.LastIndexOf(str,s.Length-1, StringComparison.CurrentCultureIgnoreCase);//шукає індекс входження підстроки в строку.
-            //Console.Write(find);//вивела в консоль індекс(просто для перевірки)
+            int find = s.LastIndexOf(str, s.Length - 1, StringComparison.CurrentCultureIgnoreCase);//шукає індекс входження підстроки в строку.
+            Console.Write(find);//вивела в консоль індекс(просто для перевірки)
 
-            //s = s.Remove(find + 1);
-            //Console.WriteLine(s);
-            //Console.WriteLine("===================");
+            s = s.Remove(find + 1);
+            Console.WriteLine(s);
+            Console.WriteLine("===================");
 
 
             //int count = 0;
@@ -70,9 +72,9 @@ namespace ConsoleApp1
             //        {
             //            if (s2.Contains(s1[i]))
             //            {
-                           
+
             //                s3 += s1[i];//ось тут записую в новостворену строчку значення видалених символів.
-                           
+
             //            }
 
             //            s1 = s1.Remove(i, 1);
@@ -95,16 +97,16 @@ namespace ConsoleApp1
             //foreach (char ch in s3) //тут кожен окремий символ беру за основу для порівняння.
             //{
             //    foreach (char cha in s3) //іду по всім символам строки.
-                
+
             //        if (cha != pred && cha == ch) //поточний символ має бути рівним символу-основі і не бути рівним попередньому символу-основі.
             //            kol++; //кількість літер.
-                
+
             //        if (kol != 0) //якщо не рівно нулю,то виводимо в консоль результат.
             //            Console.WriteLine("Кількість літер  {0} = {1}", ch, kol); //виводжу в консоль символ і його кількість в цій строці.
 
             //        kol = 0; //обнуляю,для пошуку наступної кількості літер.
             //        pred = ch; //Переходжу на наступну літеру(яку беру за основу для порівнянн) строки.
-                
+
             //}
 
 
