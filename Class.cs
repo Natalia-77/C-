@@ -1,18 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace ConsoleApp1
 {
+
+
     class Programm
     {
+        static void CoString(string stroka)
+        {
+            int kol = 0;//лічильник кількості літер в строці.
+            int koldigit = 0;
+            Console.WriteLine("Кількість символів в строці :{0}", stroka.Length);
+            Console.WriteLine("===============================");
+            foreach (var el in stroka)
+            {
+                if (char.IsLetter(el))
+                    kol++;
+                if (char.IsDigit(el))
+                    koldigit++;
+            }
+
+            Console.WriteLine("Кількість літер в строці :{0}", kol);
+            Console.WriteLine("Кількість літер у нижньомі регістрі : " + stroka.Count(Char.IsLower));
+            Console.WriteLine("Кількість літер у верхньому регістрі : " + stroka.Count(Char.IsUpper));           
+            Console.WriteLine("Кількість цифр у строці:{0}",koldigit);
+
+
+        }
+
 
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
-            //Console.WriteLine("ввести строку =");
-            //string s = Console.ReadLine();
+
+            
+
+            Console.WriteLine("ввести строку =");
+            string s = Console.ReadLine();
+            Console.WriteLine();
+            CoString(s);
             //Console.WriteLine("ввести символ =");
             //string str = Console.ReadLine();
             //s = s.Replace(str, str.ToUpper());
