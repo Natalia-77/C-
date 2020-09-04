@@ -11,21 +11,21 @@ namespace ConsoleApp1
         {
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
-            Console.WriteLine("ввести строку =");
-            string s = Console.ReadLine();
-            Console.WriteLine("ввести символ =");
-            string str = Console.ReadLine();
-            s = s.Replace(str, str.ToUpper());
-            Console.WriteLine(s);
-            Console.WriteLine("===================");
+            //Console.WriteLine("ввести строку =");
+            //string s = Console.ReadLine();
+            //Console.WriteLine("ввести символ =");
+            //string str = Console.ReadLine();
+            //s = s.Replace(str, str.ToUpper());
+            //Console.WriteLine(s);
+            //Console.WriteLine("===================");
 
 
-            int find = s.LastIndexOf(str, s.Length - 1, StringComparison.CurrentCultureIgnoreCase);//шукає індекс входження підстроки в строку.
-            Console.Write(find);//вивела в консоль індекс(просто для перевірки)
+            //int find = s.LastIndexOf(str, s.Length - 1, StringComparison.CurrentCultureIgnoreCase);//шукає індекс входження підстроки в строку.
+            //Console.Write(find);//вивела в консоль індекс(просто для перевірки)
 
-            s = s.Remove(find + 1);
-            Console.WriteLine(s);
-            Console.WriteLine("===================");
+            //s = s.Remove(find + 1);
+            //Console.WriteLine(s);
+            //Console.WriteLine("===================");
 
 
             //int count = 0;
