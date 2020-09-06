@@ -11,14 +11,11 @@ namespace ConsoleApp1
         private readonly string _name;
         private readonly string _secondname;
         private readonly string _group;
+        private double[] Marks = new double[5];//масив оцінок.
+        private readonly string[][] Classes = new string[3][];//рваний масив -предмети,з яких будуть проставлені оцінки.
         private readonly DateTime dates;
-        private int [] Marks = new int[5];//масив оцінок.
+        
 
 
-        public int this[int x]
-        {
-            get { return Marks[x]; }
-            set { Marks[x] = value; }
-        }
     }
 }
