@@ -336,23 +336,25 @@ namespace ConsoleApp1
           
             
             Students s = new Students("Petrov", "Ivan", "Petrovych", "15-АП", new DateTime(1992, 10, 12));
-            //-----Повне прізвище,ім"я,по-батькові--------
-            Console.WriteLine("Повне прізвище, ім!я, по - батькові студента {0}",s.Full);
-           
+                   
 
             //----Встановлення оцінок по дисциплінам--------
              s.SetProg(arr);
              s.SetDesign(arr);
              s.SetAdmin(arr);
              s.Print();
+            Console.WriteLine();
             Console.ReadKey();
-           
+
+            //-----Повне прізвище,ім"я,по-батькові--------
+            Console.WriteLine("Повне прізвище, ім!я, по - батькові студента {0}", s.Full);
 
             //-----Cередній бал з програмування-----------
             Console.WriteLine($"Середній бал по дисципліні Програмування: {Math.Ceiling(s.AveProg) }", s.AveProg);
             Console.WriteLine($"Середній бал по дисципліні Дизайн : {Math.Ceiling(s.AveDes) } ", s.AveDes);
             Console.WriteLine($"Середній бал по дисципліні Адміністрування :{Math.Ceiling(s.AveAd) } ", s.AveAd);
             Console.WriteLine($"Середній бал по всім дисциплінам :{Math.Ceiling(s.Finall) } ", s.Finall);
+            Console.WriteLine();
             Console.ReadKey();
             //----Вік студента----
             //----Вводити дату народження(щоб порахувало повних років) через крапку в один рядок.Наприклад,12.08.1990
@@ -360,13 +362,14 @@ namespace ConsoleApp1
             string age = Console.ReadLine();
             DateTime birth = DateTime.Parse(age);
             s.Age(birth);
+            Console.WriteLine();
             Console.ReadKey();
             //----Заміна номеру групи на новий------
             Console.WriteLine("Заміна номеру групи на новий: ");
             s.Group = "22-КЕ";
             s.PrintInfo();
             Console.ReadKey();
-            s.Print();
+           // s.Print();
             Console.ReadKey();
             //----Очищення оцінок--------
             s.Clear();
