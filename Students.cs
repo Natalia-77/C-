@@ -271,13 +271,8 @@ namespace ConsoleApp1
 
         public void PrintInfo()
         {
-            //DateTime today = DateTime.Today;
-            //TimeSpan age = today - dates;
-            //double ageInDays = age.TotalDays;
-            //double daysInYear = 365;
-            //double ageInYears = ageInDays / daysInYear;
 
-            Console.WriteLine("Ім я " + _name);
+            Console.WriteLine("Ім'я " + _name);
             Console.WriteLine("Прізвище " + _surname);
             Console.WriteLine("По-батькові " + _secondname);
             Console.WriteLine("Група " + _group);
@@ -312,7 +307,7 @@ namespace ConsoleApp1
 
         public void Print()
         {
-            Console.WriteLine("group"+_group);
+            Console.WriteLine("Група:"+_group);
             for (int i = 0; i < Classes.Length; i++)
             {
 
@@ -349,7 +344,7 @@ namespace ConsoleApp1
              s.SetProg(arr);
              s.SetDesign(arr);
              s.SetAdmin(arr);
-            // s.Print();
+             s.Print();
 
             //-----Cередній бал з програмування-----------
             Console.WriteLine($"Середній бал по дисципліні Програмування: {Math.Ceiling(s.AveProg) }", s.AveProg);
@@ -359,18 +354,18 @@ namespace ConsoleApp1
 
             //----Вік студента----
             //----Вводити дату народження(щоб порахувало повних років) через крапку в один рядок.Наприклад,12.08.1990
-            //Console.WriteLine("Введіть дату народження студента(через крапку в один рядок)");
-            //string age = Console.ReadLine();
-            //DateTime birth = DateTime.Parse(age);                    
-            //s.Age(birth);
+            Console.WriteLine("Введіть дату народження студента(через крапку в один рядок)");
+            string age = Console.ReadLine();
+            DateTime birth = DateTime.Parse(age);
+            s.Age(birth);
             //----Заміна номеру групи на новий------
             Console.WriteLine("Заміна номеру групи на новий: ");
             s.Group = "22-КЕ";
             s.PrintInfo();
-           // s.Print();
+            s.Print();
             //----Очищення оцінок--------
-           // s.Clear();
-            //s.Print();
+            s.Clear();
+            s.Print();
 
 
 
