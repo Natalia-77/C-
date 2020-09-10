@@ -345,24 +345,29 @@ namespace ConsoleApp1
              s.SetDesign(arr);
              s.SetAdmin(arr);
              s.Print();
+            Console.ReadKey();
+           
 
             //-----Cередній бал з програмування-----------
             Console.WriteLine($"Середній бал по дисципліні Програмування: {Math.Ceiling(s.AveProg) }", s.AveProg);
             Console.WriteLine($"Середній бал по дисципліні Дизайн : {Math.Ceiling(s.AveDes) } ", s.AveDes);
             Console.WriteLine($"Середній бал по дисципліні Адміністрування :{Math.Ceiling(s.AveAd) } ", s.AveAd);
             Console.WriteLine($"Середній бал по всім дисциплінам :{Math.Ceiling(s.Finall) } ", s.Finall);
-
+            Console.ReadKey();
             //----Вік студента----
             //----Вводити дату народження(щоб порахувало повних років) через крапку в один рядок.Наприклад,12.08.1990
             Console.WriteLine("Введіть дату народження студента(через крапку в один рядок)");
             string age = Console.ReadLine();
             DateTime birth = DateTime.Parse(age);
             s.Age(birth);
+            Console.ReadKey();
             //----Заміна номеру групи на новий------
             Console.WriteLine("Заміна номеру групи на новий: ");
             s.Group = "22-КЕ";
             s.PrintInfo();
+            Console.ReadKey();
             s.Print();
+            Console.ReadKey();
             //----Очищення оцінок--------
             s.Clear();
             s.Print();
