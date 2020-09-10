@@ -343,11 +343,11 @@ namespace ConsoleApp1
              s.SetDesign(arr);
              s.SetAdmin(arr);
              s.Print();
-            Console.WriteLine();
-            Console.ReadKey();
+             Console.WriteLine();
+             Console.ReadKey();
 
             //-----Повне прізвище,ім"я,по-батькові--------
-            Console.WriteLine("Повне прізвище, ім!я, по - батькові студента {0}", s.Full);
+             Console.WriteLine("Повне прізвище, ім!я, по - батькові студента {0}", s.Full);
 
             //-----Cередній бал з програмування-----------
             Console.WriteLine($"Середній бал по дисципліні Програмування: {Math.Ceiling(s.AveProg) }", s.AveProg);
@@ -369,7 +369,7 @@ namespace ConsoleApp1
             s.Group = "22-КЕ";
             s.PrintInfo();
             Console.ReadKey();
-           // s.Print();
+            // s.Print();
             Console.ReadKey();
             //----Очищення оцінок--------
             s.Clear();
