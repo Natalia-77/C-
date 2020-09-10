@@ -5,7 +5,7 @@
 //namespace ConsoleApp1
 //{
 //    class Student
-//    {
+//    {   
 
 //        private  string _surname;
 //        private  string _name;
