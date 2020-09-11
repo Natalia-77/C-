@@ -8,7 +8,7 @@ namespace ConsoleApp1
     {
 
         private string _surname;
-        public string Surname
+        public string Surname 
         {
             get { return _surname; }
             private set { _surname = value; }
