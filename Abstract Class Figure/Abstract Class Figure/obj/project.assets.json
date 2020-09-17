@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Natalia\\Abstract Class Figure\\Abstract Class Figure\\Abstract Class Figure.csproj",
+      "projectUniqueName": "D:\\Natalia\\Project1\\C-Sharp\\Abstract Class Figure\\Abstract Class Figure\\Abstract Class Figure.csproj",
       "projectName": "Abstract Class Figure",
-      "projectPath": "D:\\Natalia\\Abstract Class Figure\\Abstract Class Figure\\Abstract Class Figure.csproj",
+      "projectPath": "D:\\Natalia\\Project1\\C-Sharp\\Abstract Class Figure\\Abstract Class Figure\\Abstract Class Figure.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\Natalia\\Abstract Class Figure\\Abstract Class Figure\\obj\\",
+      "outputPath": "D:\\Natalia\\Project1\\C-Sharp\\Abstract Class Figure\\Abstract Class Figure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",

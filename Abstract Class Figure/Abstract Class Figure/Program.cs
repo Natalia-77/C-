@@ -6,7 +6,7 @@ namespace Abstract_Class_Figure
     {
         static void Main(string[] args)
         {
-            
+              
         }
     }
 }
