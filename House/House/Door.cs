@@ -7,6 +7,7 @@ namespace House
     class Door:IPart
     {
         private string name;
+        public string Name { get; set; } = "Door";
         public Door(string name)
         {
             this.name = name;

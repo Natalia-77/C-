@@ -7,6 +7,8 @@ namespace House
     class Window:IPart
     {
         private string name;
+
+        public string Name { get; set; } = "Window";
        
         public Window(string name)
         {

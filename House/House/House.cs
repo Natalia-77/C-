@@ -5,7 +5,7 @@ using System.Text;
 
 namespace House
 {
-    class House:IPart
+    class House
     {
         private string name;
         List<IPart> house;
@@ -14,6 +14,7 @@ namespace House
         {
             house = new List<IPart>();
             name = "Ocean Plaza";
+           
         }
 
         public string GetName 
@@ -23,28 +24,55 @@ namespace House
                 return name;
             }
         }
-
-        public void Part(IPart obj)
+       
+        public void Part(IPart par)
         {
-            house.Add(obj);//додаю складові частини будинку.
+            house.Add(par);//додаю складові частини будинку в спимок.
         }
+
+        //public void Show()
+        //{
+        //    int size = house.Count;
+        //    for (int i = 0; i < size; i++)
+        //    Console.WriteLine("Element "+ house.ElementAt(i).GetName);
+        //}
 
         public void Show()
         {
             int size = house.Count;
-            for (int i = 0; i < size; i++)
-            Console.WriteLine(house.ElementAt(i).GetName);
+
+
+            for (int j = 0; j <11; j++)
+            {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Console.Write("*");
+
+                    }
+                
+                Console.WriteLine();
+            }
+           
+            
         }
 
-        public int CounterPart()//кількість частин.
+
+        public int CountPart()//кількість частин.
         { 
             return house.Count;
         }
 
-        public string GetLastPartName()//пошук останньої частини(назви).
+        public string GetPart()//пошук останньої частини(назви).
         {
             return house.Last().GetName;
         }
+
+        public List<IPart> GetHouse()
+        {
+            return house;
+        }
+       
+
 
     }
 }

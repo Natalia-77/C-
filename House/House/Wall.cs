@@ -8,6 +8,8 @@ namespace House
     {
         private string name;
 
+        public string Name { get; set; } = "Wall";
+
         public Wall(string name)
         {
             this.name = name;

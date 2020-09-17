@@ -2,19 +2,18 @@
 
 namespace House
 {
-
-    public enum Parties { Basement, Wall, Window, Door, Roof };
+       
     public enum MaterialBasement { Tape, Сolumnar, Slabs, Field };
     public enum MaterialWindow { Wood, Plastic, Glass };
 
     interface IPart   
     {
-        string GetName { get; }        
+        string GetName { get; }    //отримати назву складової частини будинку.      
     }
 
     interface IWorker 
     {
-
+       House PartBuild(House h);
 
     }
 
@@ -23,7 +22,13 @@ namespace House
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            int kol = 11;
+            House house = new House();
+            Team team = new Team(kol);
+            team.Work(house);
+            house.Show();
+            Console.ReadKey();
+
         }
     }
 }

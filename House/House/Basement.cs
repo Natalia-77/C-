@@ -7,6 +7,7 @@ namespace House
     class Basement:IPart
     {
         private string name;
+        public string Name { get; set; } = "Basement";
        
         public Basement(string name)
         {

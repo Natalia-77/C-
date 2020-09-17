@@ -1,0 +1,13 @@
+D:\Natalia\Project1\C-Sharp\House\House\bin\Debug\netcoreapp3.1\House.exe
+D:\Natalia\Project1\C-Sharp\House\House\bin\Debug\netcoreapp3.1\House.deps.json
+D:\Natalia\Project1\C-Sharp\House\House\bin\Debug\netcoreapp3.1\House.runtimeconfig.json
+D:\Natalia\Project1\C-Sharp\House\House\bin\Debug\netcoreapp3.1\House.runtimeconfig.dev.json
+D:\Natalia\Project1\C-Sharp\House\House\bin\Debug\netcoreapp3.1\House.dll
+D:\Natalia\Project1\C-Sharp\House\House\bin\Debug\netcoreapp3.1\House.pdb
+D:\Natalia\Project1\C-Sharp\House\House\obj\Debug\netcoreapp3.1\House.csprojAssemblyReference.cache
+D:\Natalia\Project1\C-Sharp\House\House\obj\Debug\netcoreapp3.1\House.AssemblyInfoInputs.cache
+D:\Natalia\Project1\C-Sharp\House\House\obj\Debug\netcoreapp3.1\House.AssemblyInfo.cs
+D:\Natalia\Project1\C-Sharp\House\House\obj\Debug\netcoreapp3.1\House.csproj.CoreCompileInputs.cache
+D:\Natalia\Project1\C-Sharp\House\House\obj\Debug\netcoreapp3.1\House.dll
+D:\Natalia\Project1\C-Sharp\House\House\obj\Debug\netcoreapp3.1\House.pdb
+D:\Natalia\Project1\C-Sharp\House\House\obj\Debug\netcoreapp3.1\House.genruntimeconfig.cache
