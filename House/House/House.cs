@@ -30,30 +30,11 @@ namespace House
             house.Add(par);//додаю складові частини будинку в спимок.
         }
 
-        //public void Show()
-        //{
-        //    int size = house.Count;
-        //    for (int i = 0; i < size; i++)
-        //    Console.WriteLine("Element "+ house.ElementAt(i).GetName);
-        //}
-
         public void Show()
         {
             int size = house.Count;
-
-
-            for (int j = 0; j <11; j++)
-            {
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Console.Write("*");
-
-                    }
-                
-                Console.WriteLine();
-            }
-           
-            
+            for (int i = 0; i < size; i++)
+                Console.WriteLine("Element " + house.ElementAt(i).GetName);
         }
 
 

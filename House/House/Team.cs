@@ -24,11 +24,11 @@ namespace House
             for (int i = 0; i < workers.Length; i++)
             {
                 house = workers[i].PartBuild(house);
-                System.Threading.Thread.Sleep(200);
+                System.Threading.Thread.Sleep(2000);
                 Console.WriteLine("==============");
                 teamLeader.PartBuild(house);
                 Console.WriteLine("==============");
-                System.Threading.Thread.Sleep(200);
+                System.Threading.Thread.Sleep(2000);
 
 
             }
