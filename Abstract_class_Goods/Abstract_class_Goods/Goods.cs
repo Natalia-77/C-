@@ -21,7 +21,12 @@ namespace Abstract_class_Goods
         
         public virtual void Show()
         {
-            Console.WriteLine(" Назва: {0}\n Ціна: {1}\n Кількість: {2} \n Дата оприбуткування: {3} {4} ", _name, _price, _quantity, _date.ToString("D"));
+            Console.WriteLine(" Назва: {0}\n Ціна: {1}\n Кількість: {2} \n Дата оприбуткування: {3} \n Сумарна вартість даної номенклатури товару на складі :{4}\n ", _name, _price, _quantity, _date.ToString("D"),GetValue());
+        }
+
+        public virtual double GetValue()
+        {
+            return _price * _quantity;
         }
 
     }

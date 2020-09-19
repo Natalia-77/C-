@@ -17,8 +17,14 @@ namespace Abstract_class_Goods
 
         public override void Show()
         {
-            Console.WriteLine(" Назва: {0}\n Ціна: {1}\n Кількість: {2} \n Продуктова група: {3} \n Відділ : {4} Дата оприбуткування : {5}", _name, _price, _quantity, _group, _department, _date.ToString("D"));
+            Console.WriteLine(" Назва: {0}\n Ціна: {1}\n Кількість: {2} \n Продуктова група: {3} \n Відділ : {4}\n Дата оприбуткування : {5}\n Сумарна вартість даної номенклатури на складі : {6}\n ", _name, _price, _quantity, _group, _department, _date.ToString("D"),GetValue());
 
+        }
+
+
+        public override double GetValue()
+        {
+            return _price * _quantity;
         }
 
     }

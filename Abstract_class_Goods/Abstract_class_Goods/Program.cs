@@ -35,7 +35,10 @@ namespace Abstract_class_Goods
             }
 
             Console.WriteLine("----------------");
-            cat.Print();     
+            Console.WriteLine("Catalog after changed Status");
+            cat.Print();   
+            
+
 
 
 

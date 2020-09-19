@@ -24,8 +24,10 @@ namespace Abstract_class_Goods
             foreach (Goods el in _good)
             {
                 el.Show();
+                Console.WriteLine("------------------");
                 Console.WriteLine("Статус товару: "+_status);
                 Console.WriteLine();
+               // el.GetValue();
             }
         }
 
