@@ -42,19 +42,34 @@ namespace Fraction
         public override string ToString()
         {
             int part = _numerator / _denominator;
-            if (part != 0)
+            if (part != 0 && _numerator % _denominator != 0)
             {
-                //if(_numerator%_denominator==0)
-                //{
-                //    return string.Format("{0}/{1}", part, _denominator);
-                //}
+                 return string.Format("{0} {1}/{2}", part, _numerator % _denominator, _denominator);
 
-                return string.Format("{0} {1}/{2}", part, _numerator % _denominator, _denominator);
             }
-            else
+            if (_numerator % _denominator == 0)
+            {
+                return string.Format("{0}", part);
+            }
+            else// (part == 0)
             {
                 return string.Format("{0}/{1}", _numerator, _denominator);
             }
+
+            //int part = _numerator / _denominator;
+            //if (part != 0)
+            //{
+            //    //if(_numerator%_denominator==0)
+            //    //{
+            //    //    return string.Format("{0}/{1}", part, _denominator);
+            //    //}
+
+            //    return string.Format("{0} {1}/{2}", part, _numerator % _denominator, _denominator);
+            //}
+            //else
+            //{
+            //    return string.Format("{0}/{1}", _numerator, _denominator);
+            //}
 
         }   
         
@@ -166,7 +181,7 @@ namespace Fraction
                     counter++;                    //кількість цифр після крапки.
                     x = x / 10;
                 }
-               // Console.WriteLine("Введений десятковий дріб має {0} цифр після крапки ", counter);
+               
                 int y = Convert.ToInt32(str[0]); //якщо ціла частина рівна нулю.
                 if (y == 0)
                 {

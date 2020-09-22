@@ -23,42 +23,57 @@ namespace Fraction
 
             Fraction f1 = new Fraction(a, b);
             Fraction f2 = new Fraction(c, d);
-            //Console.WriteLine(f1.ToString() + "  " + f2.ToString());
-            f1.Show();
-            f2.Show();
 
+            if (b == 0 || d == 0)
+            {
+                throw new Exception("Знаменник не може бути рівним нулю!");
+            }
 
-            Console.WriteLine("Введіть десятковий дріб(через крапку),який ви хочете додати до першого дробу: ");
-            string s = Console.ReadLine();
-            Fraction f3 = Fraction.Parse(s);
-            Console.WriteLine("Введений вами десятковий дріб має такий вигляд(у вигляды правильного дробу): ");
-            f3.Show();
-            Fraction f4 = f1 + f3;
-            Console.WriteLine("Ваш результат(у вигляді правильного дробу): ");
-            f4.Show();
+            Console.WriteLine("Дроби,які ви ввели, мають наступний вигляд(у вигляді правильного дробу): ");
+            Console.WriteLine(f1.ToString() + "  " + f2.ToString());
+
+            if (f1)
+                Console.WriteLine("Перший дріб правильний");
+            else
+                Console.WriteLine("Перший дріб неправильний ");
+
+            if (f2)
+                Console.WriteLine("Другий дріб правильний");
+            else
+                Console.WriteLine("Другий дріб неправильний ");
+
+            Console.WriteLine("Рівність між першим і другим дробом ");
            
+            if (f1 < f2)
+                Console.WriteLine("Перший дріб менше другого");
+            else
+                Console.WriteLine("Перший дріб більше другого ");
+
+            if (f1 > f2)
+                Console.WriteLine("Перший дріб більше другого");
+            else
+                Console.WriteLine("Перший дріб менше другого ");
+
+
+
+            //Console.WriteLine("Введіть десятковий дріб(через крапку),який ви хочете додати до першого дробу: ");
+            //string s = Console.ReadLine();
+            //Fraction f3 = Fraction.Parse(s);
+            //Console.WriteLine("Введений вами десятковий дріб має такий вигляд(у вигляды правильного дробу): ");
+            //f3.Show();
+            //Fraction f4 = f1 + f3;
+            //Console.WriteLine("Ваш результат(у вигляді правильного дробу): ");
+            //f4.Show();
 
 
 
 
-            //if(f1)
-            //    Console.WriteLine(true);
-            //else
-            //    Console.WriteLine(false);
+
             //int n = 4;
             //Fraction f3 =n* f1;
             //f3.Show();
-
             // double m = 1.5;
-
-
-
-            //if (b == 0||d==0)
-            //{
-            //    throw new Exception("Знаменник не може бути рівним нулю!");
-            //}
-            //f1.Show();
-            //f2.Show();                     
+                        
             //Fraction f3 = f1 / f2;
             //f3.Show();
 
