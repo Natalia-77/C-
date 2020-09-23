@@ -43,41 +43,37 @@ namespace Fraction
                 Console.WriteLine("Другий дріб неправильний ");
 
             Console.WriteLine("Рівність між першим і другим дробом ");
-           
-            if (f1 < f2)
-                Console.WriteLine("Перший дріб менше другого");
-            else
-                Console.WriteLine("Перший дріб більше другого ");
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine($"f1 < f2:{ f1 < f2}"); 
+            Console.WriteLine($"f1 > f2:{ f1 > f2}");
+            Console.WriteLine($"f1 == f2:{ f1 == f2}");
+            Console.WriteLine($"f1 != f2:{ f1 != f2}");
 
-            if (f1 > f2)
-                Console.WriteLine("Перший дріб більше другого");
-            else
-                Console.WriteLine("Перший дріб менше другого ");
+            Console.WriteLine("Математичні дії: ");
+            Console.WriteLine("----------------------------------");
+            Console.WriteLine($"f1 + f2:{ f1 + f2}");
+            Console.WriteLine($"f1 - f2:{ f1 - f2}");
+            Console.WriteLine($"f1 * f2:{ f1 * f2}");
+            Console.WriteLine($"f1 / f2:{ f1 / f2}");
+            Console.WriteLine("---------------------------------");
+            int m = 10;
+            Console.WriteLine("f1+m = {0}",f1+m);
+            Console.WriteLine("f1*m = {0}",f1*m);
+            Console.WriteLine("m*f1 = {0}",m*f1);
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("Введіть десятковий дріб(через крапку),який ви хочете додати до першого дробу: ");
+            string s = Console.ReadLine();
+            Fraction f3 = Fraction.Parse(s);
+            Console.WriteLine("Введений вами десятковий дріб має такий вигляд(у вигляды правильного дробу): ");
+            f3.Show();
+            Fraction f4 = f1 + f3;
+            Console.WriteLine("Ваш результат(у вигляді правильного дробу): ");
+            f4.Show();
+            
 
 
 
-            //Console.WriteLine("Введіть десятковий дріб(через крапку),який ви хочете додати до першого дробу: ");
-            //string s = Console.ReadLine();
-            //Fraction f3 = Fraction.Parse(s);
-            //Console.WriteLine("Введений вами десятковий дріб має такий вигляд(у вигляды правильного дробу): ");
-            //f3.Show();
-            //Fraction f4 = f1 + f3;
-            //Console.WriteLine("Ваш результат(у вигляді правильного дробу): ");
-            //f4.Show();
 
-
-
-
-
-            //int n = 4;
-            //Fraction f3 =n* f1;
-            //f3.Show();
-            // double m = 1.5;
-                        
-            //Fraction f3 = f1 / f2;
-            //f3.Show();
-
-            //Console.WriteLine($"point1 == point2:{ f1 == f2}"); //
 
         }
     }

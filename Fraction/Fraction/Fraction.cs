@@ -13,7 +13,7 @@ namespace Fraction
         public int Numerator { get; set; }
         public int Denominator { get; set; }
 
-        public float Frac
+        public double Frac
         {
             get
             { 
@@ -51,33 +51,16 @@ namespace Fraction
             {
                 return string.Format("{0}", part);
             }
-            else// (part == 0)
+            else
             {
                 return string.Format("{0}/{1}", _numerator, _denominator);
             }
-
-            //int part = _numerator / _denominator;
-            //if (part != 0)
-            //{
-            //    //if(_numerator%_denominator==0)
-            //    //{
-            //    //    return string.Format("{0}/{1}", part, _denominator);
-            //    //}
-
-            //    return string.Format("{0} {1}/{2}", part, _numerator % _denominator, _denominator);
-            //}
-            //else
-            //{
-            //    return string.Format("{0}/{1}", _numerator, _denominator);
-            //}
 
         }   
         
         public void Show()
         {
-            //Console.WriteLine(ToString());
-           // Console.WriteLine(_numerator+"/"+_denominator);
-
+          
             int part = _numerator / _denominator;
             if (part != 0&& _numerator % _denominator != 0)
             {            
@@ -91,8 +74,7 @@ namespace Fraction
             if (part==0)
             {
                 Console.WriteLine(string.Format("{0}/{1}", _numerator, _denominator));
-            }
-            
+            }           
 
 
         }
@@ -137,20 +119,29 @@ namespace Fraction
         }
 
         public bool Equals(Fraction obj)
-        {
-           // if (this == null && obj == null)
-             //  return true;
-            //if (obj == null)
-               // return false;
-           return (ToString() == obj.ToString());
-            //eturn (_numerator == obj._numerator && _denominator == obj._denominator);
+        {           
+           return (ToString() == obj.ToString());           
         }
 
         public static bool operator >(Fraction a, Fraction b)
-        => (a.Frac > b.Frac)? true:false;       
+        => (a.Frac > b.Frac) ? true : false;
 
         public static bool operator <(Fraction a, Fraction b)
-        => (a.Frac < b.Frac)? true: false;
+        => (a.Frac < b.Frac) ? true : false;
+
+        //public static bool operator >(Fraction a, Fraction b)
+        //{
+        //    if (a.Frac <= b.Frac)
+        //        return false;
+        //    return true;
+        //}
+        //public static bool operator <(Fraction a, Fraction b)
+        //{
+        //    if (a.Frac >=b.Frac)
+        //        return false;
+        //    return true;
+        //}
+
 
         public static bool operator true(Fraction a)
         => (a._numerator < a._denominator) ? true : false;
