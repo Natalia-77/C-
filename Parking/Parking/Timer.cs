@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,7 +14,7 @@ namespace Parking
         //private static int _second;
 
 
-        static readonly Random rand = new Random();
+        
 
         //public Timer()
         //{
@@ -130,31 +131,80 @@ namespace Parking
         //    return res;
         //}
 
-        private DateTime start { get; set; }
-        private DateTime end { get; set; }
-         int range;
+        public DateTime start { get; set; }
+        public DateTime end { get; set; }
+        private TimeSpan Payed { get; set; }
+        private double totalminutes { get; set; }
+
+        static readonly Random rand = new Random();
 
         public Timer()
         {
-            start = new DateTime(2020,09,25);
-            end = new DateTime(2020,09,25);
-            range = (DateTime.Today - start).Days;
+            start = new DateTime(2020,09,24);//початок 
+            end = new DateTime(2020,09,26);//кінець 
+
+            var year = rand.Next(2020, 2020);
+            var month = rand.Next(09, 09);
+            var days = rand.Next(start.Day, start.Day);
+            var ranger = start.Day + 3;
+            var range = start.Day + 1;
+            var days2 = rand.Next(range, ranger);
+
+            start= new DateTime(year, month, days, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
+            end= new DateTime(year, month, days2, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
+            Payed = (end - start);
+            totalminutes = Math.Round(Payed.TotalMinutes,0);
+
+            
         }
 
-        public DateTime Start()
+        public void Show()
         {
-            return start.AddHours(rand.Next(0, 24)).AddMinutes(rand.Next(0, 60)).AddSeconds(rand.Next(0, 60));
+            Console.WriteLine("Start"+start+"   End "+end+" Payed "+Payed+"Total min "+totalminutes);
         }
 
-        public DateTime End()
-        {
-            return end.AddHours(rand.Next(0, 24)).AddMinutes(rand.Next(0, 60)).AddSeconds(rand.Next(0, 60));
-        }
+        //public DateTime Start()
+        //{
+        //    return start.AddDays(rand.Next(range)).AddHours(rand.Next(0, 24)).AddMinutes(rand.Next(0, 60)).AddSeconds(rand.Next(0, 60));
+        //}
 
-        
-        
+        //public DateTime End()
+        //{
+        //    return end.AddDays(rand.Next(range)).AddHours(rand.Next(0, 24)).AddMinutes(rand.Next(0, 60)).AddSeconds(rand.Next(0, 60));
+        //}
 
-        
+
+        //public DateTime Start()
+        //{
+        //    var year = rand.Next(2020, 2020);
+        //    var month = rand.Next(09, 09);
+        //    var days = rand.Next(start.Day, start.Day);
+                           
+        //    return new DateTime(year, month, days, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));          
+                        
+        //}
+
+        //public DateTime End()
+        //{
+        //    int range,ranger;
+        //    var year = rand.Next(2020, 2020);
+        //    var month = rand.Next(09, 10);
+        //    ranger = start.Day + 3;
+        //    range = start.Day + 1 ;
+        //    var days2 = rand.Next(range, ranger);
+
+        //     return new DateTime(year, month, days2, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
+        //}
+
+        //public TimeSpan Pay()
+        //{
+        //    return  End() - Start();
+        //}
+
+
+
+
+
     }
 
 

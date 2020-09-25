@@ -30,19 +30,23 @@ namespace Parking
             Car[] cars ={new Car(14,00,00,2),
             new Car(13,10,00,3),new Car(15,00,00,1),new Car(14,22,00,7) };
 
-            Timer timer = new Timer();
+            
             foreach (Car el in cars )
             {
                 el.Show();
-               // Car.Conver(el);
+                // Car.Conver(el);
                 //Timer.Timestart();
                 // Timer.Timefinish();
-                Console.WriteLine("{0:g}",timer.Start());//час заїзду на парковку
-                Console.WriteLine("+++{0:g}", timer.End());//час виїзду на парковку.
+                //Console.WriteLine("{0:g}", timer.Start());//час заїзду на парковку
+                // Console.WriteLine("+++{0:g}", timer.End());//час виїзду на парковку.
+                //Console.WriteLine(timer.Pay().TotalMinutes);
+                Timer timer = new Timer();
+                timer.Show();
             }
 
             
-            
+
+
 
         }
     }
