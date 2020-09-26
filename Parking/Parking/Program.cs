@@ -40,11 +40,18 @@ namespace Parking
                 //Console.WriteLine("{0:g}", timer.Start());//час заїзду на парковку
                 // Console.WriteLine("+++{0:g}", timer.End());//час виїзду на парковку.
                 //Console.WriteLine(timer.Pay().TotalMinutes);
-                Timer timer = new Timer();
-                timer.Show();
+               
+                //timer.Show();
             }
 
-            
+            Timer timer = new Timer();
+
+            Console.WriteLine("Timestart "+timer.GetMinutesStart());
+            Console.WriteLine("Timeend "+timer.GetMinuteEnd());
+            Console.WriteLine("Totalminutes "+timer.GetTotalMinutes());
+
+
+
 
 
 

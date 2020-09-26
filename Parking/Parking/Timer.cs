@@ -9,107 +9,8 @@ namespace Parking
     class Timer
     {
 
-        //private static int _hour; //static -
-        //private static int _minute;
-        //private static int _second;
 
 
-        
-
-        //public Timer()
-        //{
-        //    _hour = rand.Next(0,24);
-        //    _minute = rand.Next(0, 60);
-        //    _second = rand.Next(0,60);
-        //}
-
-        //public int Hour
-        //{
-        //    get
-        //    {                
-        //        return _hour;
-        //    }
-        //    set
-        //    {           
-        //            if (value < 0 || value > 24)
-        //            {
-        //              return;
-        //            }
-        //            _hour = value;     
-        //    }
-
-        //}
-
-        //public int Minute
-        //{
-        //    get
-        //    {
-        //        return _minute;
-        //    }
-        //    set
-        //    {
-        //        if (value < 0 || value > 60)
-        //        {
-        //            return;
-        //        }
-        //        _minute = value;
-        //    }
-
-        //}
-
-        //public int Second
-        //{
-        //    get
-        //    {
-        //        return _second;
-        //    }
-        //    set
-        //    {
-        //        if (value < 0 || value > 60)
-        //        {
-        //            return;
-        //        }
-        //        _second = value;
-        //    }
-
-        //}
-
-        //public  override string ToString()
-        //{
-        //    return string.Format("{0}г:{1}хв:{2}сек", _hour,_minute, _second);
-        //}
-
-        //public void Print()
-        //{
-        //    Console.WriteLine(this.ToString());
-        //}
-
-        //public static void Timestart()//час,коли авто поставили на парковку.
-        //{
-        //    Timer timer = new Timer();
-        //    int hour = rand.Next(0,24);
-        //    int minute = rand.Next(0, 60);
-        //    int second = rand.Next(0, 60);
-
-        //    timer.Hour = hour; //В години запишеться,що видав рандом.
-        //    timer.Minute = minute;
-        //    timer.Second = second;
-        //    Console.WriteLine("Час,коли авто поставили на парковку:{0}г.{1}хв.{2}с.",timer.Hour,timer.Minute,timer.Second);
-
-        //}
-
-        //public static void Timefinish()
-        //{
-        //    Timer timer = new Timer();
-        //    int hour = rand.Next(0, 24);
-        //    int minute = rand.Next(0, 60);
-        //    int second = rand.Next(0, 60);
-
-        //    timer.Hour = hour; //В години запишеться,що видав рандом.
-        //    timer.Minute = minute;
-        //    timer.Second = second;
-        //    Console.WriteLine("Час,коли авто забирають з парковки:{0}г.{1}хв.{2}с.", timer.Hour, timer.Minute, timer.Second);
-        //}
 
         //public static double Res(int hours, int minutes, int seconds)
         //{
@@ -131,7 +32,7 @@ namespace Parking
         //    return res;
         //}
 
-        public DateTime start { get; set; }
+        public DateTime start;// { get; set; }
         public DateTime end { get; set; }
         private TimeSpan Payed { get; set; }
         private double totalminutes { get; set; }
@@ -150,17 +51,34 @@ namespace Parking
             var range = start.Day + 1;
             var days2 = rand.Next(range, ranger);
 
-            start= new DateTime(year, month, days, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
-            end= new DateTime(year, month, days2, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
-            Payed = (end - start);
-            totalminutes = Math.Round(Payed.TotalMinutes,0);
-
+           this.start= new DateTime(year, month, days, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
+           this. end= new DateTime(year, month, days2, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
+           this. Payed = (end - start);
+           this. totalminutes = Math.Round(Payed.TotalMinutes,0);
             
         }
 
         public void Show()
         {
             Console.WriteLine("Start"+start+"   End "+end+" Payed "+Payed+"Total min "+totalminutes);
+        }
+
+        public DateTime GetMinutesStart()
+        {
+
+            return start;
+        }
+
+        public DateTime GetMinuteEnd ()
+        {
+            return end;
+
+        }
+
+        public double GetTotalMinutes ()
+        {
+
+            return totalminutes;
         }
 
         //public DateTime Start()
@@ -196,10 +114,7 @@ namespace Parking
         //     return new DateTime(year, month, days2, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
         //}
 
-        //public TimeSpan Pay()
-        //{
-        //    return  End() - Start();
-        //}
+     
 
 
 
