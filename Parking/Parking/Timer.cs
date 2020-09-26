@@ -9,9 +9,6 @@ namespace Parking
     class Timer
     {
 
-
-
-
         //public static double Res(int hours, int minutes, int seconds)
         //{
         //    TimeSpan T1 = new TimeSpan(hours, minutes, seconds);
@@ -32,10 +29,11 @@ namespace Parking
         //    return res;
         //}
 
-        public DateTime start;// { get; set; }
+        public DateTime start { get; set; }
         public DateTime end { get; set; }
         private TimeSpan Payed { get; set; }
-        private double totalminutes { get; set; }
+        private TimeSpan Fact { get; set; }
+
 
         static readonly Random rand = new Random();
 
@@ -52,72 +50,45 @@ namespace Parking
             var days2 = rand.Next(range, ranger);
 
            this.start= new DateTime(year, month, days, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
-           this. end= new DateTime(year, month, days2, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
-           this. Payed = (end - start);
-           this. totalminutes = Math.Round(Payed.TotalMinutes,0);
+           this.end= new DateTime(year, month, days2, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
+           this.Payed = TimeSpan.FromMinutes(rand.Next(200, 2500));
+           this. Fact = this.end - this.start;
+          
             
         }
 
         public void Show()
         {
-            Console.WriteLine("Start"+start+"   End "+end+" Payed "+Payed+"Total min "+totalminutes);
+            Console.WriteLine("Start" + start + "   End " + end + " Payed " + Payed );
         }
 
-        public DateTime GetMinutesStart()
+        public DateTime GetTimeStart()=>start;//час заїзду на парковку.
+       
+        public DateTime GetTimeEnd() => end;//час виїзду з парковки.
+       
+        public TimeSpan GetTimePayed() => Payed;
+
+        public double GetF() => Math.Round(Fact.TotalMinutes,0);//фактичний час стоянки у хвилинах.
+       
+        public double GetSpanMinutes() => Payed.TotalMinutes;//оплачений час у хвилинах.
+       
+        public TimeSpan GetOutstandingTime()//різниця між фактичним часом і оплаченим.   
         {
+            TimeSpan OutStanding = this.end- this.start- Payed;
 
-            return start;
+             return OutStanding;
         }
 
-        public DateTime GetMinuteEnd ()
-        {
-            return end;
 
-        }
+        public double GetS()=>(GetOutstandingTime().TotalMinutes < 0)?0:Math.Round(GetOutstandingTime().TotalMinutes,0);//якщо різниця додатня,то вертаємо кількість хвилин,за які треба доплатити.
+                 
 
-        public double GetTotalMinutes ()
-        {
-
-            return totalminutes;
-        }
 
         //public DateTime Start()
         //{
         //    return start.AddDays(rand.Next(range)).AddHours(rand.Next(0, 24)).AddMinutes(rand.Next(0, 60)).AddSeconds(rand.Next(0, 60));
         //}
-
-        //public DateTime End()
-        //{
-        //    return end.AddDays(rand.Next(range)).AddHours(rand.Next(0, 24)).AddMinutes(rand.Next(0, 60)).AddSeconds(rand.Next(0, 60));
-        //}
-
-
-        //public DateTime Start()
-        //{
-        //    var year = rand.Next(2020, 2020);
-        //    var month = rand.Next(09, 09);
-        //    var days = rand.Next(start.Day, start.Day);
-                           
-        //    return new DateTime(year, month, days, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));          
-                        
-        //}
-
-        //public DateTime End()
-        //{
-        //    int range,ranger;
-        //    var year = rand.Next(2020, 2020);
-        //    var month = rand.Next(09, 10);
-        //    ranger = start.Day + 3;
-        //    range = start.Day + 1 ;
-        //    var days2 = rand.Next(range, ranger);
-
-        //     return new DateTime(year, month, days2, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
-        //}
-
-     
-
-
-
+        
 
 
     }
@@ -126,15 +97,3 @@ namespace Parking
 
 }
 
-//internal DateTime EntryDateTime { get; set; }
-//internal DateTime ExitDateTime { get; set; }
-
-//public PatronTimeSpend(DateTime entryDate, DateTime exitDate)
-//{
-//    if (entryDate.Subtract(exitDate).TotalMilliseconds > 0)
-//    {
-//        throw new InvalidOperationException();
-//    }
-//    EntryDateTime = entryDate;
-//    ExitDateTime = exitDate;
-//}

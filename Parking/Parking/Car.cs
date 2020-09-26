@@ -9,42 +9,37 @@ namespace Parking
         private string _model { get; set; }
         private string _color { get; set; }
         private string _number { get; set; }
-        private double fact { get; set; }
-        private int _id { get; set; }
-        //private DateTime fact { get; set; }
-             
+        private double _time { get; set; }
+        private Timer timer = new Timer();
 
-        static Random rnd = new Random();
+        static readonly Random rnd = new Random();
 
-        public Car(int _h,int _m,int _s,int id)
+        public Car()
         {
             _model = Randommodel();
             _color = Randomcolor();
             _number = Randomnum();
-            //fact = Timer.Res(_h, _m, _s);
-            _id = id;
-            //fact = Timer.Result(_h, _m, _s);           
-            
+            _time = timer.GetF();
         }
            
 
 
 
-        public static double Conver(Car f)
-        {
-            var ts = TimeSpan.FromMinutes(f.fact);
-            Console.WriteLine("{0} г. {1} хв. {2} с. ", ts.Hours, ts.Minutes, ts.Seconds);
-            return ts.Hours >> ts.Minutes >> ts.Seconds;  
-        }
+        //public static double Conver(Car f)
+        //{
+        //    var ts = TimeSpan.FromMinutes(f.fact);
+        //    Console.WriteLine("{0} г. {1} хв. {2} с. ", ts.Hours, ts.Minutes, ts.Seconds);
+        //    return ts.Hours >> ts.Minutes >> ts.Seconds;  
+        //}
 
         public override string ToString()
         {
-            return string.Format("Model {0} , time {1}, Color {2} ",_model,fact,_color);
+            return string.Format("Model {0} , Color {1} ", _model, _color);
         }
 
         public void Show()
         {
-            Console.WriteLine("Номер місця "+_id+" Model " + _model + " Час стоянки на даний момент у хвилинах: " + fact + " Color: " + _color + " Number: " + _number);
+            Console.WriteLine(" Model " + _model + " Color: " + _color + " Number: " + _number+" Time: "+_time);
             
         }
 

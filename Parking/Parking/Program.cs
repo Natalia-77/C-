@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Parking
@@ -15,40 +16,27 @@ namespace Parking
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
 
-            //Car car = new Car("Audi", "Black", "FT 2501 HY",06,10,00);
-            //Car car1 = new Car("Opel", "Silver", "FG 1258 UU", 07, 00, 00);
-            //Car car2 = new Car("KIA", "Red", "WE 6541 BB", 08, 00, 00);
+            List<Car> car = new List<Car>(4);
+            car.Add(new Car());
+            car.Add(new Car());
+            car.Add(new Car());
+            car.Add(new Car());
 
-            //string v = car.ToString();
-            // Console.WriteLine(v);
-
-            //car.Show();
-            //car1.Show();
-            //car2.Show();
-
-            Console.WriteLine("----------------\n");
-            Car[] cars ={new Car(14,00,00,2),
-            new Car(13,10,00,3),new Car(15,00,00,1),new Car(14,22,00,7) };
-
-            
-            foreach (Car el in cars )
+            foreach (Car el in car)
             {
                 el.Show();
-                // Car.Conver(el);
-                //Timer.Timestart();
-                // Timer.Timefinish();
-                //Console.WriteLine("{0:g}", timer.Start());//час заїзду на парковку
-                // Console.WriteLine("+++{0:g}", timer.End());//час виїзду на парковку.
-                //Console.WriteLine(timer.Pay().TotalMinutes);
-               
-                //timer.Show();
             }
 
-            Timer timer = new Timer();
 
-            Console.WriteLine("Timestart "+timer.GetMinutesStart());
-            Console.WriteLine("Timeend "+timer.GetMinuteEnd());
-            Console.WriteLine("Totalminutes "+timer.GetTotalMinutes());
+            Console.WriteLine("---------------------");
+            Timer timer = new Timer();
+            Console.WriteLine("Дата і час заїзду: " + timer.GetTimeStart());
+            Console.WriteLine("Дата і час виїзду: " + timer.GetTimeEnd());
+            Console.WriteLine("Фактичні хвилини простою: " + timer.GetF());
+            Console.WriteLine("Оплачені хвилини: " + timer.GetSpanMinutes());
+            Console.WriteLine("Різниця(хвилини),за які потрібно доплатити: " + timer.GetS());
+
+
 
 
 
