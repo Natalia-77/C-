@@ -8,9 +8,10 @@ namespace Parking
     {
         private string _model { get; set; }
         private string _color { get; set; }
-        private string _number { get; set; }
+        public int _number { get; set; }
+        private string _letter { get; set; }
         private double _time { get; set; }
-        private Timer timer = new Timer();
+       
 
         static readonly Random rnd = new Random();
 
@@ -18,28 +19,33 @@ namespace Parking
         {
             _model = Randommodel();
             _color = Randomcolor();
-            _number = Randomnum();
+            _number = rnd.Next(1, 10);
+            _letter = Randomnum();
+            Timer timer = new Timer();
             _time = timer.GetF();
+        }
+
+        public int Numbers
+        {
+            get
+            {
+                return _number;
+            }
+            set
+             {
+                _number = value;
+            }
         }
            
 
-
-
-        //public static double Conver(Car f)
-        //{
-        //    var ts = TimeSpan.FromMinutes(f.fact);
-        //    Console.WriteLine("{0} г. {1} хв. {2} с. ", ts.Hours, ts.Minutes, ts.Seconds);
-        //    return ts.Hours >> ts.Minutes >> ts.Seconds;  
-        //}
-
         public override string ToString()
         {
-            return string.Format("Model {0} , Color {1} ", _model, _color);
+            return string.Format("Model {0} , Time {1} ", _model, _time);
         }
 
         public void Show()
         {
-            Console.WriteLine(" Model " + _model + " Color: " + _color + " Number: " + _number+" Time: "+_time);
+            Console.WriteLine(" Model " + _model + " Color: " + _color + " Number: " + _number+"--"+_letter+" Time: "+_time);
             
         }
 
@@ -125,43 +131,43 @@ namespace Parking
 
         public string Randomnum()
         {
-            Number numb = (Number)(new Random()).Next(0, 5);
-            int r = rnd.Next(10, 125);
+            Letter numb = (Letter)(new Random()).Next(0, 5);
+            
             switch (numb)
             {
-                case Number.UA:
+                case Letter.UA:
                     {
-                        return "UA " +r;
+                        return "UA ";
                     }
 
-                case Number.EU:
+                case Letter.EU:
                     {
-                        return "EU " +r;
+                        return "EU ";
                     }
 
-                case Number.USA:
+                case Letter.USA:
                     {
-                        return "USA " +r;
+                        return "USA ";
                     }
 
-                case Number.CH:
+                case Letter.CH:
                     {
-                        return "DH " +r;
+                        return "DH ";
                     }
 
-                case Number.IN:
+                case Letter.IN:
                     {
-                        return "IN " +r;
+                        return "IN ";
                     }
 
-                case Number.RU:
+                case Letter.RU:
                     {
-                        return "RU"+r;
+                        return "RU";
                     }
 
-                case Number.CAN:
+                case Letter.CAN:
                     {
-                        return "Can 263 Kanban";
+                        return "Can";
                     }
 
                 default:
