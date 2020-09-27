@@ -6,14 +6,45 @@ namespace Parking
 {
     class Parkingbook
     {
-        private bool[] place;//масив місця на парковці.true->зайняте місце.фолс-вільно.
-        private List<Car> list = new List<Car>(); // список машин.
 
+        //private static Parkingbook parkingbook = new Parkingbook();//Синглтон.       
+        // private static int size = 7;
+        private int count;
+        private bool[] place;//масив місця на парковці.true->зайняте місце.фолс-вільно.
+        private List<Ticket> tickets = new List<Ticket>();//квитанції.
+        private List<Car> cars = new List<Car>(); // список машин.
+
+        //private Parkingbook(int count)
+        //{
+        //    place = new bool[count];
+        //}
 
         public Parkingbook(int count)
         {
             place = new bool[count];
+            this.count = count;
+
         }
+
+        public int Carsize()
+        {
+            return count;
+        }
+
+        //public int Gersize()
+        //{
+        //    return count;
+        //}
+
+        //public Parkingbook this[int pa]
+        //{
+        //    get
+        //    {
+        //        return parkingbook[pa];
+        //    }
+        //}
+
+
 
         public void AddCar()
         {
@@ -22,7 +53,7 @@ namespace Parking
                 if (place[i] == false)//якщо вільно
                 {
                     place[i] = true;//стає зайнято
-                    list.Add(new Car());
+                    cars.Add(new Car());
                     return;
                 }
             }
@@ -31,12 +62,12 @@ namespace Parking
 
         public void DelCar(int number) // видалення машини по номеру машини.
         {
-            foreach (Car car in list)
+            foreach (Car car in cars)
             {
-                if (car.Numbers == number)
+                if (car.GetNumbers() == number)
                 {
-                    list.Remove(car);
-                    place[car.Numbers] = false;
+                    cars.Remove(car);
+                    place[car.GetNumbers()] = false;
                     Console.WriteLine(" Res: ");
                     return;
                 }
@@ -44,12 +75,43 @@ namespace Parking
             Console.WriteLine("Немає такої машини: [{0}]", number);
         }
 
-        public void PrintAllCar() // вывести все машины
+        public void PrintAllCar() // вывести всі машини.
         {
-            foreach (Car car in list)
+            foreach (Car car in cars)
             {
-                Console.WriteLine("Hомер машини"+car.Numbers+"Модель "+car.Models);
+                Console.WriteLine("Hомер машини"+car.GetNumbers()+"Модель "+car.GetModels());
             }
         }
+
+        public double GetAllFine()//сума штрафів.
+        {
+            double sum = 0;
+            foreach (Ticket tic in tickets)
+            {
+                sum += tic.GetFine();
+            }
+            return sum;
+        }
+
+        public void AddToTickets(Ticket ticket)
+        {
+            this.tickets.Add(ticket);
+        }
+
+
+        //public void Statistic()
+        //{
+        //    Console.WriteLine($"\nКількість вільних місць - {(double)(size -cars.Count )}");
+        //    Console.WriteLine($"\nКількість зайнятих місць - {(double)cars.Count-size}");
+        //}
+
+        //public static Parkingbook Create()
+        //{
+        //    if (parkingbook == null)
+        //    {
+        //        parkingbook = new Parkingbook();
+        //    }
+        //    return parkingbook;
+        //}
     }
 }

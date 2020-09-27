@@ -15,7 +15,8 @@ namespace Parking
         {
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
-            Parkingbook park = new Parkingbook(6);
+
+
             //List<Car> car = new List<Car>(4);
             //car.Add(new Car());
             //car.Add(new Car());
@@ -28,31 +29,42 @@ namespace Parking
             //    Console.WriteLine(el.ToString());
             //}
 
-            park.AddCar();
-            park.AddCar();
-            park.AddCar();
-            park.PrintAllCar();
-            int y;
-            Console.WriteLine("Enter hh:");
-            y = int.Parse(Console.ReadLine());
-            park.DelCar(y);
+
+
+            //park.AddCar();
+            //park.AddCar();
+            //park.AddCar();
+            //park.PrintAllCar();
+            //int y;
+            //Console.WriteLine("Enter hh:");
+            //y = int.Parse(Console.ReadLine());
+            //park.DelCar(y);
+            //park.PrintAllCar();
+            //park.AddCar();
+            //Console.WriteLine("----------------");
+
 
             //foreach (Car el in car)
             //{
             //    el.Show();
             //    Console.WriteLine(el.ToString());
             //}
-            park.PrintAllCar();
+
 
             //Console.WriteLine("---------------------");
             //Timer timer = new Timer();
             //Console.WriteLine("Дата і час заїзду: " + timer.GetTimeStart());
             //Console.WriteLine("Дата і час виїзду: " + timer.GetTimeEnd());
-            //Console.WriteLine("Фактичні хвилини простою: " + timer.GetF());
+            //Console.WriteLine("Payed time: "+timer.GetTimePayed());
             //Console.WriteLine("Оплачені хвилини: " + timer.GetSpanMinutes());
             //Console.WriteLine("Різниця(хвилини),за які потрібно доплатити: " + timer.GetS());
 
-
+            Parker parker = new Parker();
+            parker.Add();
+            parker.Add();
+            parker.ShowAllCars();
+            parker.Del();
+            parker.ShowAllCars();
 
 
 

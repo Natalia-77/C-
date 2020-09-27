@@ -9,84 +9,72 @@ namespace Parking
     class Timer
     {
 
-        //public static double Res(int hours, int minutes, int seconds)
-        //{
-        //    TimeSpan T1 = new TimeSpan(hours, minutes, seconds);
-        //    DateTime res = DateTime.Now.Subtract(T1);
-        //    double res2 = (res.Hour * 60) + res.Minute;
-        //   // Console.WriteLine("Res:  " + res2);
-        //     return res2;
-        //}
-
-        //public static DateTime Result(int hours, int minutes, int seconds)
-        //{
-        //    TimeSpan T1 = new TimeSpan(hours, minutes, seconds);
-        //    DateTime res = DateTime.Now.Subtract(T1);
-        //    int res2 = (res.Hour * 60) + res.Minute;
-        //    Console.WriteLine("Res:  " + res2);
-        //    int time =(int)(res.Hour*60)+ (int)res.Minute;
-        //    Console.WriteLine("Time :"+time);
-        //    return res;
-        //}
-
-        public DateTime start { get; set; }
-        public DateTime end { get; set; }
-        private TimeSpan Payed { get; set; }
-        private TimeSpan Fact { get; set; }
-
-
+        private DateTime start;
+        private DateTime end;
+        private DateTime payed;
+     
         static readonly Random rand = new Random();
 
         public Timer()
-        {
-            start = new DateTime(2020,09,24);//початок 
-            end = new DateTime(2020,09,26);//кінець 
+        {      
+           
+            this.start = DateTime.Now;
 
-            var year = rand.Next(2020, 2020);
-            var month = rand.Next(09, 09);
-            var days = rand.Next(start.Day, start.Day);
-            var ranger = start.Day + 3;
-            var range = start.Day + 1;
-            var days2 = rand.Next(range, ranger);
+            this.end = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day,
+            rand.Next(start.Hour+1, 24), rand.Next(start.Minute, 60), rand.Next(start.Second, 60));
 
-           this.start= new DateTime(year, month, days, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
-           this.end= new DateTime(year, month, days2, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
-           this.Payed = TimeSpan.FromMinutes(rand.Next(200, 2500));
-           this. Fact = this.end - this.start;          
+            this.payed = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
+            rand.Next(start.Hour, 24), rand.Next(start.Minute, 60), rand.Next(start.Second, 60));             
             
         }
 
         public void Show()
         {
-            Console.WriteLine("Start" + start + "   End " + end + " Payed " + Payed );
+            Console.WriteLine("Start" + start + "   End " + end + " Payed " + payed );
         }
 
         public DateTime GetTimeStart()=>start;//час заїзду на парковку.
        
         public DateTime GetTimeEnd() => end;//час виїзду з парковки.
        
-        public TimeSpan GetTimePayed() => Payed;
+        public DateTime GetTimePayed() => payed;//оплачений час.
 
-        public double GetF() => Math.Round(Fact.TotalMinutes,0);//фактичний час стоянки у хвилинах.
-       
-        public double GetSpanMinutes() => Payed.TotalMinutes;//оплачений час у хвилинах.
-       
-        public TimeSpan GetOutstandingTime()//різниця між фактичним часом і оплаченим.   
+        public double GetEndMinute() => end.Minute;//час виїзду у хвилинах.
+
+        public double GetSpanMinutes() => payed.Minute;//оплачений час у хвилинах.   
+
+
+        public double OutstandingTime()//різниця між часом виїзду і оплаченим у хвилинах.
         {
-            TimeSpan OutStanding = end- start- Payed;
+            TimeSpan OutStanding = end - payed;
 
-             return OutStanding;
+            return OutStanding.Minutes;
         }
 
+        public DateTime Outstand()
+        {
+            TimeSpan OutStanding = end - payed;
+           
 
-        public double GetS()=>(GetOutstandingTime().TotalMinutes < 0)?0:Math.Round(GetOutstandingTime().TotalMinutes,0);//якщо різниця додатня,то вертаємо кількість хвилин,за які треба доплатити.
+            if (OutStanding.Minutes<0)
+            {
+                DateTime data = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,0,0,0);
+                return data;
+            }
+            else
+            {
+                DateTime data = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,OutStanding.Hours,OutStanding.Minutes,OutStanding.Seconds);
+                return data;
+            }
+
+        }
+       
+
+        //public DateTime GetOutstanding()=>(OutstandingTime()< 0)?0://якщо різниця додатня,то вертаємо кількість хвилин,за які треба доплатити.
                  
 
 
-        //public DateTime Start()
-        //{
-        //    return start.AddDays(rand.Next(range)).AddHours(rand.Next(0, 24)).AddMinutes(rand.Next(0, 60)).AddSeconds(rand.Next(0, 60));
-        //}
+        
         
 
 

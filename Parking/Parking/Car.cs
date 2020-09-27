@@ -6,12 +6,11 @@ namespace Parking
 {
     class Car
     {
-        private string _model { get; set; }
-        private string _color { get; set; }
-        private int _number { get; set; }
-        private string _letter { get; set; }
-        private double _time { get; set; }
-       
+        private string _model;
+        private string _color;
+        private int _number;
+        private string _letter;
+        Timer time = new Timer();
 
         static readonly Random rnd = new Random();
 
@@ -20,57 +19,31 @@ namespace Parking
             _model = Randommodel();
             _color = Randomcolor();
             _number = rnd.Next(1, 10);
-            _letter = Randomnum();
-            Timer timer = new Timer();
-            _time = timer.GetF();
+            _letter = Randomnum();          
+            
         }
 
-        public int Numbers
-        {
-            get
-            {
-                return _number;
-            }
-            set
-             {
-                _number = value;
-            }
-        }
+        public int GetNumbers() => this._number;
 
-        public string Models
-        {
-            get
-            {
-                return _model;
-            }
-            set
-            {
-                _model = value;
-            }
+        public string GetModels() => this._model;
+        
+        public string GetColors() => this._color;
 
-        }
+        public string GetLrtter() => this._letter;
 
-        public string Colors
-        {
-            get
-            {
-                return _color;
-            }
-            set
-            {
-                _color = value;
-            }
-        }
+        public Timer GetTime() => this.time;
+        
+               
            
 
         public override string ToString()
         {
-            return string.Format("Model {0} , Time {1} ", _model, _time);
+            return string.Format("Model {0} , Time {1} ", _model, time);
         }
 
         public void Show()
         {
-            Console.WriteLine(" Model " + _model + " Color: " + _color + " Number: " + _number+"--"+_letter+" Time: "+_time);
+            Console.WriteLine(" Model " + _model + " Color: " + _color + " Number: " + _number+"--"+_letter+" Time: "+time);
             
         }
 
