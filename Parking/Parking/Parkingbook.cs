@@ -33,11 +33,11 @@ namespace Parking
         {
             foreach (Car car in list)
             {
-                if (car._number == number)
+                if (car.Numbers == number)
                 {
                     list.Remove(car);
-                    place[car._number] = false;
-                    Console.WriteLine("++");
+                    place[car.Numbers] = false;
+                    Console.WriteLine(" Res: ");
                     return;
                 }
             }
@@ -48,7 +48,7 @@ namespace Parking
         {
             foreach (Car car in list)
             {
-                Console.WriteLine(car);
+                Console.WriteLine("Hомер машини"+car.Numbers+"Модель "+car.Models);
             }
         }
     }

@@ -52,8 +52,7 @@ namespace Parking
            this.start= new DateTime(year, month, days, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
            this.end= new DateTime(year, month, days2, rand.Next(0, 24), rand.Next(0, 60), rand.Next(0, 60));
            this.Payed = TimeSpan.FromMinutes(rand.Next(200, 2500));
-           this. Fact = this.end - this.start;
-          
+           this. Fact = this.end - this.start;          
             
         }
 
@@ -74,7 +73,7 @@ namespace Parking
        
         public TimeSpan GetOutstandingTime()//різниця між фактичним часом і оплаченим.   
         {
-            TimeSpan OutStanding = this.end- this.start- Payed;
+            TimeSpan OutStanding = end- start- Payed;
 
              return OutStanding;
         }

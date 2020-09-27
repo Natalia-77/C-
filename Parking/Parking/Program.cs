@@ -16,18 +16,22 @@ namespace Parking
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
             Parkingbook park = new Parkingbook(6);
-            List<Car> car = new List<Car>(4);
-            car.Add(new Car());
-            car.Add(new Car());
-            car.Add(new Car());
-            car.Add(new Car());
+            //List<Car> car = new List<Car>(4);
+            //car.Add(new Car());
+            //car.Add(new Car());
+            //car.Add(new Car());
+            //car.Add(new Car());
 
-            foreach (Car el in car)
-            {
-                el.Show();
-                Console.WriteLine(el.ToString());
-            }
+            //foreach (Car el in car)
+            //{
+            //    el.Show();
+            //    Console.WriteLine(el.ToString());
+            //}
+
             park.AddCar();
+            park.AddCar();
+            park.AddCar();
+            park.PrintAllCar();
             int y;
             Console.WriteLine("Enter hh:");
             y = int.Parse(Console.ReadLine());

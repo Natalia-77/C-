@@ -8,7 +8,7 @@ namespace Parking
     {
         private string _model { get; set; }
         private string _color { get; set; }
-        public int _number { get; set; }
+        private int _number { get; set; }
         private string _letter { get; set; }
         private double _time { get; set; }
        
@@ -34,6 +34,31 @@ namespace Parking
             set
              {
                 _number = value;
+            }
+        }
+
+        public string Models
+        {
+            get
+            {
+                return _model;
+            }
+            set
+            {
+                _model = value;
+            }
+
+        }
+
+        public string Colors
+        {
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                _color = value;
             }
         }
            
