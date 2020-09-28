@@ -44,12 +44,12 @@ namespace Parking
         public double GetSpanMinutes() => payed.Minute;//оплачений час у хвилинах.   
 
 
-        public double OutstandingTime()//різниця між часом виїзду і оплаченим у хвилинах.
-        {
-            TimeSpan OutStanding = end - payed;
+        //public double OutstandingTime()//різниця між часом виїзду і оплаченим у хвилинах.
+        //{
+        //    TimeSpan OutStanding = end - payed;
 
-            return OutStanding.Minutes;
-        }
+        //    return OutStanding.Minutes;
+        //}
 
         public DateTime Outstand()
         {

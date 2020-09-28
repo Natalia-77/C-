@@ -56,6 +56,7 @@ namespace Parking
             end = car.GetTime().GetTimeEnd();//час виїзду.
             payed = car.GetTime().GetTimePayed();//оплачений час
             outstand = car.GetTime().Outstand();//час перестою,за який треба нарахувати штраф.
+
             //---------розрахунок штрафу----------
             if (outstand.Hour == 0 && outstand.Minute == 0 && outstand.Second == 0)
             {
