@@ -40,6 +40,11 @@ namespace Parking
 
         public double GetFine() => this.fine;
 
+        public Ticket()
+        {
+
+        }
+
         public Ticket(Car car)
         {
             _color = car.GetColors();
@@ -47,50 +52,63 @@ namespace Parking
             _model = car.GetModels();
             _number = car.GetNumbers();
             parkername = Parker.parkername;
-            start = car.GetTime().GetTimeStart();
-            end = car.GetTime().GetTimeEnd();
-            payed = car.GetTime().GetTimePayed();
-            outstand = car.GetTime().Outstand();
+            start = car.GetTime().GetTimeStart();//час заїзду.
+            end = car.GetTime().GetTimeEnd();//час виїзду.
+            payed = car.GetTime().GetTimePayed();//оплачений час
+            outstand = car.GetTime().Outstand();//час перестою,за який треба нарахувати штраф.
 
-            double res = car.GetTime().OutstandingTime();
+            double res = car.GetTime().OutstandingTime();//час перестою у хвилинах.
 
-            if(res<60&&res>0)
+            if(res==0&& res<0)
             {
-                fine += finefirst;
+                fine = 0;
+                Console.WriteLine("Штрафу за перестой не нараховано!");
             }
             else
             {
-                fine += finenext;
-            }           
-        }
 
-        public Ticket()
-        {
+            }
+
+
+
+
+            //if(res<60&&res>0)
+            //{
+            //    fine += finefirst;
+            //}
+            //else
+            //{
+            //    fine += finenext;
+            //}           
         }
+     
 
         public void PrintTicket()
         {
-            Console.WriteLine("--------------------------");
-           
+            Console.WriteLine("--------------------------");           
             Console.WriteLine("Розрахункова квитанція:");
-            System.Threading.Thread.Sleep(250);
+            System.Threading.Thread.Sleep(150);
             Console.WriteLine($"Модель: {_model}");
-            System.Threading.Thread.Sleep(250);
+            System.Threading.Thread.Sleep(150);
             Console.WriteLine($"Колір: {_color}");
-            System.Threading.Thread.Sleep(250);
+            System.Threading.Thread.Sleep(150);
             Console.WriteLine($"Номер: {_number}");
-            System.Threading.Thread.Sleep(250);
+            System.Threading.Thread.Sleep(150);
             Console.WriteLine($"Час в'їзду: {start}");
-            System.Threading.Thread.Sleep(250);
+            System.Threading.Thread.Sleep(150);
             Console.WriteLine($"Час виїзду: {end}");
-            System.Threading.Thread.Sleep(250);
+            System.Threading.Thread.Sleep(150);
             Console.WriteLine($"Куплений час: {payed}");
+            System.Threading.Thread.Sleep(150);
             Console.WriteLine($"Час перестою: {outstand}");
+            System.Threading.Thread.Sleep(150);
             Console.WriteLine($"Штраф: {fine}");
+            System.Threading.Thread.Sleep(150);
             Console.WriteLine($"Парковщик: {parkername}");
-            System.Threading.Thread.Sleep(250);
+            System.Threading.Thread.Sleep(150);
             Console.WriteLine("Будемо чекати вас знову!");
             Console.WriteLine("--------------------------");
+            System.Threading.Thread.Sleep(150);
             Console.WriteLine("Дата формування квитанції:" + DateTime.Now);
            
 

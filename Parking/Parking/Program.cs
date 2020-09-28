@@ -21,7 +21,7 @@ namespace Parking
             parker.Add();
             parker.ShowAllCars();
             parker.Del();
-            parker.ShowAllCars();
+           // parker.ShowAllCars();
 
 
 
