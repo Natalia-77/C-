@@ -60,21 +60,21 @@ namespace Parking
             //double res = car.GetTime().OutstandingTime();//час перестою у хвилинах.
 
 
-            if ()
+            if (outstand.Hour == 0 && outstand.Minute == 0 && outstand.Second == 0)
             {
                 fine = 0;
-               
-            }                
-
-            if ((outstand.Hour == 1 && outstand.Minute < 60) || outstand.Minute < 60)
-            {
-                fine += finefirst;
             }
-            if ((outstand.Hour > 1 && outstand.Minute < 60)||outstand.Minute<60)
+            else
             {
-                fine += finenext*outstand.Hour;
+                if ((outstand.Hour == 1 && outstand.Minute < 60) || outstand.Minute < 60)
+                {
+                    fine += finefirst;
+                }
+                if ((outstand.Hour > 1 && outstand.Minute < 60) || outstand.Minute < 60)
+                {
+                    fine += finenext * outstand.Hour;
+                }
             }
-           
 
         }
 
