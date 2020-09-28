@@ -17,7 +17,7 @@ namespace Parking
         private DateTime outstand;
         private double fine;//штраф.      
         static public int finefirst { get; set; } = 25;
-        static public int finenext{ get; set; } = 10;
+        static public int finenext { get; set; } = 10;
 
 
         public string DetParkerName() => this.parkername;
@@ -57,31 +57,27 @@ namespace Parking
             payed = car.GetTime().GetTimePayed();//оплачений час
             outstand = car.GetTime().Outstand();//час перестою,за який треба нарахувати штраф.
 
-            double res = car.GetTime().OutstandingTime();//час перестою у хвилинах.
+            //double res = car.GetTime().OutstandingTime();//час перестою у хвилинах.
 
-            if(res==0&& res<0)
+
+            if ()
             {
                 fine = 0;
-                Console.WriteLine("Штрафу за перестой не нараховано!");
-            }
-            else
+               
+            }                
+
+            if ((outstand.Hour == 1 && outstand.Minute < 60) || outstand.Minute < 60)
             {
-
+                fine += finefirst;
             }
+            if ((outstand.Hour > 1 && outstand.Minute < 60)||outstand.Minute<60)
+            {
+                fine += finenext*outstand.Hour;
+            }
+           
 
-
-
-
-            //if(res<60&&res>0)
-            //{
-            //    fine += finefirst;
-            //}
-            //else
-            //{
-            //    fine += finenext;
-            //}           
         }
-     
+
 
         public void PrintTicket()
         {
