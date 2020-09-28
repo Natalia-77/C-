@@ -64,6 +64,10 @@ namespace Parking
             }           
         }
 
+        public Ticket()
+        {
+        }
+
         public void PrintTicket()
         {
             Console.WriteLine("*** Ticket ***");

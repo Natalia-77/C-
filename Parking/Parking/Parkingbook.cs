@@ -7,72 +7,50 @@ namespace Parking
     class Parkingbook
     {
 
-        //private static Parkingbook parkingbook = new Parkingbook();//Синглтон.       
-        // private static int size = 7;
-        private int count;
-        private bool[] place;//масив місця на парковці.true->зайняте місце.фолс-вільно.
-        private List<Ticket> tickets = new List<Ticket>();//квитанції.
-        private List<Car> cars = new List<Car>(); // список машин.
-
-        //private Parkingbook(int count)
-        //{
-        //    place = new bool[count];
-        //}
-
-        public Parkingbook(int count)
+        
+        private static readonly Lazy<Parkingbook> instance = new Lazy<Parkingbook>(() => new Parkingbook());
+        public static Parkingbook Instance => instance.Value;
+        private List<Car> cars;
+        private List<Ticket> ticket;
+        private static readonly int parkingSpace = 10;// max places
+       
+        private Parkingbook()//приватний конструктор Синглтон.
         {
-            place = new bool[count];
-            this.count = count;
-
+            cars = new List<Car>(parkingSpace);
+            ticket = new List<Ticket>();
+           
         }
 
-        public int Carsize()
+        public int GetAllSize() => ticket.Count;//всього місць на парковці.
+
+        public int GetFreeParking() => ticket.Count-cars.Count;//кількість вільних місць на парковці.
+
+        public void AddCar(Car car)
         {
-            return count;
-        }
 
-        //public int Gersize()
-        //{
-        //    return count;
-        //}
+            //if (GetFreeParking() == 0)
+            //{
+            //    throw new InvalidOperationException("Вільних місць немає!");
+            //}
 
-        //public Parkingbook this[int pa]
-        //{
-        //    get
-        //    {
-        //        return parkingbook[pa];
-        //    }
-        //}
+            cars.Add(car);
+               
+            
+        }            
+        
 
-
-
-        public void AddCar()
-        {
-            for (int i = 0; i < place.Length; i++)
-            {
-                if (place[i] == false)//якщо вільно
-                {
-                    place[i] = true;//стає зайнято
-                    cars.Add(new Car());
-                    return;
-                }
-            }
-            Console.WriteLine("Вільних місць немає!");
-        }
-
-        public void DelCar(int number) // видалення машини по номеру машини.
+        public Car DelCar(int number) // видалення машини по номеру машини.
         {
             foreach (Car car in cars)
             {
                 if (car.GetNumbers() == number)
                 {
-                    cars.Remove(car);
-                    place[car.GetNumbers()] = false;
-                    Console.WriteLine(" Res: ");
-                    return;
+                    cars.Remove(car);                                 
+                    return car;
                 }
             }
             Console.WriteLine("Немає такої машини: [{0}]", number);
+            return null;
         }
 
         public void PrintAllCar() // вывести всі машини.
@@ -86,7 +64,7 @@ namespace Parking
         public double GetAllFine()//сума штрафів.
         {
             double sum = 0;
-            foreach (Ticket tic in tickets)
+            foreach (Ticket tic in ticket)
             {
                 sum += tic.GetFine();
             }
@@ -95,23 +73,10 @@ namespace Parking
 
         public void AddToTickets(Ticket ticket)
         {
-            this.tickets.Add(ticket);
-        }
+            this.ticket.Add(ticket);
+            ticket.PrintTicket();
+        }     
 
 
-        //public void Statistic()
-        //{
-        //    Console.WriteLine($"\nКількість вільних місць - {(double)(size -cars.Count )}");
-        //    Console.WriteLine($"\nКількість зайнятих місць - {(double)cars.Count-size}");
-        //}
-
-        //public static Parkingbook Create()
-        //{
-        //    if (parkingbook == null)
-        //    {
-        //        parkingbook = new Parkingbook();
-        //    }
-        //    return parkingbook;
-        //}
     }
 }

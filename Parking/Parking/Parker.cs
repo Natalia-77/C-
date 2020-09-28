@@ -6,12 +6,13 @@ namespace Parking
 {
     class Parker
     {
-        Parkingbook park = new Parkingbook(3);
+
+        Parkingbook p = Parkingbook.Instance;
         public static string parkername;
 
         public void Add()
         {
-            park.AddCar();
+            p.AddCar(new Car());
         }
 
         public void Del()
@@ -21,7 +22,9 @@ namespace Parking
                 int del;
                 Console.WriteLine("Enter number for delete: ");
                 del = int.Parse(Console.ReadLine());
-                park.DelCar(del);
+                p.DelCar(del);
+                p.AddToTickets(new Ticket());
+                
             }
             catch
             {
@@ -31,8 +34,11 @@ namespace Parking
 
         public void ShowAllCars()
         {                     
-             park.PrintAllCar();             
+             p.PrintAllCar();             
         }
+
+        
+       
 
     }
 }
