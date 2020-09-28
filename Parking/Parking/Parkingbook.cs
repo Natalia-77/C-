@@ -45,7 +45,8 @@ namespace Parking
             {
                 if (car.GetNumbers() == number)
                 {
-                    cars.Remove(car);                                 
+                    cars.Remove(car);
+                    
                     return car;
                 }
             }
@@ -59,6 +60,7 @@ namespace Parking
             {
                 Console.WriteLine("Hомер машини"+car.GetNumbers()+"Модель "+car.GetModels());
             }
+            
         }
 
         public double GetAllFine()//сума штрафів.
@@ -71,12 +73,10 @@ namespace Parking
             return sum;
         }
 
-        public void AddToTickets(Ticket ticket)
+        public void AddToTickets(Ticket t)
         {
-            this.ticket.Add(ticket);
-            ticket.PrintTicket();
-        }     
-
+            this.ticket.Add(t);
+        }
 
     }
 }

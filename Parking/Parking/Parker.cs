@@ -22,9 +22,11 @@ namespace Parking
                 int del;
                 Console.WriteLine("Enter number for delete: ");
                 del = int.Parse(Console.ReadLine());
-                p.DelCar(del);
-                p.AddToTickets(new Ticket());
-                
+                Car car=p.DelCar(del);
+                Ticket ticket = new Ticket(car);
+                ticket.PrintTicket();
+                p.AddToTickets(ticket);
+
             }
             catch
             {
@@ -34,10 +36,9 @@ namespace Parking
 
         public void ShowAllCars()
         {                     
-             p.PrintAllCar();             
-        }
-
-        
+             p.PrintAllCar();
+           
+        }       
        
 
     }

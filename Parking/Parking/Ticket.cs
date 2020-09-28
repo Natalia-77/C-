@@ -22,7 +22,7 @@ namespace Parking
 
         public string DetParkerName() => this.parkername;
 
-        public string GetModel() => this._model;
+        public string GetModel() => _model;
 
         public string GetColor() => this._color;
 
@@ -42,15 +42,15 @@ namespace Parking
 
         public Ticket(Car car)
         {
-            this._color = car.GetColors();
-            this._letter = car.GetLrtter();
-            this._model = car.GetModels();
-            this._number = car.GetNumbers();
-            this.parkername = Parker.parkername;
-            this.start = car.GetTime().GetTimeStart();
-            this.end = car.GetTime().GetTimeEnd();
-            this.payed = car.GetTime().GetTimePayed();
-            this.outstand = car.GetTime().Outstand();
+            _color = car.GetColors();
+            _letter = car.GetLrtter();
+            _model = car.GetModels();
+            _number = car.GetNumbers();
+            parkername = Parker.parkername;
+            start = car.GetTime().GetTimeStart();
+            end = car.GetTime().GetTimeEnd();
+            payed = car.GetTime().GetTimePayed();
+            outstand = car.GetTime().Outstand();
 
             double res = car.GetTime().OutstandingTime();
 
@@ -72,22 +72,23 @@ namespace Parking
         {
             Console.WriteLine("*** Ticket ***");
             System.Threading.Thread.Sleep(250);
-            Console.WriteLine($"Модель: {this._model}");
+            Console.WriteLine($"Модель: {_model}");
             System.Threading.Thread.Sleep(250);
-            Console.WriteLine($"Колір: {this._color}");
+            Console.WriteLine($"Колір: {_color}");
             System.Threading.Thread.Sleep(250);
-            Console.WriteLine($"Номер: {this._number}");
+            Console.WriteLine($"Номер: {_number}");
             System.Threading.Thread.Sleep(250);
-            Console.WriteLine($"Час в'їзду: {this.start}");
+            Console.WriteLine($"Час в'їзду: {start}");
             System.Threading.Thread.Sleep(250);
-            Console.WriteLine($"Час виїзду: {this.end}");
+            Console.WriteLine($"Час виїзду: {end}");
             System.Threading.Thread.Sleep(250);
-            Console.WriteLine($"Куплений час: {this.payed}");
-            Console.WriteLine($"Час перестою: {this.outstand}");
-            Console.WriteLine($"Штраф: {this.fine}");
-            Console.WriteLine($"Парковщик: {this.parkername}");
+            Console.WriteLine($"Куплений час: {payed}");
+            Console.WriteLine($"Час перестою: {outstand}");
+            Console.WriteLine($"Штраф: {fine}");
+            Console.WriteLine($"Парковщик: {parkername}");
             System.Threading.Thread.Sleep(250);
             Console.WriteLine("**************");
+           
 
         }
 
