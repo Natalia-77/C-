@@ -27,14 +27,7 @@ namespace Parking
 
         public void AddCar(Car car)
         {
-
-            //if (GetFreeParking() == 0)
-            //{
-            //    throw new InvalidOperationException("Вільних місць немає!");
-            //}
-
-            cars.Add(car);
-               
+            cars.Add(car);              
             
         }            
         
