@@ -13,22 +13,25 @@ namespace Parking
         private List<Car> cars;
         private List<Ticket> ticket;
         private static readonly int parkingSpace = 10;// max places
+        private int carSpace = 0;
        
         private Parkingbook()//приватний конструктор Синглтон.
         {
-            cars = new List<Car>(parkingSpace);
-            ticket = new List<Ticket>();
+            cars = new List<Car>(carSpace);
+            ticket = new List<Ticket>(parkingSpace);
            
         }
 
-        public int GetAllSize() => ticket.Count;//всього місць на парковці.
-
-        public int GetFreeParking() => ticket.Count-cars.Count;//кількість вільних місць на парковці.
-
+        public void Info()
+        {
+            Console.WriteLine("Всього місць на парковці "+parkingSpace);
+            Console.WriteLine("Free places "+(parkingSpace-carSpace));
+        }
+                     
         public void AddCar(Car car)
         {
-            cars.Add(car);              
-            
+            cars.Add(car);
+            carSpace++;                        
         }            
         
 
@@ -39,7 +42,7 @@ namespace Parking
                 if (car.GetNumbers() == number)
                 {
                     cars.Remove(car);
-                    
+                    carSpace--;
                     return car;
                 }
             }
@@ -70,6 +73,8 @@ namespace Parking
         {
             this.ticket.Add(t);
         }
+
+
 
     }
 }
