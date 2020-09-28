@@ -70,7 +70,9 @@ namespace Parking
 
         public void PrintTicket()
         {
-            Console.WriteLine("*** Ticket ***");
+            Console.WriteLine("--------------------------");
+           
+            Console.WriteLine("Розрахункова квитанція:");
             System.Threading.Thread.Sleep(250);
             Console.WriteLine($"Модель: {_model}");
             System.Threading.Thread.Sleep(250);
@@ -87,7 +89,9 @@ namespace Parking
             Console.WriteLine($"Штраф: {fine}");
             Console.WriteLine($"Парковщик: {parkername}");
             System.Threading.Thread.Sleep(250);
-            Console.WriteLine("**************");
+            Console.WriteLine("Будемо чекати вас знову!");
+            Console.WriteLine("--------------------------");
+            Console.WriteLine("Дата формування квитанції:" + DateTime.Now);
            
 
         }
