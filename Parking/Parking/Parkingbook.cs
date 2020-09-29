@@ -58,8 +58,7 @@ namespace Parking
             Console.WriteLine("----------------------------------------------------------------------------------------------------------");
 
             foreach (Car car in cars)
-            {
-                               
+            {                               
                 Console.WriteLine("|{0} "+"{1}         |{2}    |{3}     |{4}  |{5} |{6}        |",car.GetNumbers(),car.GetLrtter(),car.GetModels(),car.GetColors(),car.GetTime().GetTimeStart(),car.GetTime().GetTimeEnd(),car.GetTime().GetTimePayed());
             }
             
@@ -83,7 +82,7 @@ namespace Parking
         public void Statistic()
         {
             int fine = 0;
-            int hour=0, min = 0;
+            int hour = 0, min = 0;
 
             foreach (Ticket tic  in ticket)
             {
@@ -93,7 +92,7 @@ namespace Parking
             }
             int resinmin = 0;
             resinmin = hour * 60 + min;
-            Console.WriteLine("Сума всіх штрафів:  "+fine);
+            Console.WriteLine("Сума всіх штрафів:  " + fine);
             Console.WriteLine("-------------------------");
             Console.WriteLine("Всього час простою хв:  " + resinmin);
 
