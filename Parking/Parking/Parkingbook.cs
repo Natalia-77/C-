@@ -50,11 +50,17 @@ namespace Parking
             return null;
         }
 
-        public void PrintAllCar() // вывести всі машини.
+        public void PrintAllCar() //  всі машини.
         {
+            Console.WriteLine("---------------------------------------------------------------------------------------------");
+            Console.WriteLine("|Номер машини  |Модель  |Колір    |Дата заїзду           |Дата виїзду         |Оплачений час|");
+            Console.WriteLine("--------------------------------------------------------------------------------------------");
+
             foreach (Car car in cars)
             {
-                Console.WriteLine("Hомер машини"+car.GetNumbers()+"Модель "+car.GetModels());
+                //Console.WriteLine("Hомер машини: "+car.GetNumbers()+car.GetLrtter()+"Модель: "+car.GetModels());
+               
+                Console.WriteLine("|{0} "+"{1}         |{2}    |{3}     |{4}  |{5} |{6}    |",car.GetNumbers(),car.GetLrtter(),car.GetModels(),car.GetColors(),car.GetTime().GetTimeStart(),car.GetTime().GetTimeEnd(),car.GetTime().GetTimePayed());
             }
             
         }

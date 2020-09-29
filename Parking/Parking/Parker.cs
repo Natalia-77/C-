@@ -36,8 +36,8 @@ namespace Parking
 
         public void ShowAllCars()
         {                     
-             p.PrintAllCar();        
-           
+             p.PrintAllCar();     
+            
         }              
 
         public void Info()

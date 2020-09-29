@@ -94,6 +94,8 @@ namespace Parking
             Console.WriteLine($"Куплений час: {payed}");
             System.Threading.Thread.Sleep(150);
             Console.WriteLine($"Час перестою: {outstand}");
+            Console.WriteLine("25 грн. за першу повну чи неповну годину перестою");
+            Console.WriteLine("10 грн.за кожну наступну повну чи неповну годину перестою");
             System.Threading.Thread.Sleep(150);
             Console.WriteLine($"Штраф: {fine}");
             System.Threading.Thread.Sleep(150);
