@@ -5,9 +5,9 @@ using System.Text;
 namespace Parking
 {
 
-    public enum Model { Audi,Opel,Kia,Lada,BMW};
-    public enum Color { Black,Red,White,Yellow,Silver};
-    public enum Letter { UA,EU,USA,CH,IN,RU,CAN};
+    public enum Model { Audi,Opel,Seat,Lada,Jeep};
+    public enum Color { Black,Brown,White,Yellow,Silver};
+    public enum Letter { UA,EU,US,CH,IN,RU,CAN};
 
     class Program
     {
@@ -23,6 +23,7 @@ namespace Parking
             parker.Info();           
             parker.Del();
             parker.Info();
+            parker.Statist();
 
 
 

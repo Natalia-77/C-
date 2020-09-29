@@ -15,7 +15,7 @@ namespace Parking
         private DateTime end;
         private DateTime payed;
         private DateTime outstand;
-        private double fine;//штраф.      
+        private int fine;//штраф.      
         static public int finefirst { get; set; } = 25;
         static public int finenext { get; set; } = 10;
 
@@ -38,7 +38,7 @@ namespace Parking
 
         public DateTime GetOutstand() => this.outstand;
 
-        public double GetFine() => this.fine;
+        public int GetFine() => this.fine;
 
         public Ticket()
         {

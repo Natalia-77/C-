@@ -62,9 +62,9 @@ namespace Parking
                        return "Opel";
                     }
 
-                case Model.Kia:
+                case Model.Seat:
                     {
-                        return "Kia";
+                        return "Seat";
                     }
 
                 case Model.Lada:
@@ -72,9 +72,9 @@ namespace Parking
                         return "Lada";
                     }
 
-                case Model.BMW:
+                case Model.Jeep:
                     {
-                        return "BMW";
+                        return "Jeep";
                     }
 
                 default:
@@ -97,9 +97,9 @@ namespace Parking
                         return "Black";
                     }
 
-                case Color.Red:
+                case Color.Brown:
                     {
-                        return "Red";
+                        return "Brown";
                     }
 
                 case Color.White:
@@ -129,7 +129,7 @@ namespace Parking
 
         public string Randomnum()
         {
-            Letter numb = (Letter)(new Random()).Next(0, 5);
+            Letter numb = (Letter)(new Random()).Next(0, 6);
             
             switch (numb)
             {
@@ -143,9 +143,9 @@ namespace Parking
                         return "EU ";
                     }
 
-                case Letter.USA:
+                case Letter.US:
                     {
-                        return "USA ";
+                        return "US ";
                     }
 
                 case Letter.CH:

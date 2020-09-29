@@ -24,8 +24,9 @@ namespace Parking
 
         public void Info()
         {
-            Console.WriteLine("Всього місць на парковці "+parkingSpace);
-            Console.WriteLine("Free places "+(parkingSpace-carSpace));
+            Console.WriteLine("Всього місць на парковці:  "+parkingSpace);
+            Console.WriteLine("Вільних місць на парковці:  "+(parkingSpace-carSpace));
+            
         }
                      
         public void AddCar(Car car)
@@ -52,22 +53,21 @@ namespace Parking
 
         public void PrintAllCar() //  всі машини.
         {
-            Console.WriteLine("---------------------------------------------------------------------------------------------");
-            Console.WriteLine("|Номер машини  |Модель  |Колір    |Дата заїзду           |Дата виїзду         |Оплачений час|");
-            Console.WriteLine("--------------------------------------------------------------------------------------------");
+            Console.WriteLine("----------------------------------------------------------------------------------------------------------");
+            Console.WriteLine("|Номер машини  |Модель  |Колір    |Дата заїзду           |Дата виїзду         |Оплачений час              |");
+            Console.WriteLine("----------------------------------------------------------------------------------------------------------");
 
             foreach (Car car in cars)
             {
-                //Console.WriteLine("Hомер машини: "+car.GetNumbers()+car.GetLrtter()+"Модель: "+car.GetModels());
-               
-                Console.WriteLine("|{0} "+"{1}         |{2}    |{3}     |{4}  |{5} |{6}    |",car.GetNumbers(),car.GetLrtter(),car.GetModels(),car.GetColors(),car.GetTime().GetTimeStart(),car.GetTime().GetTimeEnd(),car.GetTime().GetTimePayed());
+                               
+                Console.WriteLine("|{0} "+"{1}         |{2}    |{3}     |{4}  |{5} |{6}        |",car.GetNumbers(),car.GetLrtter(),car.GetModels(),car.GetColors(),car.GetTime().GetTimeStart(),car.GetTime().GetTimeEnd(),car.GetTime().GetTimePayed());
             }
             
         }
 
         public double GetAllFine()//сума штрафів.
         {
-            double sum = 0;
+            int sum = 0;
             foreach (Ticket tic in ticket)
             {
                 sum += tic.GetFine();
@@ -80,7 +80,24 @@ namespace Parking
             this.ticket.Add(t);
         }
 
+        public void Statistic()
+        {
+            int fine = 0;
+            int hour=0, min = 0;
 
+            foreach (Ticket tic  in ticket)
+            {
+                fine+=tic.GetFine();
+                hour += tic.GetOutstand().Hour;
+                min += tic.GetOutstand().Minute;
+            }
+            int resinmin = 0;
+            resinmin = hour * 60 + min;
+            Console.WriteLine("Сума всіх штрафів:  "+fine);
+            Console.WriteLine("-------------------------");
+            Console.WriteLine("Всього час простою хв:  " + resinmin);
+
+        }
 
     }
 }

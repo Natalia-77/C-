@@ -45,5 +45,10 @@ namespace Parking
             p.Info();
         }
 
+        public void Statist()
+        {
+            p.Statistic();
+        }
+
     }
 }
