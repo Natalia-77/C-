@@ -15,17 +15,21 @@ namespace Parking
         {
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
-            Parker parker = new Parker();
-            parker.Info();
-            parker.Add();
-            parker.Add();
-            parker.ShowAllCars();
-            parker.Info();           
-            parker.Del();
-            parker.Info();
-            parker.Statist();
+            //Parker parker = new Parker();
+            //Parker.parkername = "";
 
 
+            //parker.Info();
+            //parker.Add();
+            //parker.Add();
+            //parker.ShowAllCars();
+            //parker.Info();           
+            //parker.Del();
+            //parker.Info();
+            //parker.Statist();
+
+            Menu menu = new Menu();
+            menu.MainMenu();
 
 
 
