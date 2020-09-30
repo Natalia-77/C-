@@ -25,8 +25,7 @@ namespace Parking
         public void Info()
         {
             Console.WriteLine("Всього місць на парковці:  "+parkingSpace);
-            Console.WriteLine("Вільних місць на парковці:  "+(parkingSpace-carSpace));
-            
+            Console.WriteLine("Вільних місць на парковці:  "+(parkingSpace-carSpace));            
         }
                      
         public void AddCar(Car car)
@@ -47,7 +46,6 @@ namespace Parking
                     return car;
                 }
             }
-            Console.WriteLine("Немає такої машини: [{0}]", number);
             return null;
         }
 
@@ -63,16 +61,7 @@ namespace Parking
             }
             
         }
-
-        //public double GetAllFine()//сума штрафів.
-        //{
-        //    int sum = 0;
-        //    foreach (Ticket tic in ticket)
-        //    {
-        //        sum += tic.GetFine();
-        //    }
-        //    return sum;
-        //}
+               
 
         public void AddToTickets(Ticket t)
         {
@@ -92,8 +81,8 @@ namespace Parking
             }
             int resinmin = 0;
             resinmin = hour * 60 + min;
+            Console.WriteLine("Зведена статистика по парковці на даний час:");
             Console.WriteLine("Сума всіх штрафів:  " + fine);
-            Console.WriteLine("-------------------------");
             Console.WriteLine("Всього час простою хв:  " + resinmin);
 
         }

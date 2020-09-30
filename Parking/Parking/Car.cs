@@ -18,7 +18,7 @@ namespace Parking
         {
             _model = Randommodel();
             _color = Randomcolor();
-            _number = rnd.Next(1, 10);
+            _number = rnd.Next(1, 100);
             _letter = Randomnum();          
             
         }
@@ -31,9 +31,7 @@ namespace Parking
 
         public string GetLrtter() => this._letter;
 
-        public Timer GetTime() => this.time;
-        
-               
+        public Timer GetTime() => this.time;               
            
 
         public override string ToString()

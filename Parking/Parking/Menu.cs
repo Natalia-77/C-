@@ -19,20 +19,20 @@ namespace Parking
                    
                 }
             }
-            while (choice != 0);
+            while (choice != 7);
         }
 
         private int ShowMenu()
         {
             int choice = 0;
             Console.WriteLine();
-           // Console.WriteLine("-------------------------------------");
             Console.WriteLine("1.Авторизуйтесь");
             Console.WriteLine("2.Поставити машину на парковку");
             Console.WriteLine("3.Випустити машину з парковки і роздрукувати квитанцію");
             Console.WriteLine("4.Показати список машин на парковці");
             Console.WriteLine("5.Показати статистику по парковці");
             Console.WriteLine("6.Показати наявність місць на парковці");
+            Console.WriteLine("7.Вийти");
             Console.WriteLine("--------------------------------------");
             choice = Convert.ToInt32(Console.ReadLine());
 
@@ -65,18 +65,28 @@ namespace Parking
                     {
                         parker.ShowAllCars();
                         parker.Del();
-                        Console.WriteLine();
-                       // Console.WriteLine("Список  машин після видалення зі списку");
-                       
-                        //Console.Clear();
-                        //parker.ShowAllCars();
-                        
+                        Console.WriteLine();                                            
                         break;
                     }
                 case 4:
                     {
                         parker.ShowAllCars();
                         break;
+                    }
+                case 5:
+                    {
+                        parker.Statist();
+                        break;
+                    }
+                case 6:
+                    {
+                        parker.Info();
+                        break;
+                    }
+                case 7:
+                    {
+                        Console.WriteLine("Чао-какао!");
+                        return;
                     }
 
             }
