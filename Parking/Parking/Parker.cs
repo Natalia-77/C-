@@ -10,11 +10,8 @@ namespace Parking
         Parkingbook p = Parkingbook.Instance;
         public static string parkername;
 
-        public void Add()
-        {
-            p.AddCar(new Car());
-        }
-
+        public void Add()=>p.AddCar(new Car());
+        
         public void Del()
         {
             try
@@ -34,21 +31,13 @@ namespace Parking
             }
         }
 
-        public void ShowAllCars()
-        {                     
-             p.PrintAllCar();     
-            
-        }              
+        public void ShowAllCars() => p.PrintAllCar();
 
-        public void Info()
-        {
-            p.Info();
-        }
+        public void Info() => p.Info();
 
-        public void Statist()
-        {
-            p.Statistic();
-        }
+        public void Statist() => p.Statistic();
+
+       
 
     }
 }

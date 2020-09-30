@@ -64,15 +64,15 @@ namespace Parking
             
         }
 
-        public double GetAllFine()//сума штрафів.
-        {
-            int sum = 0;
-            foreach (Ticket tic in ticket)
-            {
-                sum += tic.GetFine();
-            }
-            return sum;
-        }
+        //public double GetAllFine()//сума штрафів.
+        //{
+        //    int sum = 0;
+        //    foreach (Ticket tic in ticket)
+        //    {
+        //        sum += tic.GetFine();
+        //    }
+        //    return sum;
+        //}
 
         public void AddToTickets(Ticket t)
         {
@@ -98,5 +98,6 @@ namespace Parking
 
         }
 
+        
     }
 }

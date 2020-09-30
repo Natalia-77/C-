@@ -40,6 +40,13 @@ namespace Parking
 
         public int GetFine() => this.fine;
 
+        public  int ChangeFine()
+        {
+            Console.WriteLine("++++");
+            finefirst = 30;
+            return finefirst;
+        }
+
         public Ticket()
         {
 
@@ -56,8 +63,24 @@ namespace Parking
             end = car.GetTime().GetTimeEnd();//час виїзду.
             payed = car.GetTime().GetTimePayed();//оплачений час
             outstand = car.GetTime().Outstand();//час перестою,за який треба нарахувати штраф.
-
-            //---------розрахунок штрафу----------
+            Console.WriteLine("Ви хочете змінити розмір штрафу за перестой? ");
+            Console.WriteLine("Натисніть 1,якщо ТАК ,натисніть 2,якщо НІ ");
+            int i;
+            i = int.Parse(Console.ReadLine());
+            switch (i)
+            {
+                case 1:
+                    Console.WriteLine("Ви вибрали пункт для зміни розміру штрафу");
+                    ChangeFine();
+                    break;
+                case 2:
+                    Console.WriteLine("Ви не хочете міняти розмір штрафу.Ну ок...");
+                    break;
+                default:
+                    Console.WriteLine("Помилка,ви не те щось натиснули(");
+                    break;
+            }
+                    //---------розрахунок штрафу----------
             if (outstand.Hour == 0 && outstand.Minute == 0 && outstand.Second == 0)
             {
                 fine = 0;
