@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Parking
 {
-    class Parkingbook
+    public class Parkingbook
     {
 
         

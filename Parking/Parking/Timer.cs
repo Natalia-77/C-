@@ -6,7 +6,7 @@ using System.Text;
 namespace Parking
 {
    
-    class Timer
+    public class Timer
     {
 
         private DateTime start;

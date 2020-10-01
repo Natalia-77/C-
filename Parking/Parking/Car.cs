@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Parking
 {
-    class Car
+    public class Car
     {
         private string _model;
         private string _color;

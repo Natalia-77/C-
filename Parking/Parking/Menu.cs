@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Parking
 {
-    class Menu
+    public class Menu
     {
         public void MainMenu()
         {

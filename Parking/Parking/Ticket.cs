@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Parking
 {
-    class Ticket
+    public class Ticket
     {
         private string parkername;//і"мя парковщика.
         private string _model;
