@@ -6,7 +6,7 @@ namespace Autopark
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
@@ -14,5 +14,7 @@ namespace Autopark
             Menu menu = new Menu();
             menu.MainMenu();
         }
+
+        
     }
 }
