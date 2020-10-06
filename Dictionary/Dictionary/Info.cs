@@ -36,7 +36,7 @@ namespace Dictionary
                     Console.WriteLine("Такої столиці немає в нашому словнику");
                     return false;
                 }
-                Console.WriteLine("{0}->>>{1}", country, dict.SingleOrDefault(x => x.Value == country).Key);//.FirstOrDefault(x => x.Value == country).Key);
+                Console.WriteLine("{0}->>>{1}", country, dict.First(x => x.Value == country).Key);//ElementAtOrDefault(country);//.SingleOrDefault(x => x.Value == country).Key) ;//.FirstOrDefault(x => x.Value == country).Key);
             }
             return true;
 
