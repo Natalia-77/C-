@@ -52,6 +52,7 @@ namespace Dictionary
             Console.WriteLine("****************************************");
             Console.WriteLine("* Вітаємо!Це словник назв країн світу! *");
             Console.WriteLine("****************************************");
+
             foreach(KeyValuePair<string,string> el in dict)
             {
                 Console.WriteLine(" {0,10}     {1,5}", el.Key, el.Value);
