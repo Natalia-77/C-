@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Employee
@@ -45,7 +47,7 @@ namespace Employee
             set => _salary = value;
         }
 
-        // Static ctor;
+        // Static ctor.
         static Employee()
         {
             journal = new ListDictionary();
@@ -53,33 +55,64 @@ namespace Employee
 
         public string FullName
         {
-            get => _name + " " + _surname;
-            
-        }
-
+            get => _name + " " + _surname;            
+        }         
+        
         public Employee(string name, string surname, string position, string contract, short salary)
         {
-            _name = name;
+           
+            bool flag = false;            
+           _name = name;
+            do
+            {
+
+                try
+                {
+                    if (!_name.All(x => char.IsLetter(x)))
+                    {
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        _name = name;
+                        flag = true;
+                    }
+                }
+                catch (Exception )
+                {
+                    Console.WriteLine($"Помилка в імені '{this._name}',введіть коректне:\t");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Console.Write("Введіть нове ім'я : ");
+                    _name = Console.ReadLine();
+                    //_name = name;
+                    flag = true;
+                }
+            }
+            while (!flag);
+
             _surname = surname;
             _position = position;
             _contract = contract;
             _salary = salary;
             journal.Add(_contract, this.FullName);
-        }       
+        }
 
-        //public void Show()
-        //{
-        //    Console.WriteLine("Name:{0} ", _name);
-        //    Console.WriteLine("Surname: {0} ", _surname);
-        //    Console.WriteLine("Position:{0} ", _position);
-        //    Console.WriteLine("Contract:{0} ", _contract);
-        //    Console.WriteLine("Salary:{0} ", _salary);
+        // Виводить інформацію про одного працівника.
+        public void Shows()
+        {
+            Console.WriteLine("Name:{0} ", _name);
+            Console.WriteLine("Surname: {0} ", _surname);
+            Console.WriteLine("Position:{0} ", _position);
+            Console.WriteLine("Contract:{0} ", _contract);
+            Console.WriteLine("Salary:{0} ", _salary);
 
-        //}
+        }
 
+        // Виводить значення "Ключ"-"Значення".
         public static void Show()
         {
-                       
+            Console.WriteLine();      
             Console.WriteLine("   KEY                       VALUE");
 
             foreach (DictionaryEntry de in journal)
@@ -92,4 +125,10 @@ namespace Employee
 
 
     }
+
+    
+
+
+
+
 }
