@@ -57,24 +57,31 @@ namespace Employee
 
         public Employee(string name, string surname, string position, string contract, short salary)
         {
-            name = _name;
-            surname=_surname;
-            position = _position;
-            contract = _contract;
-            salary = _salary;
-            journal.Add(contract, FullName);
+            _name = name;
+            _surname=surname;
+            _position = position;
+            _contract = contract;
+            _salary = salary;
+            journal.Add(contract,name);
             Console.WriteLine("Added to journal");
         }
 
         public void Show()
-        {          
-            Console.WriteLine("Name:{0} ",_name);
+        {
+            Console.WriteLine("Name:{0} ", _name);
             Console.WriteLine("Surname: {0} ",_surname);
             Console.WriteLine("Position:{0} ",_position);
             Console.WriteLine("Contract:{0} ",_contract);
-            Console.WriteLine("Salary:{0} ",_salary);        
+            Console.WriteLine("Salary:{0} ",_salary);   
 
+        }
 
+        public void Showjournal()
+        {
+            foreach(var el in journal)
+            {
+                Console.WriteLine($"Contract :{_contract}  Name/surname:{FullName}");
+            }
         }
 
     }

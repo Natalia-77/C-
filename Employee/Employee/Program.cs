@@ -6,7 +6,10 @@ namespace Employee
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Employee employee = new Employee("Petya", "Petrov", "Doctor", "12-YY", 1);
+           
+            employee.Showjournal();
+            //employee.Show();
         }
     }
 }
