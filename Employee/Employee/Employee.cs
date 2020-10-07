@@ -64,7 +64,7 @@ namespace Employee
             _position = position;
             _contract = contract;
             _salary = salary;
-            journal.Add(_contract, this._name);
+            journal.Add(_contract, this.FullName);
         }       
 
         //public void Show()
