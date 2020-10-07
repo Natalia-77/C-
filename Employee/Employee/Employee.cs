@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
@@ -53,36 +54,42 @@ namespace Employee
         public string FullName
         {
             get => _name + " " + _surname;
+            
         }
 
         public Employee(string name, string surname, string position, string contract, short salary)
         {
             _name = name;
-            _surname=surname;
+            _surname = surname;
             _position = position;
             _contract = contract;
             _salary = salary;
-            journal.Add(contract,name);
-            Console.WriteLine("Added to journal");
-        }
+            journal.Add(_contract, this._name);
+        }       
 
-        public void Show()
+        //public void Show()
+        //{
+        //    Console.WriteLine("Name:{0} ", _name);
+        //    Console.WriteLine("Surname: {0} ", _surname);
+        //    Console.WriteLine("Position:{0} ", _position);
+        //    Console.WriteLine("Contract:{0} ", _contract);
+        //    Console.WriteLine("Salary:{0} ", _salary);
+
+        //}
+
+        public static void Show()
         {
-            Console.WriteLine("Name:{0} ", _name);
-            Console.WriteLine("Surname: {0} ",_surname);
-            Console.WriteLine("Position:{0} ",_position);
-            Console.WriteLine("Contract:{0} ",_contract);
-            Console.WriteLine("Salary:{0} ",_salary);   
+                       
+            Console.WriteLine("   KEY                       VALUE");
 
-        }
-
-        public void Showjournal()
-        {
-            foreach(var el in journal)
+            foreach (DictionaryEntry de in journal)
             {
-                Console.WriteLine($"Contract :{_contract}  Name/surname:{FullName}");
+                Console.WriteLine("   {0,-25} {1}", de.Key, de.Value);
             }
+            Console.WriteLine();
         }
+
+
 
     }
 }
