@@ -92,21 +92,56 @@ namespace Employee
             while (!flag);
 
             _surname = surname;
+
+            do
+            {
+
+                try
+                {
+                    if (!_surname.All(x => char.IsLetter(x)))
+                    {
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        _surname = surname;
+                        flag = true;
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine($"Помилка в прізвищі '{this._surname}',введіть коректне:\t");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Console.Write("Введіть нове ім'я : ");
+                    _surname = Console.ReadLine();
+                    //_surname = surname;
+                    flag = true;
+                }
+            } while (!flag);
+
+            // Посада працівника.
             _position = position;
+
+            // Номер трудового договору.
             _contract = contract;
+
+            // Оклад.
             _salary = salary;
+
             journal.Add(_contract, this.FullName);
         }
 
         // Виводить інформацію про одного працівника.
         public void Shows()
         {
+            Console.WriteLine("*********************");
             Console.WriteLine("Name:{0} ", _name);
             Console.WriteLine("Surname: {0} ", _surname);
             Console.WriteLine("Position:{0} ", _position);
             Console.WriteLine("Contract:{0} ", _contract);
             Console.WriteLine("Salary:{0} ", _salary);
-
+           
         }
 
         // Виводить значення "Ключ"-"Значення".
