@@ -60,7 +60,8 @@ namespace Employee
         
         public Employee(string name, string surname, string position, string contract, short salary)
         {
-           
+            // Максимальна кількість працівників ,яка може бути.
+            const int maxcount = 2;
             bool flag = false;            
            _name = name;
             do
@@ -78,7 +79,7 @@ namespace Employee
                         flag = true;
                     }
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     Console.WriteLine($"Помилка в імені '{this._name}',введіть коректне:\t");
                     Console.ReadKey();
@@ -129,7 +130,23 @@ namespace Employee
             // Оклад.
             _salary = salary;
 
-            journal.Add(_contract, this.FullName);
+            try
+            {
+                if (journal.Count >= maxcount)
+                {
+                    throw new Exception();
+                }
+                else
+                {
+                    journal.Add(_contract, this.FullName);
+                }
+            }
+            catch(Exception)
+            {
+                Console.WriteLine("Максимальна кількість перевищена.");
+            }
+                       
+            //journal.Add(_contract, this.FullName);
         }
 
         // Виводить інформацію про одного працівника.
