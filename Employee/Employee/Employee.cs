@@ -94,10 +94,10 @@ namespace Employee
                 {
                     Console.WriteLine($"Помилка в імені '{_name}',введіть коректне:\t");
                     Console.ReadKey();
-                    Console.Clear();
+                    Console.WriteLine();                   
                     Console.Write("Введіть нове ім'я : ");
                     _name = Console.ReadLine();
-                    //_name = name;
+                    
                     flag = true;
                 }
             }
@@ -126,15 +126,15 @@ namespace Employee
                 {
                     Console.WriteLine($"Помилка в прізвищі '{_surname}',введіть коректне:\t");
                     Console.ReadKey();
-                    Console.Clear();
+                    Console.WriteLine();
                     Console.Write("Введіть нове ім'я : ");
                     _surname = Console.ReadLine();
-                    //_surname = surname;
+                    
                     flag = true;
                 }
             } while (!flag);
 
-            Console.WriteLine("Введіть посаду працівника :");
+            Console.WriteLine("Введіть посаду працівника (може містити символи і літери) :");
             string position = Console.ReadLine();
             _position = position;
 
@@ -150,9 +150,11 @@ namespace Employee
                 {
                     checked
                     {
-                         Console.WriteLine("Введіть розмір заробітної плати працівника :");
+                         Console.WriteLine("Введіть розмір заробітної плати працівника :");                       
                          salary = Convert.ToInt16(Console.ReadLine());
-                         Console.WriteLine($"Тип введеної змінної : {Convert.ToInt16(salary).GetType()}");                       
+
+                        // Це для довідки просто виводила,щоб контролювати,який саме тип змінної ввели.
+                        Console.WriteLine($"Тип введеної змінної : {Convert.ToInt16(salary).GetType()}");                       
                         
                     }
 
@@ -320,17 +322,56 @@ namespace Employee
         // Виводить значення "Ключ"-"Значення".
         public static void Show()
         {
-            Console.WriteLine();      
-            Console.WriteLine("   KEY                       VALUE");
-
-            foreach (DictionaryEntry de in journal)
+            if (journal.Count > 0)
             {
-                Console.WriteLine("   {0,-25} {1}", de.Key, de.Value);
+                int count = 0;
+                Console.WriteLine();
+                Console.WriteLine("   KEY                       VALUE");
+
+                foreach (DictionaryEntry de in journal)
+                {
+                    Console.WriteLine("{0} {1,-25} {2}", count++, de.Key, de.Value);
+
+                }
+                Console.WriteLine();
             }
-            Console.WriteLine();
+            else
+            {
+                Console.WriteLine("Немає що відображати,тут поки порожньо");
+            }
         }
 
+        public void Delete()
+        {
+            
+            Console.WriteLine("Оберіть номер договору працівника ,якого потрібно видалити");
+            string del = "";
+            del = Console.ReadLine();
+            
+                try
+                {
+                    // Видаляю по ключу.
+                    journal.Remove(del);
 
+                    if (!journal.Contains(del))
+                    {
+                        throw new Exception("Уточніть дані");
+                    }                      
+                    
+                }
+
+                // Видалення даних з пустого масиву. 
+                catch (Exception)
+                {
+                    if (journal.Count == 0)
+                    {
+                        Console.WriteLine("Список порожній");                        
+                    }
+                                       
+                }               
+                     
+            
+        }
 
     }
 
