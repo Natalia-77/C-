@@ -16,6 +16,8 @@ namespace Employee
         private string _position;
         private string _contract;
         private short _salary;
+
+        // Максимальний розмір списку працівників.
         const int maxcount = 5;
 
         public string Name
@@ -108,7 +110,6 @@ namespace Employee
 
             do
             {
-
                 try
                 {
                     if (!_surname.All(x => char.IsLetter(x)))
@@ -137,39 +138,39 @@ namespace Employee
             string position = Console.ReadLine();
             _position = position;
 
-
-
             Console.WriteLine("Введіть номер трудового договору (може містити літери,символи) працівника :");
             string contract = Console.ReadLine();
             _contract = contract;
 
-            Console.WriteLine("Введіть розмір заробітної плати працівника :");
-            short salary =short.Parse(Console.ReadLine());
-            _salary = salary;
+            short salary;
 
             do
             {
                 try
                 {
-                    if (!(_salary is short))
+                    checked
                     {
-                        throw new Exception();
+                         Console.WriteLine("Введіть розмір заробітної плати працівника :");
+                         salary = Convert.ToInt16(Console.ReadLine());
+                         Console.WriteLine($"Тип введеної змінної : {Convert.ToInt16(salary).GetType()}");                       
+                        
                     }
-                    else flag = true;
 
                 }
-                catch (Exception)
+                catch(Exception)
                 {
-                    Console.WriteLine($"Помилка в введеному числі '{_salary}',введіть коректне:\t");
-                    Console.ReadKey();
-                    Console.Clear();
+                    Console.WriteLine("Ви ввели завелике число,введіть коректне\t");
                     Console.Write("Введіть нове число : ");
-                    _salary = short.Parse(Console.ReadLine());
+                    salary = Convert.ToInt16(Console.ReadLine());                                 
                     flag = true;
 
-                }
+                }                         
+
 
             } while (!flag);
+
+           _salary = salary;
+
 
             try
             {
@@ -191,8 +192,7 @@ namespace Employee
         }
 
         public Employee(string name, string surname, string position, string contract, short salary)
-        {
-            // Максимальна кількість працівників ,яка може бути.
+        {            
             
             bool flag = false;            
            _name = name;

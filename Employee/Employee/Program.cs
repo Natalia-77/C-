@@ -25,7 +25,8 @@ namespace Employee
             //Employee employee1 = new Employee("Yura", "Yurco", "IT", "22-Y", 5255);
             //Employee employee2 = new Employee("Ykura", "Yuco", "T", "123-oo", 3);
             e.AddEmloyee();
-            Employee.Show();          
+            Employee.Show();
+            //e.Shows();
 
            
            
