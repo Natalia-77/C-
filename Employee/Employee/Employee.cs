@@ -8,65 +8,41 @@ using System.Text;
 
 namespace Employee
 {
-    class Employee
+     internal class Employee
     {
         public static ListDictionary journal;
-        private string _name;
-        private string _surname;
-        private string _position;
-        private string _contract;
-        private short _salary;
+        private static string _name;
+        private static string _surname;
+        private static string _position;
+        private static string _contract;
+        private static short _salary;
 
         // Максимальний розмір списку працівників.
         const int maxcount = 5;
 
-        public string Name
-        {
-            get => _name;
-            set => _name = value;
-        }
-
-        public string SurName
-        {
-            get => _surname;
-            set => _surname = value;
-        }
-
-        public string Position
-        {
-            get => _position;
-            set => _position = value;
-        }
-
-        public string Contract
-        {
-            get => _contract;
-            set => _contract = value;
-        }
-
-        public short Salary
-        {
-            get => _salary;
-            set => _salary = value;
-        }
-
+        public string Name { get; set; }
+        
+        public string SurName { get; set; }
+        
+        public string Position { get; set; }
+        
+        public string Contract { get; set; }
+        
+        public short Salary { get; set; }
+       
         // Static ctor.
         static Employee()
         {
-            journal = new ListDictionary();
+            Employee.journal = new ListDictionary();
+        }        
+
+        public static string FullName
+        {
+            get => _name + " " + _surname;
         }
 
-        public Employee()
-        {
 
-        }
-        public string FullName
-        {
-            get => _name + " " + _surname;            
-        }         
-        
-
-        public void AddEmloyee()
+        public  void AddEmloyee()
         {
             
 
@@ -80,7 +56,7 @@ namespace Employee
 
                 try
                 {
-                    if (!_name.All(x => char.IsLetter(x)))
+                    if (!name.All(x => char.IsLetter(x)))
                     {
                         throw new Exception();
                     }
@@ -92,11 +68,11 @@ namespace Employee
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine($"Помилка в імені '{_name}',введіть коректне:\t");
+                    Console.WriteLine($"Помилка в імені '{name}',введіть коректне:\t");
                     Console.ReadKey();
                     Console.WriteLine();                   
                     Console.Write("Введіть нове ім'я : ");
-                    _name = Console.ReadLine();
+                    name = Console.ReadLine();//11111
                     
                     flag = true;
                 }
@@ -112,7 +88,7 @@ namespace Employee
             {
                 try
                 {
-                    if (!_surname.All(x => char.IsLetter(x)))
+                    if (!surname.All(x => char.IsLetter(x)))
                     {
                         throw new Exception();
                     }
@@ -124,11 +100,11 @@ namespace Employee
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine($"Помилка в прізвищі '{_surname}',введіть коректне:\t");
+                    Console.WriteLine($"Помилка в прізвищі '{surname}',введіть коректне:\t");
                     Console.ReadKey();
                     Console.WriteLine();
-                    Console.Write("Введіть нове ім'я : ");
-                    _surname = Console.ReadLine();
+                    Console.Write("Введіть нове прізвище : ");
+                    surname = Console.ReadLine();
                     
                     flag = true;
                 }
@@ -173,37 +149,41 @@ namespace Employee
 
            _salary = salary;
 
-
-            try
-            {
-                if (journal.Count >= maxcount)
-                {
-                    throw new Exception();
-                }
-                else
-                {
-                    journal.Add(_contract, FullName);
-                }
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Максимальна кількість перевищена ");
-            }
-
-
-        }
-
-        public Employee(string name, string surname, string position, string contract, short salary)
-        {            
-            
-            bool flag = false;            
-           _name = name;
             do
             {
 
                 try
                 {
-                    if (!_name.All(x => char.IsLetter(x)))
+                    if (journal.Count >= maxcount)
+                    {
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        Employee.journal.Add(contract,this);
+                        //flag = false;
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Максимальна кількість перевищена ");
+                }
+            } while (!flag);
+
+
+        }
+        
+
+        public Employee(string name, string surname, string position, string contract, short salary)
+        {
+            bool flag = false;
+            _name = name;
+            do
+            {
+
+                try
+                {
+                    if (!name.All(x => char.IsLetter(x)))
                     {
                         throw new Exception();
                     }
@@ -215,11 +195,11 @@ namespace Employee
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine($"Помилка в імені '{_name}',введіть коректне:\t");
+                    Console.WriteLine($"Помилка в імені '{name}',введіть коректне:\t");
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Введіть нове ім'я : ");
-                    _name = Console.ReadLine();
+                    name = Console.ReadLine();
                     //_name = name;
                     flag = true;
                 }
@@ -233,7 +213,7 @@ namespace Employee
 
                 try
                 {
-                    if (!_surname.All(x => char.IsLetter(x)))
+                    if (!surname.All(x => char.IsLetter(x)))
                     {
                         throw new Exception();
                     }
@@ -245,7 +225,7 @@ namespace Employee
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine($"Помилка в прізвищі '{_surname}',введіть коректне:\t");
+                    Console.WriteLine($"Помилка в прізвищі '{surname}',введіть коректне:\t");
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Введіть нове ім'я : ");
@@ -266,80 +246,133 @@ namespace Employee
             do
             {
                 try
-                {                   
-                    if (!(_salary is short))
+                {
+                    if (!(salary is short))
                     {
                         throw new Exception();
                     }
                     else flag = true;
-                   
+
                 }
-                catch(Exception)
+                catch (Exception)
                 {
-                    Console.WriteLine($"Помилка в введеному числі '{_salary}',введіть коректне:\t");
+                    Console.WriteLine($"Помилка в введеному числі '{salary}',введіть коректне:\t");
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Введіть нове число : ");
-                    _salary =short.Parse( Console.ReadLine());                   
+                    salary = short.Parse(Console.ReadLine());
                     flag = true;
-                   
+
                 }
 
             } while (!flag);
 
+            do
+            {
 
-            try
-            {
-                if (journal.Count >= maxcount)
+
+                try
                 {
-                    throw new Exception();
+                    if (journal.Count >= maxcount)
+                    {
+                        throw new Exception();
+
+
+                    }
+                    else
+                    {
+                        journal.Add(_contract,this);
+                        flag = true;
+
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    journal.Add(_contract, this.FullName);
+                    // Console.WriteLine("Максимальна кількість перевищена.");
+                    // flag = true;
                 }
-            }
-            catch(Exception)
-            {
-                Console.WriteLine("Максимальна кількість перевищена.");
-            }
-                       
-            //journal.Add(_contract, this.FullName);
+            } while (!flag);
+            // journal.Add(_contract, FullName);
+        }
+
+        public Employee()
+        {
         }
 
         // Виводить інформацію про одного працівника.
-        public void Shows()
+        public  void Shows()
         {
+            Console.WriteLine();
             Console.WriteLine("*********************");
-            Console.WriteLine("Name:{0} ", _name);
+            Console.WriteLine("Name {0}: ", _name);
             Console.WriteLine("Surname: {0} ", _surname);
             Console.WriteLine("Position:{0} ", _position);
             Console.WriteLine("Contract:{0} ", _contract);
             Console.WriteLine("Salary:{0} ", _salary);
-           
+
         }
 
         // Виводить значення "Ключ"-"Значення".
-        public static void Show()
+        public static  void Show()
         {
             if (journal.Count > 0)
             {
                 int count = 0;
                 Console.WriteLine();
-                Console.WriteLine("   KEY                       VALUE");
-
+                Console.WriteLine("№     KEY                               VALUE");
                 foreach (DictionaryEntry de in journal)
                 {
-                    Console.WriteLine("{0} {1,-25} {2}", count++, de.Key, de.Value);
-
+                    if (de.Value  is Employee)
+                    {
+                        Console.WriteLine(_salary);
+                        Console.WriteLine(_position);
+                        //Console.WriteLine(count);
+                        Console.WriteLine("{0,-5} {1,-33} {2,-30}", count++, de.Key, de.Value);
+                    }
+                   
                 }
-                Console.WriteLine();
+                Console.WriteLine();               
+
             }
             else
             {
                 Console.WriteLine("Немає що відображати,тут поки порожньо");
             }
         }
+       
+        public static  void ShowMyJournal()
+        {
+            Console.Clear();
+            Console.WriteLine("Вміст журналу працівників");
+           
+            foreach (var it in journal.Values)
+            {
+                if(it is Employee)
+                {
+                    Console.WriteLine(_position);
+                   // Shows();
+                }
+                //Console.WriteLine("");
+                
+                //Console.WriteLine($"{_contract}");
+                //Console.WriteLine($"{_salary}");
+
+                //Console.WriteLine("***\n");
+
+            }
+        }
+
+        //public static void Test()
+        //{
+        //    IDictionaryEnumerator myEnumerator = journal.GetEnumerator();
+        //    Console.WriteLine("   KEY                       VALUE");
+        //    while (myEnumerator.MoveNext())
+        //        Console.WriteLine("   {0,-25} {1}", myEnumerator.Key, myEnumerator.Value);
+        //    Console.WriteLine();
+        //    Console.WriteLine();
+        //}
+
+        
 
         public void Delete()
         {

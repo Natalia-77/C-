@@ -20,17 +20,25 @@ namespace Employee
             //}
             //Console.WriteLine();
 
-            Employee e = new Employee();
-            //Employee employee = new Employee("Petya", "Petrov", "Doctor", "12-YY", 1);
-            //Employee employee1 = new Employee("Yura", "Yurco", "IT", "22-Y", 5255);
-            //Employee employee2 = new Employee("Ykura", "Yuco", "T", "123-oo", 3);
-            e.AddEmloyee();
-            e.AddEmloyee();
-            Employee.Show();
-            
-            e.Delete();
-            Employee.Show();
-           
+            //Employee e = new Employee();
+            // Employee employee = new Employee("Petya", "Petrov", "Doctor", "123", 1);
+            //  Employee employee2 = new Employee("Шевчук", "Іван", "Водій", "22-2", 523);
+            //Employee employee1 = new Employee("Петрик", "Андрій", "Психіатр", "123-oo", 350);
+            ////e.AddEmloyee();
+            ////e.AddEmloyee();
+            //Console.WriteLine("Show");
+            //Employee.Show();
+            //Console.WriteLine("Shows");
+            //employee.Shows();
+            //Console.WriteLine("Print");
+            //Employee.Print();
+            //employee.Print();
+            //e.Delete();
+            //Employee.Show();
+
+
+            Menu menu = new Menu();
+            menu.MainMenu();
 
 
 
@@ -39,9 +47,7 @@ namespace Employee
 
 
 
-           
-           
-          
+
         }
     }
 }
