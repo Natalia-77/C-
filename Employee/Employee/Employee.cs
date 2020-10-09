@@ -229,7 +229,7 @@ namespace Employee
                     Console.ReadKey();
                     Console.Clear();
                     Console.Write("Введіть нове ім'я : ");
-                    _surname = Console.ReadLine();
+                    surname = Console.ReadLine();
                     //_surname = surname;
                     flag = true;
                 }
@@ -322,12 +322,13 @@ namespace Employee
                 Console.WriteLine("№     KEY                               VALUE");
                 foreach (DictionaryEntry de in journal)
                 {
+                    Console.WriteLine("{0,-5} {1,-33} {2,-30}", count++, de.Key, de.Value);
+                    
                     if (de.Value  is Employee)
                     {
-                        Console.WriteLine(_salary);
-                        Console.WriteLine(_position);
-                        //Console.WriteLine(count);
-                        Console.WriteLine("{0,-5} {1,-33} {2,-30}", count++, de.Key, de.Value);
+                        Console.WriteLine("Розширена інформація!");
+                        Console.WriteLine($"{_salary}  {_position}");
+                        Console.WriteLine("--------------------------------------");
                     }
                    
                 }
@@ -350,29 +351,12 @@ namespace Employee
                 if(it is Employee)
                 {
                     Console.WriteLine(_position);
-                   // Shows();
+                   
                 }
-                //Console.WriteLine("");
-                
-                //Console.WriteLine($"{_contract}");
-                //Console.WriteLine($"{_salary}");
-
-                //Console.WriteLine("***\n");
-
+               
             }
         }
-
-        //public static void Test()
-        //{
-        //    IDictionaryEnumerator myEnumerator = journal.GetEnumerator();
-        //    Console.WriteLine("   KEY                       VALUE");
-        //    while (myEnumerator.MoveNext())
-        //        Console.WriteLine("   {0,-25} {1}", myEnumerator.Key, myEnumerator.Value);
-        //    Console.WriteLine();
-        //    Console.WriteLine();
-        //}
-
-        
+                     
 
         public void Delete()
         {

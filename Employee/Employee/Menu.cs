@@ -71,16 +71,16 @@ namespace Employee
                 case 4:
                     {
 
-                        foreach (Employee el in empl)
-                        {
-                            if(el is Employee)
-                            {
-                                el.Shows();
-                            }
+                        //foreach (Employee el in empl)
+                        //{
+                        //    if(el is Employee)
+                        //    {
+                        //        el.Shows();
+                        //    }
                            
                             
-                        }
-                        //Employee.ShowMyJournal();             
+                        //}
+                        Employee.Show();             
                         break;
                     }
                 case 5:
