@@ -18,7 +18,7 @@ namespace Employee
         private static short _salary;
 
         // Максимальний розмір списку працівників.
-        public static int maxcount;
+        private static int maxcount;
 
         public string Name { get; set; }
         

@@ -43,7 +43,7 @@ namespace Employee
         {
             
             
-            Employee employee = new Employee("Petya", "Petrov", "Doctor", "123", 1);
+            //Employee employee = new Employee("Petya", "Petrov", "Doctor", "123", 1);
             Employee employee2 = new Employee("Шевчук", "Іван", "Водій", "22-2", 523);    
 
             switch (choice)
@@ -62,8 +62,9 @@ namespace Employee
                     }
                 case 3:
                     {
+                        Employee employee4 = new Employee("Міла", "Сидорова", "Студент", "77-HJH", 20);
                         //Employee.Delete();
-                       // Employee.Show();
+                        // Employee.Show();
 
                         break;
                     }
