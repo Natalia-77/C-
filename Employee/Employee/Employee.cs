@@ -295,9 +295,7 @@ namespace Employee
             // journal.Add(_contract, FullName);
         }
 
-        public Employee()
-        {
-        }
+
 
         // Виводить інформацію про одного працівника.
         public  void Shows()
@@ -313,7 +311,7 @@ namespace Employee
         }
 
         // Виводить значення "Ключ"-"Значення".
-        public static  void Show()
+        public static void Show()
         {
             if (journal.Count > 0)
             {
@@ -323,14 +321,7 @@ namespace Employee
                 foreach (DictionaryEntry de in journal)
                 {
                     Console.WriteLine("{0,-5} {1,-33} {2,-30}", count++, de.Key, de.Value);
-
-                    if (de.Value is Employee)
-                    {
-                        Console.WriteLine("Розширена інформація!");
-                        Console.WriteLine($"{_salary}  {_position}");
-                        Console.WriteLine("--------------------------------------");
-                    }
-                   
+                                       
                 }
                 Console.WriteLine();               
 
@@ -350,15 +341,21 @@ namespace Employee
             {
                 if(it is Employee)
                 {
-                    Console.WriteLine(_position);
+                    Console.WriteLine(it.ToString());
                    
                 }
                
             }
         }
-                     
 
-        public void Delete()
+
+        public override string ToString()
+        {
+            return $"\nID:\t\t{_contract}\nName:\t\t{FullName}\nPosition:\t{_position}\nSalary:\t\t{_salary}\n";
+        }
+
+       
+            public void Delete()
         {
             
             Console.WriteLine("Оберіть номер договору працівника ,якого потрібно видалити");

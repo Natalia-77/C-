@@ -50,7 +50,8 @@ namespace Employee
             {
                 case 1:
                     {
-                        Employee.Show();
+                        
+                        Employee.ShowMyJournal();
                         break;
                     }
 
@@ -58,6 +59,7 @@ namespace Employee
                     {
 
                         Employee employee3 = new Employee("Рома", "Кравчук", "Студент", "8-HJH", 200);
+                        
                         break;
                     }
                 case 3:
@@ -71,16 +73,7 @@ namespace Employee
                 case 4:
                     {
 
-                        //foreach (Employee el in empl)
-                        //{
-                        //    if(el is Employee)
-                        //    {
-                        //        el.Shows();
-                        //    }
-                           
-                            
-                        //}
-                        Employee.Show();             
+                        Employee.ShowMyJournal();             
                         break;
                     }
                 case 5:
