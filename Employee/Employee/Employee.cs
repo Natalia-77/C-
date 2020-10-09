@@ -297,18 +297,6 @@ namespace Employee
 
 
 
-        // Виводить інформацію про одного працівника.
-        public  void Shows()
-        {
-            Console.WriteLine();
-            Console.WriteLine("*********************");
-            Console.WriteLine("Name {0}: ", _name);
-            Console.WriteLine("Surname: {0} ", _surname);
-            Console.WriteLine("Position:{0} ", _position);
-            Console.WriteLine("Contract:{0} ", _contract);
-            Console.WriteLine("Salary:{0} ", _salary);
-
-        }
 
         // Виводить значення "Ключ"-"Значення".
         public static void Show()
@@ -339,11 +327,11 @@ namespace Employee
            
             foreach (var it in journal.Values)
             {
-                if(it is Employee)
-                {
+                //if(it is Employee)
+               // {
                     Console.WriteLine(it.ToString());
                    
-                }
+              //  }
                
             }
         }
