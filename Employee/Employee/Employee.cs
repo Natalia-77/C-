@@ -18,7 +18,7 @@ namespace Employee
         private static short _salary;
 
         // Максимальний розмір списку працівників.
-        const int maxcount = 5;
+        public static int maxcount;
 
         public string Name { get; set; }
         
@@ -34,6 +34,7 @@ namespace Employee
         static Employee()
         {
             Employee.journal = new ListDictionary();
+            maxcount = 5;
         }        
 
         public static string FullName
@@ -42,136 +43,135 @@ namespace Employee
         }
 
 
-        public  void AddEmloyee()
-        {
-            
+        //public  void AddEmloyee()
+        //{            
 
-            Console.WriteLine("Введіть імя працівника :");
-            string name = Console.ReadLine();
+        //    Console.WriteLine("Введіть імя працівника :");
+        //    string name = Console.ReadLine();
            
-            bool flag = false;
-            _name = name;
-            do
-            {
+        //    bool flag = false;
+        //    _name = name;
+        //    do
+        //    {
 
-                try
-                {
-                    if (!name.All(x => char.IsLetter(x)))
-                    {
-                        throw new Exception();
-                    }
-                    else
-                    {
-                        _name = name;
-                        flag = true;
-                    }
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine($"Помилка в імені '{name}',введіть коректне:\t");
-                    Console.ReadKey();
-                    Console.WriteLine();                   
-                    Console.Write("Введіть нове ім'я : ");
-                    name = Console.ReadLine();//11111
+        //        try
+        //        {
+        //            if (!name.All(x => char.IsLetter(x)))
+        //            {
+        //                throw new Exception();
+        //            }
+        //            else
+        //            {
+        //                _name = name;
+        //                flag = true;
+        //            }
+        //        }
+        //        catch (Exception)
+        //        {
+        //            Console.WriteLine($"Помилка в імені '{name}',введіть коректне:\t");
+        //            Console.ReadKey();
+        //            Console.WriteLine();                   
+        //            Console.Write("Введіть нове ім'я : ");
+        //            name = Console.ReadLine();//11111
                     
-                    flag = true;
-                }
-            }
-            while (!flag);
+        //            flag = true;
+        //        }
+        //    }
+        //    while (!flag);
 
 
-            Console.WriteLine("Введіть прізвище працівника :");
-            string surname = Console.ReadLine();
-            _surname = surname;
+        //    Console.WriteLine("Введіть прізвище працівника :");
+        //    string surname = Console.ReadLine();
+        //    _surname = surname;
 
-            do
-            {
-                try
-                {
-                    if (!surname.All(x => char.IsLetter(x)))
-                    {
-                        throw new Exception();
-                    }
-                    else
-                    {
-                        _surname = surname;
-                        flag = true;
-                    }
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine($"Помилка в прізвищі '{surname}',введіть коректне:\t");
-                    Console.ReadKey();
-                    Console.WriteLine();
-                    Console.Write("Введіть нове прізвище : ");
-                    surname = Console.ReadLine();
+        //    do
+        //    {
+        //        try
+        //        {
+        //            if (!surname.All(x => char.IsLetter(x)))
+        //            {
+        //                throw new Exception();
+        //            }
+        //            else
+        //            {
+        //                _surname = surname;
+        //                flag = true;
+        //            }
+        //        }
+        //        catch (Exception)
+        //        {
+        //            Console.WriteLine($"Помилка в прізвищі '{surname}',введіть коректне:\t");
+        //            Console.ReadKey();
+        //            Console.WriteLine();
+        //            Console.Write("Введіть нове прізвище : ");
+        //            surname = Console.ReadLine();
                     
-                    flag = true;
-                }
-            } while (!flag);
+        //            flag = true;
+        //        }
+        //    } while (!flag);
 
-            Console.WriteLine("Введіть посаду працівника (може містити символи і літери) :");
-            string position = Console.ReadLine();
-            _position = position;
+        //    Console.WriteLine("Введіть посаду працівника (може містити символи і літери) :");
+        //    string position = Console.ReadLine();
+        //    _position = position;
 
-            Console.WriteLine("Введіть номер трудового договору (може містити літери,символи) працівника :");
-            string contract = Console.ReadLine();
-            _contract = contract;
+        //    Console.WriteLine("Введіть номер трудового договору (може містити літери,символи) працівника :");
+        //    string contract = Console.ReadLine();
+        //    _contract = contract;
 
-            short salary;
+        //    short salary;
 
-            do
-            {
-                try
-                {
-                    checked
-                    {
-                         Console.WriteLine("Введіть розмір заробітної плати працівника :");                       
-                         salary = Convert.ToInt16(Console.ReadLine());
+        //    do
+        //    {
+        //        try
+        //        {
+        //            checked
+        //            {
+        //                 Console.WriteLine("Введіть розмір заробітної плати працівника :");                       
+        //                 salary = Convert.ToInt16(Console.ReadLine());
 
-                        // Це для довідки просто виводила,щоб контролювати,який саме тип змінної ввели.
-                        Console.WriteLine($"Тип введеної змінної : {Convert.ToInt16(salary).GetType()}");                       
+        //                // Це для довідки просто виводила,щоб контролювати,який саме тип змінної ввели.
+        //                Console.WriteLine($"Тип введеної змінної : {Convert.ToInt16(salary).GetType()}");                       
                         
-                    }
+        //            }
 
-                }
-                catch(Exception)
-                {
-                    Console.WriteLine("Ви ввели завелике число,введіть коректне\t");
-                    Console.Write("Введіть нове число : ");
-                    salary = Convert.ToInt16(Console.ReadLine());                                 
-                    flag = true;
+        //        }
+        //        catch(Exception)
+        //        {
+        //            Console.WriteLine("Ви ввели завелике число,введіть коректне\t");
+        //            Console.Write("Введіть нове число : ");
+        //            salary = Convert.ToInt16(Console.ReadLine());                                 
+        //            flag = true;
 
-                }                         
-
-
-            } while (!flag);
-
-           _salary = salary;
-
-            do
-            {
-
-                try
-                {
-                    if (journal.Count >= maxcount)
-                    {
-                        throw new Exception();
-                    }
-                    else
-                    {
-                        Employee.journal.Add(contract,this);
-                        //flag = false;
-                    }
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Максимальна кількість перевищена ");
-                }
-            } while (!flag);
+        //        }                         
 
 
-        }
+        //    } while (!flag);
+
+        //   _salary = salary;
+
+        //    do
+        //    {
+
+        //        try
+        //        {
+        //            if (journal.Count >= maxcount)
+        //            {
+        //                throw new Exception();
+        //            }
+        //            else
+        //            {
+        //                Employee.journal.Add(contract,this);
+        //                //flag = false;
+        //            }
+        //        }
+        //        catch (Exception)
+        //        {
+        //            Console.WriteLine("Максимальна кількість перевищена ");
+        //        }
+        //    } while (!flag);
+
+
+        //}
         
 
         public Employee(string name, string surname, string position, string contract, short salary)
@@ -323,8 +323,8 @@ namespace Employee
                 foreach (DictionaryEntry de in journal)
                 {
                     Console.WriteLine("{0,-5} {1,-33} {2,-30}", count++, de.Key, de.Value);
-                    
-                    if (de.Value  is Employee)
+
+                    if (de.Value is Employee)
                     {
                         Console.WriteLine("Розширена інформація!");
                         Console.WriteLine($"{_salary}  {_position}");

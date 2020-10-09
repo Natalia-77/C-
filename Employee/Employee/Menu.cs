@@ -41,11 +41,10 @@ namespace Employee
 
         private void Methods(int choice)
         {
-            Employee e = new Employee();
-            Employee[] empl = { new Employee("Petya", "Petrov", "Doctor", "12-YY", 10),
-                                new Employee("Yura", "Yurco", "IT", "22-Y", 200),
-                                new Employee("Ykura", "Yuco", "25YTT", "123-oo", 3)};
-                     
+            
+            
+            Employee employee = new Employee("Petya", "Petrov", "Doctor", "123", 1);
+            Employee employee2 = new Employee("Шевчук", "Іван", "Водій", "22-2", 523);    
 
             switch (choice)
             {
@@ -56,9 +55,9 @@ namespace Employee
                     }
 
                 case 2:
-                    {                      
-                                           
-                        e.AddEmloyee();
+                    {
+
+                        Employee employee3 = new Employee("Рома", "Кравчук", "Студент", "8-HJH", 200);
                         break;
                     }
                 case 3:
