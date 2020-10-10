@@ -28,10 +28,10 @@ namespace Employee
             int choice = 0;
             Console.WriteLine();
             Console.WriteLine("1.Подивитись список всіх працівників");
-            Console.WriteLine("2.Додати нового працівника");
-            Console.WriteLine("3.Видалити дані про працівника");
-            Console.WriteLine("4.Показати розгорнуті дані про обраного працівника");
-            Console.WriteLine("5.Редагувати дані про працівника");
+            Console.WriteLine("2.Додати працівника з коректними даними");
+            Console.WriteLine("3.Додати працівника з некоректними даними (Exception)");
+            Console.WriteLine("4.Видалити працівника зі списку");
+            Console.WriteLine("5.Показати наявні прізвища працівників");
             Console.WriteLine("6.Вийти");
             Console.WriteLine("--------------------------------------");
             choice = Convert.ToInt32(Console.ReadLine());
@@ -41,47 +41,41 @@ namespace Employee
 
         private void Methods(int choice)
         {
+
             
-            
-            //Employee employee = new Employee("Petya", "Petrov", "Doctor", "123", 1);
-            Employee employee2 = new Employee("Шевчук", "Іван", "Водій", "22-2", 523);    
+            Employee employee2 = new Employee("Шевчук", "Іван", "Водій", "22", 523);
+            Employee employee1 = new Employee("Іванова", "Марта", "Лікар", "123", 155);
+
 
             switch (choice)
             {
                 case 1:
-                    {
-                        
-                        Employee.ShowMyJournal();
+                    {                        
+                        Employee.Show();
                         break;
                     }
 
                 case 2:
                     {
-
-                        Employee employee3 = new Employee("Рома", "Кравчук", "Студент", "8-HJH", 200);
-                        
+                        Employee employee3 = new Employee("Коваль", "Олег", "Психіатр", "66", 200);
                         break;
                     }
                 case 3:
-                    {
-                        Employee employee4 = new Employee("Міла", "Сидорова", "Студент", "77-HJH", 20);
-                        //Employee.Delete();
-                        // Employee.Show();
-
+                    {                        
+                        Employee employee4 = new Employee("Міл2а", "Сидо22рова", "Санітарка", "77-С", 300);
                         break;
-                    }
+                    }               
                 case 4:
                     {
-
-                        Employee.ShowMyJournal();             
+                        Employee.Show();
+                        Employee.Delete();
                         break;
                     }
                 case 5:
                     {
-
+                        Employee.ShowMyJournal();                        
                         break;
                     }
-
                 case 6:
                     {
                         Console.WriteLine("Чао-какао!");
