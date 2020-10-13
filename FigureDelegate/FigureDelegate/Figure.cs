@@ -51,17 +51,5 @@ namespace FigureDelegate
             Console.WriteLine();
         }
 
-        //--------------------------------------------
-        //public string  DrawTriangle( string color)
-        //{            
-        //    Console.WriteLine("Малює трикутник кольором--> "+color);
-        //    return color;
-        //}
-
-        //public string  DrawRectangle(string color)
-        //{           
-        //    Console.WriteLine("Малює прямокутник кольором--> "+color);
-        //    return color;
-        //}
     }
 }
