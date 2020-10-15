@@ -10,7 +10,7 @@ namespace Tamagochi
     {
         
 
-        static System.Timers.Timer timer = new System.Timers.Timer(4000);
+        static System.Timers.Timer timer = new System.Timers.Timer(2000);
         static int interval = 5;
         public delegate void Action();
       
@@ -27,10 +27,32 @@ namespace Tamagochi
             act.Add(t.Sleep);
             act.Add(t.Play);
 
-            int index = rand.Next(act.Count);
-            act[index]();
+           // int index = rand.Next(act.Count);
+           // act[index]();
+                          
+           //for(int i=0;i<act.Count;i++)
+           // {
+           //     if(i>0)
+           //     {
+           //         for(int j=0;j<i;j++)
+           //         {
+           //             if(act[i]!=act[j])
+           //             {
+           //                 act[rand.Next(0, 4)]();
+           //                 //break;
+           //                 //continue;
+           //             }
+           //             //else
+           //             //{
+                            
+           //             //    i++;
+           //             //}
+           //         }
+           //     }
+           // }
+         
           
-           // act[rand.Next(0, 4)]();
+            act[rand.Next(0, 4)]();
 
 
 
@@ -54,7 +76,7 @@ namespace Tamagochi
 
 
             
-            // timer.Elapsed += timer_Elapsed;
+            timer.Elapsed += timer_Elapsed;
             timer.Elapsed += Test;
             Console.WriteLine("Enter Y-to start timer.");
             Console.WriteLine("Enter N-to stop timer.");
