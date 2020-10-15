@@ -28,18 +28,20 @@ namespace Tamagochi
             act.Add(t.Sleep);
             act.Add(t.Play);
 
-            int index = rand.Next(act.Count);
-            act[index]();
+            //int index = rand.Next(act.Count);
+            //act[index]();
 
-            //for (int i = 0; i < act.Count; i++)
-            //{
-            //    var actnew = new List<Action>(act);
+            for (int i = 0; i < act.Count; i++)
+            {
+                var actnew = new List<Action>(act);
 
-            //    var n = rand.Next(0, actnew.Count);
-            //    actnew[n]();
-            //    actnew.RemoveAt(n);
-            //    return;
-            //}
+                var n = rand.Next(0, actnew.Count);
+                actnew[n]();
+                actnew.RemoveAt(n);
+                Console.WriteLine("Would you like to do the action?");
+                return;
+            }
+            
 
         }
 
