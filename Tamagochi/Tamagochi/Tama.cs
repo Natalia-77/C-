@@ -16,6 +16,11 @@ namespace Tamagochi
             this.color = color;
         }
 
+        public void Need(object obj)
+        {
+            Console.WriteLine();
+        }
+
         public void Walk()
         {
             Console.WriteLine(color + " " + name + " says ");
@@ -51,6 +56,12 @@ namespace Tamagochi
             Console.WriteLine("------------------");
         }
 
-       
+      
+
+
+
+
+
+
     }
 }
