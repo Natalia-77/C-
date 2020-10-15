@@ -10,8 +10,8 @@ namespace Tamagochi
     {
         
 
-        static System.Timers.Timer timer = new System.Timers.Timer(1000);
-        static int i = 10;
+        static System.Timers.Timer timer = new System.Timers.Timer(4000);
+        static int interval = 5;
         public delegate void Action();
       
         private static void Test(object sender, ElapsedEventArgs e)
@@ -27,27 +27,10 @@ namespace Tamagochi
             act.Add(t.Sleep);
             act.Add(t.Play);
 
-            //for (int i = 0; i < act.Count;)
-            //{
-            //    for (int j = 0; j < i; j++)
-            //    {
-            //        if (act[i] == act[j])
-            //        {
-            //            i++;
-            //            //break;
-            //            act[rand.Next(0, 4)]();
-            //        }
-            //        else
-            //        {
-                        
-            //        }
-                   
-            //    }
-
-            //}
-
-
-            //act[rand.Next(0, 4)]();
+            int index = rand.Next(act.Count);
+            act[index]();
+          
+           // act[rand.Next(0, 4)]();
 
 
 
@@ -99,13 +82,13 @@ namespace Tamagochi
         
         private static void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            i--;
+            interval--;
 
             Console.Clear();            
-            Console.WriteLine("               Залишок часу:  " + i.ToString());            
+            Console.WriteLine("               Залишок часу:  " + interval.ToString());            
            
 
-            if (i == 0)
+            if (interval == 0)
             {
                 Console.Clear();               
                 Console.WriteLine("              Кінець відліку таймера");
