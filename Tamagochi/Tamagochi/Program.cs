@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+using System.Diagnostics;
 using System.Timers;
+
 
 
 namespace Tamagochi
 {
     class Program
     {
-        private static void Tami()
+        public static void Tami(object obj, EventArgs e)
         {
 
             Tama t = new Tama("Lolo", "Yellow");
@@ -18,9 +18,9 @@ namespace Tamagochi
             Random rand = new Random();
             Random r = new Random((int)DateTime.Now.Ticks);
             int counter = 0;
-            // Новий ліст,куди додаю нові згкнеровані методи делегата.
+            // Новий ліст,куди додаю нові згeнеровані методи делегата.
             List<Moves> mov = new List<Moves>();
-            
+
             Console.WriteLine("-------------------------");
             Console.WriteLine("| Wellcome to Tamagochi |");
             Console.WriteLine("-------------------------");
@@ -111,22 +111,45 @@ namespace Tamagochi
             }
 
         }
+    
 
         private delegate void Moves();
 
+
+        private static System.Timers.Timer timer;
+        
+
         static void Main(string[] args)
         {
-            //System.Threading.Timer t = new System.Threading.Timer(Tami, 5, 0, 2000);
 
-            //t.Dispose();
+            SetTimer();
 
-             Moves d = Tami;
-             d();
+            Console.ReadLine();
+            timer.Stop();
+            timer.Dispose();
 
-            
+
         }
+        private static void SetTimer()
+        {
+            // Інтервал в 3 сек.
+            timer = new System.Timers.Timer(3000);           
+            timer.Elapsed += Tami;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }
+
+
+
     }
 }
+
+
+
+
+        
+        
+    
 
 
 
