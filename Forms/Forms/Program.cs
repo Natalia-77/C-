@@ -17,7 +17,7 @@ namespace Tamagochi
 
             Random rand = new Random();
             Random r = new Random((int)DateTime.Now.Ticks);
-            int counter = 0;
+           
             // Новий ліст,куди додаю нові згeнеровані методи делегата.
             List<Moves> mov = new List<Moves>();
 
@@ -25,8 +25,6 @@ namespace Tamagochi
             Console.WriteLine("| Wellcome to Tamagochi |");
             Console.WriteLine("-------------------------");
 
-            while (m.Count > 0)
-            {
                 // Два різні рандоми для генерації індексів.
                 int index = rand.Next(m.Count);
                 int ind = r.Next(m.Count);
@@ -60,87 +58,107 @@ namespace Tamagochi
                 foreach (Moves item in mov)
                 {
                     // Викликаю.
-                    item.DynamicInvoke();
+                    item.DynamicInvoke();          
+                                                          
 
-                    //Console.WriteLine("----------------------------------------------------------------");
-                    //Console.WriteLine("Do you want to satisfy a need?");
-                    //Console.WriteLine("Enter '+' if your answer 'YES' or enter '-' if your answer 'NO'\n");
-                    //Console.WriteLine("-----------------------------------------------------------------");
+                }
+            
+        }
 
-                    ConsoleKeyInfo keys = Console.ReadKey();
-                    if (keys.KeyChar == '+')
+        public static void Check(object obj, EventArgs e)
+        {
+            Tama t = new Tama("Lolo", "Yellow");
+            int counter = 0;
+            Console.WriteLine("----------------------------------------------------------------");
+            Console.WriteLine("Do you want to satisfy a need?");
+            Console.WriteLine("Enter '+' if your answer 'YES' or enter '-' if your answer 'NO'\n");
+            Console.WriteLine("-----------------------------------------------------------------");
+
+            ConsoleKeyInfo keys = Console.ReadKey();
+            if (keys.KeyChar == '+')
+            {
+                Console.WriteLine("Super\n");
+
+            }
+            else if (keys.KeyChar == '-')
+            {
+                Console.WriteLine("Bad\n");
+                counter++;
+                Console.WriteLine("You refuse to tami " + counter);
+                Console.WriteLine("---------------");
+
+                // Якщо тричі відмовити,то просить полікувати.
+                if (counter == 3)
+                {
+                    t.Treat();
+
+                    Console.WriteLine("Do you want treat me?");
+                    Console.WriteLine("Enter '1' if your answer 'YES' or enter '0' if your answer 'NO'");
+                    ConsoleKeyInfo choice = Console.ReadKey();
+                    if (choice.KeyChar == '1')
                     {
-                        Console.WriteLine("Super\n");
-
+                        Console.WriteLine("Thank you!");
+                        Console.Clear();
+                        counter = 0;
                     }
-                    else if (keys.KeyChar == '-')
+                    else if (choice.KeyChar == '0')
                     {
-                        Console.WriteLine("Bad\n");
-                        counter++;
-                        Console.WriteLine("You refuse to tami " + counter);
-                        Console.WriteLine("---------------");
-
-                        // Якщо тричі відмовити,то просить полікувати.
-                        if (counter == 3)
-                        {
-                            t.Treat();
-
-                            Console.WriteLine("Do you want treat me?");
-                            Console.WriteLine("Enter '1' if your answer 'YES' or enter '0' if your answer 'NO'");
-                            ConsoleKeyInfo choice = Console.ReadKey();
-                            if (choice.KeyChar == '1')
-                            {
-                                Console.WriteLine("Thank you!");
-                                Console.Clear();
-                                counter = 0;
-                            }
-                            else if (choice.KeyChar == '0')
-                            {
-                                Console.Clear();
-                                t.Die();
-                                Console.WriteLine();
-                                return;
-                            }
-
-                        }
-
+                        Console.Clear();
+                        t.Die();
+                        Console.WriteLine();
+                        return;
                     }
-                    //Console.Clear();
 
                 }
             }
 
         }
-    
-
-        private delegate void Moves();
 
 
-        private static System.Timers.Timer timer;
-        
+
+       private delegate void Moves();
+
+
+       
+        static Timer timer = new Timer(1000);
+        static int i = 5;
 
         static void Main(string[] args)
         {
-
-            SetTimer();
-
-            Console.ReadLine();
-            timer.Stop();
-            timer.Dispose();
-
-
-        }
-        private static void SetTimer()
-        {
-            // Інтервал в 3 сек.
-            timer = new System.Timers.Timer(3000);           
+            timer.Elapsed += timer_Elapsed;
             timer.Elapsed += Tami;
-            //timer.AutoReset = true;
-            timer.Enabled = true;
+            timer.Elapsed += Check;
+            timer.Start();
+            Console.Read();    
+                       
+
         }
 
+        public static void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            i--;
+
+            Console.Clear();
+            Console.WriteLine("=================================================");
+            Console.WriteLine("                Time           :  " + i.ToString());
+            Console.WriteLine("");
+            Console.WriteLine("=================================================");
+
+            if (i == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("");
+                Console.WriteLine("==============================================");
+               
+                Console.WriteLine("               End                 "           );
+                Console.WriteLine("==============================================");
+
+                timer.Close();
+                timer.Dispose();
+            }
 
 
+        }
     }
 }
 
