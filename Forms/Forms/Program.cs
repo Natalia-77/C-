@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Timers;
+using System.Windows.Forms;
 
 
 
@@ -120,7 +121,7 @@ namespace Tamagochi
 
 
        
-        static Timer timer = new Timer(2000);
+        static System.Timers.Timer timer = new System.Timers.Timer(2000);
         static int i = 5;
 
         static void Main(string[] args)
