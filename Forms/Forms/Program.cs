@@ -112,7 +112,7 @@ namespace Tamagochi
 
                 }
             }
-            Console.Read();
+            //Console.Read();
         }
 
 
