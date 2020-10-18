@@ -73,9 +73,10 @@ namespace Tamagochi
             Console.WriteLine("Do you want to satisfy a need?");
             Console.WriteLine("Enter '+' if your answer 'YES' or enter '-' if your answer 'NO'\n");
             Console.WriteLine("-----------------------------------------------------------------");
-
+           
             ConsoleKeyInfo keys = Console.ReadKey();
-            if (keys.KeyChar == '+')
+           
+            if (keys.KeyChar  == '+')
             {
                 Console.WriteLine("Super\n");
 
@@ -111,16 +112,15 @@ namespace Tamagochi
 
                 }
             }
-
+            Console.Read();
         }
 
 
-
-       private delegate void Moves();
+        private delegate void Moves();
 
 
        
-        static Timer timer = new Timer(1000);
+        static Timer timer = new Timer(2000);
         static int i = 5;
 
         static void Main(string[] args)
