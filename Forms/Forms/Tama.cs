@@ -14,64 +14,52 @@ namespace Tamagochi
         {
             this.name = name;
             this.color = color;
-        }        
-
-        public  void Walk()
-        {
-            Console.WriteLine(color + " " + name + " says ");
-            Console.WriteLine("Walk with me!");
-           
-        }
-
-        public void Sleep()
-        {
-            Console.WriteLine(color + " " + name + " says ");
-            Console.WriteLine("Sleep with me!");
-          
-        }
-
-        public  void Eat()
-        {
-            Console.WriteLine(color + " " + name + " says ");
-            Console.WriteLine("Eat with me!");
-            
         }
 
         // Прохання полікувати.
-        public  void Treat()
+        public string Treat()
         {
-            Console.WriteLine(color + " " + name + " says ");
-            Console.WriteLine("Treated me!Please!");
-          
+            return "Treated me!Please!";
         }
 
-        public  void Play()
+        public void Walk()
         {
-            Console.WriteLine(color + " " + name + " says ");
-            Console.WriteLine("Play with me!");
-          
+            Console.WriteLine("Walk with me!");           
+        }
+
+        public void Sleep()
+        {           
+            Console.WriteLine("Sleep with me!");          
+        }
+
+        public  void Eat()
+        {           
+            Console.WriteLine("Eat with me!");            
+        }        
+
+        public  void Play()
+        {           
+            Console.WriteLine("Play with me!");          
         }
 
         public void Wash()
-        {
-            Console.WriteLine(color + " " + name + " says ");
+        {           
             Console.WriteLine("Wash me with shampoo !");
         }
 
         public void Drink()
-        {
-            Console.WriteLine(color + " " + name + " says ");
+        {           
             Console.WriteLine("I want to Drink !");
         }
 
         public void Makeup()
-        {
-            Console.WriteLine(color + " " + name + " says ");
+        {           
             Console.WriteLine("Would you like to get me makeup!");
         }
+
         public void Die()
         {
-            Console.WriteLine("I'm die(((((");
+            Console.WriteLine("Тамі помер(((((");
         }
 
 

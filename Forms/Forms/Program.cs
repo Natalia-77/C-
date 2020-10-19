@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Timers;
+using System.Text;
 using System.Windows.Forms;
 
 
@@ -10,208 +10,146 @@ namespace Tamagochi
 {
     class Program
     {
-        public static void Tami(object obj, EventArgs e)
-        
-        {
 
-            Tama t = new Tama("Lolo", "Yellow");
+        private delegate void Moves();      
+
+
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.Unicode;
+
+            Tama t = new Tama("Tami", "Yellow");
             List<Moves> m = new List<Moves>(new Moves[] { t.Sleep, t.Eat, t.Play, t.Walk, t.Drink, t.Wash, t.Makeup });
-            int counter = 0;
+
             Random rand = new Random();
             Random r = new Random((int)DateTime.Now.Ticks);
+            
+            // Кількість життів.
+            int counter = 3;
 
             // Новий ліст,куди додаю нові згeнеровані методи делегата.
             List<Moves> mov = new List<Moves>();
 
+            Stopwatch rt = new Stopwatch();
+            Stopwatch tm = new Stopwatch();
+
+
+            Console.WriteLine($"Tami має зараз  = {counter} життів");
             Console.WriteLine("-------------------------");
-            Console.WriteLine("| Wellcome to Tamagochi |");
+            Console.WriteLine("|Вас вітає тамагочі Тамі!))) |");
             Console.WriteLine("-------------------------");
-
-            // Два різні рандоми для генерації індексів.
-            int index = rand.Next(m.Count);
-            int ind = r.Next(m.Count);
-
-            mov.Add(m[index]);
-
-            while (m.Count > 0)
+            while (counter > 0)
             {
-                for (int i = 0; i < mov.Count; i++)
-                {
+                    // Два різні рандоми для генерації індексів.
+                    int index = rand.Next(m.Count);
+                    int ind = r.Next(m.Count);
 
-                    for (int j = i + 1; j < mov.Count; j++)
+                    mov.Add(m[index]);
+
+
+                    for (int i = 0; i < mov.Count; i++)
                     {
 
-                        if (mov[j].Method.Name == mov[i].Method.Name)
+                        for (int j = i + 1; j < mov.Count; j++)
                         {
-                            // Перевіряла,чи робить заміну на новий метод,якщо повтор.
-                            //Console.WriteLine("+++++");
-                            //Console.WriteLine(mov[j].Method.Name);
 
-                            // Якщо є повтор,то видаляю.
-                            mov.RemoveAt(i);
+                            if (mov[j].Method.Name == mov[i].Method.Name)
+                            {
+                                // Перевіряла,чи робить заміну на новий метод,якщо повтор.
+                                //Console.WriteLine("+++++");
+                                //Console.WriteLine(mov[j].Method.Name);
 
-                            // Потім на це видалене місце додаю новий,але  індекс згенеровано новим рандомом.
-                            mov.Add(m[ind]);
+                                // Якщо є повтор,то видаляю.
+                                mov.RemoveAt(i);
+
+                                // Потім на це видалене місце додаю новий,але  індекс згенеровано новим рандомом.
+                                mov.Add(m[ind]);
+                            }
+
                         }
 
                     }
-
-                }
 
                 foreach (Moves item in mov)
                 {
                     // Викликаю.
-                    item.DynamicInvoke();
+                    //item.DynamicInvoke();
 
-
-                }
-                Console.WriteLine("----------------------------------------------------------------");
-                Console.WriteLine("Do you want to satisfy a need?");
-                Console.WriteLine("Enter '+' if your answer 'YES' or enter '-' if your answer 'NO'\n");
-                Console.WriteLine("-----------------------------------------------------------------");
-
-                ConsoleKeyInfo keys = Console.ReadKey();
-
-                if (keys.KeyChar == '+')
-                {
-                    Console.WriteLine("Super\n");
-
-                }
-                else if (keys.KeyChar == '-')
-                {
-                    Console.WriteLine("Bad\n");
-                    counter++;
-                    Console.WriteLine("You refuse to tami " + counter);
-                    Console.WriteLine("---------------"); 
-
-                    // Якщо тричі відмовити,то просить полікувати.
-                    if (counter == 3)
+                    string mes = item.Method.Name;
+                    rt.Start();
+                    var res = MessageBox.Show(mes, "Tami", MessageBoxButtons.OKCancel);
+                
+                    if (res == DialogResult.OK)
                     {
-                        t.Treat();
+                        Console.WriteLine("Дякую)");
+                        rt.Stop();
 
-                        Console.WriteLine("Do you want treat me?");
-                        Console.WriteLine("Enter '1' if your answer 'YES' or enter '0' if your answer 'NO'");
-                        ConsoleKeyInfo choice = Console.ReadKey();
-                        if (choice.KeyChar == '1')
+                        if (rt.ElapsedMilliseconds / 1000 > 2)
                         {
-                            Console.WriteLine("Thank you!");
-                            Console.Clear();
-                            counter = 0;
+                            Console.WriteLine("Так краще не роби.Виконуй мої бажання швидше.");
+                            counter--;
+                            Console.WriteLine($"Тамі має зараз  = {counter} життів");
                         }
-                        else if (choice.KeyChar == '0')
+                        else
                         {
-                            Console.Clear();
-                            t.Die();
-                            Console.WriteLine();
-                            return;
+                            Console.WriteLine("Дякую за турботу");
                         }
+                        rt.Reset();
+                    }
+                    else
+                    {
 
+                        counter--;
+                        rt.Stop();
+                        Console.WriteLine("Не роби так.Я можу захворіти");
+                        Console.WriteLine($"Тамі має зараз  = {counter} життів");
+                        rt.Reset();
+
+                        if(counter==0)
+                        {
+
+                            tm.Start();
+                            string mes2 = t.Treat();
+                            var res2 = MessageBox.Show(mes2, "Tami", MessageBoxButtons.OKCancel);
+                            if (res2 == DialogResult.OK)
+                            {
+                                tm.Stop();
+
+                                if (tm.ElapsedMilliseconds / 1000 > 2)
+                                {
+                                    counter = 0;
+                                    // t.Die();
+                                    Console.WriteLine("Тамагочі загинув!(( Бо ти довго думав,чи треба тобі це...");
+                                    return;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Ти полікував мене.");
+                                    counter = 3;
+                                    Console.WriteLine($"Tami has a  = {counter} lifes");
+                                }
+                            }
+                            else
+                            {
+                                tm.Stop();
+                                counter = 0;
+                                t.Die();
+                                //Console.WriteLine("Tami помер.На жаль...");
+                            }
+                            tm.Reset();
+                        }
                     }
                 }
+                                            
             }
-        }
-
-        public static void Check(object obj, EventArgs e)
-
-        {
-            Tama t = new Tama("Lolo", "Yellow");
-            int counter = 0;
-            Console.WriteLine("----------------------------------------------------------------");
-            Console.WriteLine("Do you want to satisfy a need?");
-            Console.WriteLine("Enter '+' if your answer 'YES' or enter '-' if your answer 'NO'\n");
-            Console.WriteLine("-----------------------------------------------------------------");
-
-            ConsoleKeyInfo keys = Console.ReadKey();
-
-            if (keys.KeyChar == '+')
-            {
-                Console.WriteLine("Super\n");
-
-            }
-            else if (keys.KeyChar == '-')
-            {
-                Console.WriteLine("Bad\n");
-                counter++;
-                Console.WriteLine("You refuse to tami " + counter);
-                Console.WriteLine("---------------");
-
-                // Якщо тричі відмовити,то просить полікувати.
-                if (counter == 3)
-                {
-                    t.Treat();
-
-                    Console.WriteLine("Do you want treat me?");
-                    Console.WriteLine("Enter '1' if your answer 'YES' or enter '0' if your answer 'NO'");
-                    ConsoleKeyInfo choice = Console.ReadKey();
-                    if (choice.KeyChar == '1')
-                    {
-                        Console.WriteLine("Thank you!");
-                        Console.Clear();
-                        counter = 0;
-                    }
-                    else if (choice.KeyChar == '0')
-                    {
-                        Console.Clear();
-                        t.Die();
-                        Console.WriteLine();
-                        return;
-                    }
-
-                }
-            }
-            Console.Read();
-        }
-
-
-        private delegate void Moves();
-
-
-
-        static System.Timers.Timer timer = new System.Timers.Timer(2000);
-        static int i = 5;
-
-        static void Main(string[] args)
-        {
-
-
-            timer.Elapsed += timer_Elapsed;
-            timer.Elapsed += Tami;
-            timer.Elapsed += Check;
-            timer.Start();
-            Console.Read();
-
-
-
 
         }
 
-        public static void timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            i--;
-
-            Console.Clear();
-            Console.WriteLine("=================================================");
-            Console.WriteLine("                Time           :  " + i.ToString());
-            Console.WriteLine("");
-            Console.WriteLine("=================================================");
-
-            if (i == 0)
-            {
-                Console.Clear();
-                Console.WriteLine("");
-                Console.WriteLine("==============================================");
-
-                Console.WriteLine("               End                 ");
-                Console.WriteLine("==============================================");
-
-                timer.Close();
-                timer.Dispose();
-            }
-
-
-        }
     }
-    }
+        
+}
+    
 
 
 
