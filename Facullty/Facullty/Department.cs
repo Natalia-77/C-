@@ -6,22 +6,25 @@ namespace Facullty
 {
     class Department
     {
-        private int _fund;
-        private string _namedept;
-        List<Group> groups;
+        private int _fund { get; set; }
+        private string _namedept { get; set; }
+        List<Group> groups { get; set; }
 
-        public int Fund { get; set; }
-        public string Namedept { get; set; }
-        public List<Group> gr { get; set; }
+        //public int Fund { get; set; }
+        //public string Namedept { get; set; }
+        //public List<Group> gr { get; set; }
 
-        public Department()
+        public Department(int fund,string namedept)//,List<Group>g)
         {
-            _fund = 0;
-            _namedept = "";
+            _fund = fund;
+            _namedept = namedept;
             groups = new List<Group>();
-            groups.Add(new Group());
         }
 
+        public override string ToString()
+        {
+            return _namedept + "  " + _fund ;
+        }
 
     }
 }

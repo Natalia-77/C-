@@ -6,29 +6,34 @@ namespace Facullty
 {
     class Teachers
     {
-        string _name; 
-        string _surname; 
-        int _salary;
-        List<Department> dept;
+        string _name { get; set; }
+        string _surname { get; set; }
+        int _salary { get; set; }
+        List<Department> dept { get; set; }
 
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public int Salary { get; set; }
-        public List<Department> departments { get; set; }
+        //public string Name { get; set; }
+        //public string Surname { get; set; }
+        //public int Salary { get; set; }
+        //public List<Department> departments { get; set; }
 
-        public Teachers()
+        public Teachers(string name,string surname,int salary)//,List<Department>de)
         {
-            _name = "";
-            _surname = "";
-            _salary = 0;
-            dept = new List<Department>();
-            dept.Add(new Department());
+            _name = name;
+            _surname = surname;
+            _salary = salary;
+            dept = new List<Department>(); 
+            
         }
-        
 
+        public override string ToString()
+        {
+            return _surname + " " + _name + "  " + _salary;
+        }
 
 
 
 
     }
+
+
 }
