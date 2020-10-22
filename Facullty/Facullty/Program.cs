@@ -66,87 +66,87 @@ namespace Facullty
             tea6.dept = new List<Department> { dep2, dep3 };
 
 
-            //Console.WriteLine("---------------------1----------------------------\n");
-            //Console.WriteLine("Вивести всі можливі пари строк викладачів та груп:");
-            //var res = resultg.SelectMany(x => x.teach.Select(y => new { Група = x._namegroup, Викладач = y._surname+" "+y._name })).ToList();
-            //foreach (var item in res)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            Console.WriteLine("---------------------1----------------------------\n");
+            Console.WriteLine("Вивести всі можливі пари строк викладачів та груп:");
+            var res = resultg.SelectMany(x => x.teach.Select(y => new { Група = x._namegroup, Викладач = y._surname + " " + y._name })).ToList();
+            foreach (var item in res)
+            {
+                Console.WriteLine(item);
+            }
 
 
-            //Console.WriteLine("------------------------2-------------------------\n");
-            //Console.WriteLine("Вивести назву факультетів,фонд фінансування кафедр яких" +
-            //    " перевищує фонд фінансування факультета");
-            //var reі2 = resultf.Where(f => f._finance < f.dep.Sum(d => d._fund)).Select(f => new { Назва = f._namefaculty });
-            //foreach (var item in reі2)
-            //{
-            //    Console.WriteLine(item);
+            Console.WriteLine("------------------------2-------------------------\n");
+            Console.WriteLine("Вивести назву факультетів,фонд фінансування кафедр яких" +
+                " перевищує фонд фінансування факультета");
+            var reі2 = resultf.Where(f => f._finance < f.dep.Sum(d => d._fund)).Select(f => new { Назва = f._namefaculty });
+            foreach (var item in reі2)
+            {
+                Console.WriteLine(item);
 
-            //}
+            }
 
-            //Console.WriteLine("---------------------------3----------------------\n");
-            //Console.WriteLine(" Вивести імена та прізвища викладачів,які читають лекції в групі 911VPU");
-            //var res3 = resultg.Where(x => x._namegroup == "911VPU").SelectMany(t => t.teach).Select(t =>new { Викладач = t._surname+" "+t._name });
-            //foreach (var item in res3)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
-
-            //Console.WriteLine("---------------------4-------------------------------\n");
-            //Console.WriteLine(" Вивести прізвища викладачів та назви факультетів,де вони читають лекції.");
-            //var res4 = resultt.SelectMany(t => resultf.Where(f => f.dep.Any(d => t.dept.Contains(d))).Select
-            //(f => new { Викладач = t._name+" "+t._surname, Факультет = f._namefaculty }));
-
-            //foreach (var item in res4)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            Console.WriteLine("---------------------------3----------------------\n");
+            Console.WriteLine(" Вивести імена та прізвища викладачів,які читають лекції в групі 911VPU");
+            var res3 = resultg.Where(x => x._namegroup == "911VPU").SelectMany(t => t.teach).Select(t => new { Викладач = t._surname + " " + t._name });
+            foreach (var item in res3)
+            {
+                Console.WriteLine(item);
+            }
 
 
-            //Console.WriteLine("---------------------5-----------------------------\n");
-            //Console.WriteLine(" Вивести назви кафедр і назви груп, які до них відносяться.");
-            //var res5 = resultd.SelectMany(t => t.groups.Select(x => new { Кафедра = t._namedept, Група = x._namegroup }));
+            Console.WriteLine("---------------------4-------------------------------\n");
+            Console.WriteLine(" Вивести прізвища викладачів та назви факультетів,де вони читають лекції.");
+            var res4 = resultt.SelectMany(t => resultf.Where(f => f.dep.Any(d => t.dept.Contains(d))).Select
+            (f => new { Викладач = t._name + " " + t._surname, Факультет = f._namefaculty }));
 
-            //foreach (var item in res5)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            foreach (var item in res4)
+            {
+                Console.WriteLine(item);
+            }
 
 
+            Console.WriteLine("---------------------5-----------------------------\n");
+            Console.WriteLine(" Вивести назви кафедр і назви груп, які до них відносяться.");
+            var res5 = resultd.SelectMany(t => t.groups.Select(x => new { Кафедра = t._namedept, Група = x._namegroup }));
 
-            //Console.WriteLine("---------------------6-----------------------------\n");
-            //Console.WriteLine("Вивести назви кафедр, на яких читає викладач Samantha Adams");
-            //var res6 = resultt.Where(x => x._surname == "Adams").SelectMany(t => t.dept).Select(y=>y._namedept);
-
-            //foreach (var item in res6)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            foreach (var item in res5)
+            {
+                Console.WriteLine(item);
+            }
 
 
 
-            //Console.WriteLine("---------------------7--------------------------\n");
-            //Console.WriteLine("Вивести назви груп, які відносяться до факультету Computer Science”. ");
-            //var res7 = resultg.SelectMany(x => x.faculty.Where(y => y._namefaculty == "Computer Science").
-            //Select(t => new { x._namegroup }));
+            Console.WriteLine("---------------------6-----------------------------\n");
+            Console.WriteLine("Вивести назви кафедр, на яких читає викладач Samantha Adams");
+            var res6 = resultt.Where(x => x._surname == "Adams").SelectMany(t => t.dept).Select(y => y._namedept);
 
-            //foreach (var item in res7)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            foreach (var item in res6)
+            {
+                Console.WriteLine(item);
+            }
 
 
-            //Console.WriteLine("---------------------8--------------------------\n");
-            //Console.WriteLine("Вивести назви груп 4-го курса, а також назви факультетів," +
-            //    " до яких вони відносяться ");
-            //var res8 = resultg.SelectMany(x => x.faculty.Where(y => x._number == 4).Select(y => new { x._number, y._namefaculty }));
 
-            //foreach (var item in res8)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            Console.WriteLine("---------------------7--------------------------\n");
+            Console.WriteLine("Вивести назви груп, які відносяться до факультету Computer Science”. ");
+            var res7 = resultg.SelectMany(x => x.faculty.Where(y => y._namefaculty == "Computer Science").
+            Select(t => new { x._namegroup }));
+
+            foreach (var item in res7)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            Console.WriteLine("---------------------8--------------------------\n");
+            Console.WriteLine("Вивести назви груп 4-го курса, а також назви факультетів," +
+                " до яких вони відносяться ");
+            var res8 = resultg.SelectMany(x => x.faculty.Where(y => x._number == 4).Select(y => new { x._number, y._namefaculty }));
+
+            foreach (var item in res8)
+            {
+                Console.WriteLine(item);
+            }
 
         }
     }
