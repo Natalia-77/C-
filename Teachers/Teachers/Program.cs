@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Teachers
 {
@@ -8,6 +9,9 @@ namespace Teachers
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.Unicode;
+
             // Номер сторінки.
             int pagenumber = 0;
 
@@ -21,7 +25,12 @@ namespace Teachers
             {
                 Console.WriteLine(item);
             }
-            Console.Clear();
+            Console.WriteLine("------------------------------------------------------------------");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Введіть номер сторінки для перегляду даних.");
+            Console.WriteLine("Якщо ви захочете закінчити роботу і вийти,то натисніть цифру 0");
+            Console.ResetColor();
+            Console.WriteLine("-----------------------------------------------------------------\n");
             do
             {
                 do
@@ -48,12 +57,15 @@ namespace Teachers
                             Console.WriteLine($"Now display { pagenumber} in {result}");
                             Console.ResetColor();
 
+                            Console.WriteLine("----------------------------------------------------------");
+                            Console.WriteLine($"Name:           |Surname:                 | Salary:      |");
+                            Console.WriteLine("----------------------------------------------------------");
                             foreach (Teacher t in res)
                             {
-                                Console.WriteLine($"Name:{t._name,-10} Surname: {t._surname,-15}  Salary: {t._salary} ");
+                                Console.WriteLine($"Name:{t._name,-10} |Surname: {t._surname,-15} | Salary: {t._salary} |");
 
                             }
-                            Console.WriteLine();
+                            Console.WriteLine("---------------------------------------------------------");
                             
                         }
                        
