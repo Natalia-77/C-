@@ -30,7 +30,7 @@ namespace Facullty
 
             Group gr1 = new Group { _namegroup = "911VPU", _number = 2 };
             Group gr2 = new Group { _namegroup = "921VUU", _number = 3 };
-            Group gr3 = new Group { _namegroup = "322WWQ", _number = 1 };
+            Group gr3 = new Group { _namegroup = "322WWQ", _number = 4 };
             Group gr4 = new Group { _namegroup = "388YUI", _number = 4 };
             List<Group> resultg = new List<Group> { gr1, gr2, gr3, gr4 };
 
@@ -68,7 +68,7 @@ namespace Facullty
 
             //Console.WriteLine("---------------------1----------------------------\n");
             //Console.WriteLine("Вивести всі можливі пари строк викладачів та груп:");
-            //var res = resultg.SelectMany(x => x.teach.Select(y => new { Назва = x._namegroup, Викладач = y._surname })).ToList();
+            //var res = resultg.SelectMany(x => x.teach.Select(y => new { Група = x._namegroup, Викладач = y._surname+" "+y._name })).ToList();
             //foreach (var item in res)
             //{
             //    Console.WriteLine(item);
@@ -76,14 +76,14 @@ namespace Facullty
 
 
             //Console.WriteLine("------------------------2-------------------------\n");
-            //Console.WriteLine("Вивести назву факультетів,фонд фінансування кафедр яких" +
-            //    " перевищує фонд фінансування факультета");
-            //var reі2 = resultf.Where(f => f._finance < f.dep.Sum(d => d._fund)).Select(f => f._namefaculty);
-            //foreach (var item in reі2)
-            //{
-            //    Console.WriteLine(item);
+            Console.WriteLine("Вивести назву факультетів,фонд фінансування кафедр яких" +
+                " перевищує фонд фінансування факультета");
+            var reі2 = resultf.Where(f => f._finance < f.dep.Sum(d => d._fund)).Select(f => f._namefaculty);
+            foreach (var item in reі2)
+            {
+                Console.WriteLine(item);
 
-            //}
+            }
 
             //Console.WriteLine("---------------------------3----------------------\n");
             //Console.WriteLine(" Вивести імена та прізвища викладачів,які читають лекції в групі 911VPU");
@@ -137,6 +137,16 @@ namespace Facullty
             //    Console.WriteLine(item);
             //}
 
+
+            //Console.WriteLine("---------------------8--------------------------\n");
+            //Console.WriteLine("Вивести назви груп 4-го курса, а також назви факультетів," +
+            //    " до яких вони відносяться ");
+            //var res8 = resultg.SelectMany(x => x.faculty.Where(y => x._number == 4).Select(y => new { x._number, y._namefaculty }));
+
+            //foreach (var item in res8)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
         }
     }
