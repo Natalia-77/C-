@@ -82,7 +82,7 @@ namespace Tamagochi
                 
                     if (res == DialogResult.OK)
                     {
-                        Console.WriteLine("Дякую)");
+                        Console.WriteLine("Дякую)"); 
                         rt.Stop();
 
                         if (rt.ElapsedMilliseconds / 1000 > 3)
