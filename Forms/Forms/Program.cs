@@ -35,7 +35,7 @@ namespace Tamagochi
             Stopwatch tm = new Stopwatch();
 
 
-            Console.WriteLine($"Tami має зараз  = {counter} життів");
+            Console.WriteLine($"Tami має зараз  = {counter} не використаних відмов");
             Console.WriteLine("-------------------------");
             Console.WriteLine("|Вас вітає тамагочі Тамі!))) |");
             Console.WriteLine("-------------------------");
@@ -85,11 +85,11 @@ namespace Tamagochi
                         Console.WriteLine("Дякую)");
                         rt.Stop();
 
-                        if (rt.ElapsedMilliseconds / 1000 > 2)
+                        if (rt.ElapsedMilliseconds / 1000 > 3)
                         {
                             Console.WriteLine("Так краще не роби.Виконуй мої бажання швидше.");
                             counter--;
-                            Console.WriteLine($"Тамі має зараз  = {counter} життів");
+                            Console.WriteLine($"Тамі має зараз  = {counter} не використаних відмов");
                         }
                         else
                         {
@@ -103,7 +103,7 @@ namespace Tamagochi
                         counter--;
                         rt.Stop();
                         Console.WriteLine("Не роби так.Я можу захворіти");
-                        Console.WriteLine($"Тамі має зараз  = {counter} життів");
+                        Console.WriteLine($"Тамі має зараз  = {counter} не використаних відмов");
                         rt.Reset();
 
                         if(counter==0)
@@ -127,7 +127,7 @@ namespace Tamagochi
                                 {
                                     Console.WriteLine("Ти полікував мене.");
                                     counter = 3;
-                                    Console.WriteLine($"Tami has a  = {counter} lifes");
+                                    Console.WriteLine($"Tami має  = {counter} не використаних відмов");
                                 }
                             }
                             else
