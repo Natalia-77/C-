@@ -9,16 +9,19 @@ namespace Files
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.Unicode;
+
             string[] dir = Directory.GetFiles(@"D:\Natalia\Project1\C-Sharp\Files\Files\Testdoc", "*.txt");
 
             Console.WriteLine("Enter word for search");
             string word = Console.ReadLine();
-            int Allcount = 0;       
+            int Allcount = 0;
 
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine($"Назва файлу          | кількість входжень|");
+            Console.WriteLine("------------------------------------------");
 
-            Console.WriteLine("-----------------------------------------------------------------------------------");
-            Console.WriteLine("Назва файлу у якому є таке слово                              | кількість входжень |");
-            Console.WriteLine("-----------------------------------------------------------------------------------");
             for (int i = 0; i < dir.Length; i++)
             {
                 //int count = 0;
@@ -31,7 +34,8 @@ namespace Files
                 if (str.Contains(word))
                 {
                     int amount = new Regex(word).Matches(str).Count;
-                    Console.WriteLine( $"{dir[i]}            {amount,5}" );
+                    string name = Path.GetFileName(dir[i]);                   
+                    Console.WriteLine($"{name,-20} | {amount,17} | ");
                     Allcount += amount;
 
                 }
@@ -39,7 +43,8 @@ namespace Files
                 fs.Close();              
                
             }
-            Console.WriteLine($"This word is {Allcount} times");
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine($"Загальна кількість входжень по всім файлам {Allcount}");
 
         }
     }
