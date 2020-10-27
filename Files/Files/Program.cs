@@ -31,7 +31,7 @@ namespace Files
                 if (str.Contains(word))
                 {
                     int amount = new Regex(word).Matches(str).Count;
-                    Console.WriteLine( dir[i]  );
+                    Console.WriteLine( $"{dir[i]}            {amount,5}" );
                     Allcount += amount;
 
                 }
