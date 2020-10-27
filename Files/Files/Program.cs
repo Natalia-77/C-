@@ -14,8 +14,10 @@ namespace Files
 
             string[] dir = Directory.GetFiles(@"D:\Natalia\Project1\C-Sharp\Files\Files\Testdoc", "*.txt");
 
-            Console.WriteLine("Enter word for search");
+            Console.WriteLine("Введіть слово для пошуку: ");
             string word = Console.ReadLine();
+            Console.WriteLine("Введіть слово,яким ми замінимо введене: ");
+            string wordnew = Console.ReadLine();
             int Allcount = 0;
 
             Console.WriteLine("------------------------------------------");
@@ -24,8 +26,9 @@ namespace Files
 
             for (int i = 0; i < dir.Length; i++)
             {
-                //int count = 0;
-                FileStream fs = new FileStream(dir[i], FileMode.Open, FileAccess.Read);               
+               
+                FileStream fs = new FileStream(dir[i], FileMode.Open, FileAccess.ReadWrite);
+               
                 byte[] bytes = new byte[fs.Length];
                 fs.Read(bytes, 0, bytes.Length);              
                 string str = Encoding.Default.GetString(bytes);
@@ -39,12 +42,21 @@ namespace Files
                     Allcount += amount;
 
                 }
-              
-                fs.Close();              
-               
+
+                
+                StreamWriter write = new StreamWriter(fs);
+
+                string str1 = str.Replace(word, wordnew);
+                byte[] byte1 = Encoding.UTF8.GetBytes(str1);
+                fs.Write(byte1, 0, byte1.Length);               
+
+                fs.Close();
             }
             Console.WriteLine("------------------------------------------");
-            Console.WriteLine($"Загальна кількість входжень по всім файлам {Allcount}");
+            Console.WriteLine($"Загальна кількість входжень по всім файлам:  {Allcount}");
+
+           
+
 
         }
     }
