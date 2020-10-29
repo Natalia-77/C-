@@ -33,29 +33,36 @@ namespace Students
 
             // Видалення по прізвищу.
             Console.WriteLine("----------------------\n");
-            try
+            bool flag = false;
+            do
             {
-
-                Console.WriteLine("Введіть прізвище студента,якого треба видалити");
-                string del = string.Empty;
-                del = Console.ReadLine();
-
-                for (int i = 0; i < st.Count; i++)
+                try
                 {
-                    if (st[i]._surname == del)
+
+                    Console.WriteLine("Введіть прізвище студента,якого треба видалити");
+                    string del = string.Empty;
+                    del = Console.ReadLine();
+
+                    for (int i = 0; i < st.Count; i++)
                     {
-                        st.RemoveAt(i);
-                    }
-                    else
-                    {
-                        throw new Exception();
+                        if (st[i]._surname == del)
+                        {
+                            st.RemoveAt(i);
+                            flag = true;
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
                     }
                 }
-            }
-            catch(Exception )
-            {
-                Console.WriteLine("Такого прізвища немає у списку!");
-            }
+                catch (Exception)
+                {
+                    Console.WriteLine("Такого прізвища немає у списку!");
+                }
+            } while (!flag);
+
+
             // Запис просто на диск Д .
             FileStream fs = new FileStream(@"D:/test1.json", FileMode.OpenOrCreate);
                 d.WriteObject(fs, st);
