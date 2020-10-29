@@ -21,21 +21,21 @@ namespace Students
 
             st.Add(new Student("Oleg", "Polinov", 5));
 
-            Console.WriteLine("--------------------------------\n");
-            foreach (var item in st)
-            {
-                Console.WriteLine(item);
-            }
+            //Console.WriteLine("--------------------------------\n");
+            //foreach (var item in st)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
 
             Console.WriteLine("----------------------\n");
             Console.WriteLine("Введіть прізвище студента,якого треба видалити");
-            string del =string.Empty;
+            string del = string.Empty;
             del = Console.ReadLine();
 
             for (int i = 0; i < st.Count; i++)
             {
-                if (st[i]._surname==del)
+                if (st[i]._surname == del)
                 {
                     st.RemoveAt(i);
                 }
@@ -47,7 +47,10 @@ namespace Students
                 Console.WriteLine(item);
             }
 
-
+            using (FileStream fs = new FileStream(@"D:/test.json", FileMode.OpenOrCreate))
+            {
+                d.WriteObject(fs, st);
+            }
         }
     }
 }
