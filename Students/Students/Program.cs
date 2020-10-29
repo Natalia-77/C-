@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
-
+using System.Text;
 
 namespace Students
 {
     class Program
     {
         static void Main(string[] args)
-        { 
-           
+        {
+
+            Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.Unicode;
+
             DataContractJsonSerializer d = new DataContractJsonSerializer(typeof(List<Student>));
 
             List<Student> st = null;
-            using (FileStream fs1 = new FileStream(@"D:/test.json", FileMode.Open))
+            using (FileStream fs1 = new FileStream(@"D:/Natalia/Project1/C-Sharp/Students/Students/test.json", FileMode.Open))
             {
                 st = d.ReadObject(fs1) as List<Student>;
             }
@@ -30,18 +33,30 @@ namespace Students
 
             // Видалення по прізвищу.
             Console.WriteLine("----------------------\n");
-            Console.WriteLine("Введіть прізвище студента,якого треба видалити");
-            string del = string.Empty;
-            del = Console.ReadLine();
-
-            for (int i = 0; i < st.Count; i++)
+            try
             {
-                if (st[i]._surname == del)
+
+                Console.WriteLine("Введіть прізвище студента,якого треба видалити");
+                string del = string.Empty;
+                del = Console.ReadLine();
+
+                for (int i = 0; i < st.Count; i++)
                 {
-                    st.RemoveAt(i);
+                    if (st[i]._surname == del)
+                    {
+                        st.RemoveAt(i);
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
                 }
             }
-
+            catch(Exception )
+            {
+                Console.WriteLine("Такого прізвища немає у списку!");
+            }
+            // Запис просто на диск Д .
             FileStream fs = new FileStream(@"D:/test1.json", FileMode.OpenOrCreate);
                 d.WriteObject(fs, st);
                 fs.Close();
