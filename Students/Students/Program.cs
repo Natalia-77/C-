@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
 
+
 namespace Students
 {
     class Program
@@ -12,14 +13,28 @@ namespace Students
            
             DataContractJsonSerializer d = new DataContractJsonSerializer(typeof(List<Student>));
 
-            List<Student> st = Student.GetList();
-
-            foreach (var item in st)
+            List<Student> p2 = null;
+            using (FileStream fs1 = new FileStream(@"D:/test.json", FileMode.Open))
             {
-                Console.WriteLine(item);
+                p2 = d.ReadObject(fs1) as List<Student>;
+            }
+            Console.WriteLine("p2");
+            foreach (var p in p2)
+            {
+                Console.WriteLine(p);
             }
 
-            st.Add(new Student("Oleg", "Polinov", 5));
+
+            //List<Student> st = Student.GetList();
+
+            //foreach (var item in st)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+
+
+            p2.Add(new Student("Oleg", "Polinovaar", 5));
 
             //Console.WriteLine("--------------------------------\n");
             //foreach (var item in st)
@@ -33,24 +48,25 @@ namespace Students
             string del = string.Empty;
             del = Console.ReadLine();
 
-            for (int i = 0; i < st.Count; i++)
+            for (int i = 0; i < p2.Count; i++)
             {
-                if (st[i]._surname == del)
+                if (p2[i]._surname == del)
                 {
-                    st.RemoveAt(i);
+                    p2.RemoveAt(i);
                 }
             }
 
-            Console.WriteLine("--------------------------------\n");
-            foreach (var item in st)
-            {
-                Console.WriteLine(item);
-            }
+            //Console.WriteLine("--------------------------------\n");
+            //foreach (var item in st)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
-            using (FileStream fs = new FileStream(@"D:/test.json", FileMode.OpenOrCreate))
-            {
-                d.WriteObject(fs, st);
-            }
+            FileStream fs = new FileStream(@"D:/test1.json", FileMode.OpenOrCreate);
+                d.WriteObject(fs, p2);
+                fs.Close();
+
+
         }
     }
 }
