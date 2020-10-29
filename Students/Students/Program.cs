@@ -13,57 +13,37 @@ namespace Students
            
             DataContractJsonSerializer d = new DataContractJsonSerializer(typeof(List<Student>));
 
-            List<Student> p2 = null;
+            List<Student> st = null;
             using (FileStream fs1 = new FileStream(@"D:/test.json", FileMode.Open))
             {
-                p2 = d.ReadObject(fs1) as List<Student>;
+                st = d.ReadObject(fs1) as List<Student>;
             }
-            Console.WriteLine("p2");
-            foreach (var p in p2)
+
+            Console.WriteLine("Список студентів:");
+            foreach (var p in st)
             {
                 Console.WriteLine(p);
             }
 
+            // Додала нового.
+            st.Add(new Student("Oleg", "Sharkizyan", 5));
 
-            //List<Student> st = Student.GetList();
-
-            //foreach (var item in st)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
-
-
-            p2.Add(new Student("Oleg", "Polinovaar", 5));
-
-            //Console.WriteLine("--------------------------------\n");
-            //foreach (var item in st)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
-
+            // Видалення по прізвищу.
             Console.WriteLine("----------------------\n");
             Console.WriteLine("Введіть прізвище студента,якого треба видалити");
             string del = string.Empty;
             del = Console.ReadLine();
 
-            for (int i = 0; i < p2.Count; i++)
+            for (int i = 0; i < st.Count; i++)
             {
-                if (p2[i]._surname == del)
+                if (st[i]._surname == del)
                 {
-                    p2.RemoveAt(i);
+                    st.RemoveAt(i);
                 }
             }
 
-            //Console.WriteLine("--------------------------------\n");
-            //foreach (var item in st)
-            //{
-            //    Console.WriteLine(item);
-            //}
-
             FileStream fs = new FileStream(@"D:/test1.json", FileMode.OpenOrCreate);
-                d.WriteObject(fs, p2);
+                d.WriteObject(fs, st);
                 fs.Close();
 
 
