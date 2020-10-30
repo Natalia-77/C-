@@ -1,7 +1,15 @@
 <?xml version="1.0"?>
-<Account xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Payday>2</Payday>
-  <Days>50</Days>
-  <Penaltyday>2</Penaltyday>
-  <Countday>200</Countday>
-</Account>
+<ArrayOfAccount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Account>
+    <Payday>2</Payday>
+    <Days>50</Days>
+    <Penaltyday>2</Penaltyday>
+    <Countday>200</Countday>
+  </Account>
+  <Account>
+    <Payday>3</Payday>
+    <Days>60</Days>
+    <Penaltyday>4</Penaltyday>
+    <Countday>600</Countday>
+  </Account>
+</ArrayOfAccount>
