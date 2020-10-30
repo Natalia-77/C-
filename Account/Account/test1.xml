@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Account xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Payday>2</Payday>
+  <Days>50</Days>
+  <Penaltyday>2</Penaltyday>
+  <Countday>200</Countday>
+</Account>
