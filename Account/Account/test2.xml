@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<ArrayOfAccount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Account>
+<ArrayOfAccount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />  <Account>
     <payday>20</payday>
     <day>15</day>
     <penaltyday>10</penaltyday>

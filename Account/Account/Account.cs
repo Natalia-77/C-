@@ -10,33 +10,33 @@ namespace Account
 
     public class Account
     {
-        public static bool ResSerialize = false;
+        public static bool ResSerialize = true;
 
 
-        // Оплата за день.
-        //[XmlElement(ElementName = "Payday")]
+        // Оплата за день.   
+        [XmlElement]
         public string payday;
 
-        // Кількість днів.
-        //[XmlElement(ElementName = "Days")]
+        // Кількість днів.     
+        [XmlElement]
         public string day;
 
         // Штраф за один день затримки оплати.
-        //[XmlElement(ElementName = "Penaltyday")]
+        [XmlElement]
         public string penaltyday;
 
         // Кількість днів затримки оплати.
-        //[XmlElement(ElementName = "Countday")]
+        [XmlElement]
         public string countday;
 
         // Поля,які обраховуються.
-        // [XmlElement(ElementName = "Total Sum")]
+        [XmlElement]
         public string totalSum;
 
-        //[XmlElement(ElementName ="Penalty Sum")]
+        [XmlElement]
         public string penaltySum;
 
-        // [XmlElement(ElementName ="Finish Sum")]
+        [XmlElement]
         public string finishSum;
 
 

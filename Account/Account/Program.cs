@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Account
@@ -16,34 +17,34 @@ namespace Account
             Console.InputEncoding = Encoding.Unicode;
 
             List<Account> account = new List<Account>();
-            //{
-            //    new Account()
-            //    {
-            //        payday="20",
-            //        day="12",
-            //        penaltyday="2",
-            //        countday= "2"
-            //    },
-            //    new Account()
-            //    {
-            //        payday="30",
-            //        day="20",
-            //        penaltyday="4",
-            //        countday= "6"
-            //    }
+            {
+                new Account()
+                {
+                    payday = "20",
+                    day = "12",
+                    penaltyday = "2",
+                    countday = "2"
+                };
+                new Account()
+                {
+                    payday = "30",
+                    day = "20",
+                    penaltyday = "4",
+                    countday = "6"
+                };
 
-            //};
-           
-            //string path = "D:/Natalia/Project1/C-Sharp/Account/Account/test1.xml";
+            };
+            Account.ResSerialize = true;
+            string path = "D:/Natalia/Project1/C-Sharp/Account/Account/test2.xml";
 
-            //using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite))
-            //{
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
 
-            //    XmlSerializer formatter = new XmlSerializer(typeof(List<Account>));
+                XmlSerializer formatter = new XmlSerializer(typeof(List<Account>));
 
-            //    formatter.Serialize(fs, account);
+                formatter.Serialize(fs, account);
 
-            //}
+            }
 
             account.Add(new Account("20", "15", "10", "2"));
             account.Add(new Account("10", "10", "12", "2"));
@@ -54,34 +55,56 @@ namespace Account
             Console.WriteLine("------------------------------------------------------\n");
             foreach (var item in account)
             {
-                
                 Console.WriteLine($"Зарплата за день: {item.payday}");
                 Console.WriteLine($"Кількість днів: {item.day}");
                 Console.WriteLine($"Штраф за один день затримки: {item.countday}");
-                Console.WriteLine($"Кількість днів затримки оплати :{item.penaltyday}");
+                Console.WriteLine($"Кількість днів затримки оплати :{item.penaltyday}");              
+                Console.WriteLine($"Сума до оплати без штрафу:{item.totalSum}");
+                Console.WriteLine($"Штраф:{item.penaltySum}");
+                Console.WriteLine($"Загальна сума до оплати:{item.finishSum}");
+                Console.WriteLine("-------------------------------------------------------");
+                
 
-                if (Account.ResSerialize == true)
+            }
+
+
+
+            // Щоб перевірити-розкоментуйте.
+            // Серіалізуємо все.
+            //string path1 = "D:/test3.xml";
+            //var serializer = new XmlSerializer(typeof(List<Account>));       
+
+            //using (var stream = File.OpenWrite(path1))
+            //{
+            //    serializer.Serialize(stream, account);
+            //}
+
+
+
+
+            // Серіалізуємо тільки певні поля.
+            using (XmlWriter writer = XmlWriter.Create("D:/test4.xml"))
+            {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("Account");
+
+                foreach (Account ac in account)
                 {
-                    Console.WriteLine(item.totalSum);
-                    Console.WriteLine(item.penaltySum);
-                    Console.WriteLine(item.finishSum);
-                    Console.WriteLine("-------------------------------------------------------");
+                    writer.WriteStartElement("Account");
+                    writer.WriteElementString("TotalSum", ac.totalSum.ToString());
+                    writer.WriteElementString("PenaltySum", ac.penaltySum.ToString());
+                    writer.WriteElementString("FinishSum", ac.finishSum.ToString());
+
+
+                    writer.WriteEndElement();
                 }
 
+                writer.WriteEndElement();
+                writer.WriteEndDocument();
             }
-
-            string path1 = "D:/test2.xml";
-            var serializer = new XmlSerializer(typeof(List<Account>));
-            //FileStream fs1 = new FileStream(path1, FileMode.Create);
-
-            using (var stream = File.OpenWrite(path1))
-            {
-                serializer.Serialize(stream, account);
-            }
-            Console.WriteLine("------------------------------\n");
-
 
         }
+
 
 
 
