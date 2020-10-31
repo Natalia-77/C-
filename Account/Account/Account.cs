@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Xml.Serialization;
 
@@ -9,14 +10,12 @@ namespace Account
 
     public class Account
     {
-        public static bool ResSerialize = true;
+        public static bool ResSerialize = false;
 
 
         // Оплата за день.
         //[XmlElement(ElementName = "Payday")]
-        public int _payday { get; set; }
-
-
+        public int _payday;
 
         // Кількість днів.
         //[XmlElement(ElementName = "Days")]
@@ -53,7 +52,8 @@ namespace Account
        // [XmlElement(ElementName ="Finish Sum")]
         public int FinishSum => TotalSum + PenaltySum;
 
-       
+      
+
 
 
     }
