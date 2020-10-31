@@ -13,19 +13,21 @@ namespace Account
 
 
         // Оплата за день.
-        [XmlElement(ElementName = "Payday")]
-        public int _payday;
+        //[XmlElement(ElementName = "Payday")]
+        public int _payday { get; set; }
+
+
 
         // Кількість днів.
-        [XmlElement(ElementName = "Days")]
+        //[XmlElement(ElementName = "Days")]
         public int _days;
 
         // Штраф за один день затримки оплати.
-        [XmlElement(ElementName = "Penaltyday")]
+        //[XmlElement(ElementName = "Penaltyday")]
         public int _penaltyday;
 
         // Кількість днів затримки оплати.
-        [XmlElement(ElementName = "Countday")]
+        //[XmlElement(ElementName = "Countday")]
         public int _countday;    
 
         public Account()
@@ -42,13 +44,13 @@ namespace Account
         }
 
         // Поля,які обраховуються.
-        [XmlElement(ElementName = "Total Sum")]
-        public int TotalSum => _payday * _days;
+       // [XmlElement(ElementName = "Total Sum")]
+        public int TotalSum =>_payday * _days;
 
-        [XmlElement(ElementName ="Penalty Sum")]
+        //[XmlElement(ElementName ="Penalty Sum")]
         public int PenaltySum => _penaltyday * _countday;
 
-        [XmlElement(ElementName ="Finish Sum")]
+       // [XmlElement(ElementName ="Finish Sum")]
         public int FinishSum => TotalSum + PenaltySum;
 
        
