@@ -15,44 +15,58 @@ namespace Account
 
         // Оплата за день.
         //[XmlElement(ElementName = "Payday")]
-        public int _payday;
+        public string payday;
 
         // Кількість днів.
         //[XmlElement(ElementName = "Days")]
-        public int _days;
+        public string day;
 
         // Штраф за один день затримки оплати.
         //[XmlElement(ElementName = "Penaltyday")]
-        public int _penaltyday;
+        public string penaltyday;
 
         // Кількість днів затримки оплати.
         //[XmlElement(ElementName = "Countday")]
-        public int _countday;    
+        public string countday;
+
+        // Поля,які обраховуються.
+        // [XmlElement(ElementName = "Total Sum")]
+        public string totalSum;
+
+        //[XmlElement(ElementName ="Penalty Sum")]
+        public string penaltySum;
+
+        // [XmlElement(ElementName ="Finish Sum")]
+        public string finishSum;
+
 
         public Account()
         {
 
         }
 
-        public Account(int payday, int days, int penaltyday,int countday)
+        public Account(string payday, string day, string penaltyday,string countday)
         {
-            _payday = payday;
-            _days = days;
-            _penaltyday = penaltyday;
-            _countday = countday;
+            this.payday = payday;
+            this.day = day;
+            this.penaltyday = penaltyday;
+            this.countday = countday;
+
+           
+            int paydays = int.Parse(this.payday);           
+            int days = int.Parse(this.day);           
+            int penaltydays = int.Parse(this.penaltyday);         
+            int countdays= int.Parse(this.countday);
+
+
+            totalSum = (paydays * days).ToString();
+            penaltySum = (penaltydays * countdays).ToString();
+            finishSum = (totalSum + penaltySum).ToString();           
+
+
         }
+               
 
-        // Поля,які обраховуються.
-       // [XmlElement(ElementName = "Total Sum")]
-        public int TotalSum =>_payday * _days;
-
-        //[XmlElement(ElementName ="Penalty Sum")]
-        public int PenaltySum => _penaltyday * _countday;
-
-       // [XmlElement(ElementName ="Finish Sum")]
-        public int FinishSum => TotalSum + PenaltySum;
-
-      
 
 
 
