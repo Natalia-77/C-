@@ -66,54 +66,58 @@ namespace Account
                 
 
             }
-
-
-
-            // Щоб перевірити-розкоментуйте.
-            //Серіалізуємо все.
-
-            if (Account.ResSerialize)
+            Console.WriteLine("Якщо ви хочете серіалізувати весь список-натисніть +");
+            Console.WriteLine("Якщо ви хочете серіалізувати не весь список-натисніть *");
+            ConsoleKeyInfo keys = Console.ReadKey();
+            if (keys.KeyChar == '+')
             {
-               
-                string path1 = "D:/test5.xml";
-                var serializer = new XmlSerializer(typeof(List<Account>));
+                // Щоб перевірити-розкоментуйте.
+                //Серіалізуємо все.
 
-                using (var stream = File.OpenWrite(path1))
+                if (Account.ResSerialize)
                 {
-                    serializer.Serialize(stream, account);
+
+                    string path1 = "D:/test5.xml";
+                    var serializer = new XmlSerializer(typeof(List<Account>));
+
+                    using (var stream = File.OpenWrite(path1))
+                    {
+                        serializer.Serialize(stream, account);
+                    }
                 }
             }
+            if (keys.KeyChar == '*')
+            {
+                Account.ResSerialize = false;
+
+                // Серіалізуємо тільки певні поля.
 
 
+                if (!Account.ResSerialize)
+                {
+                    using (XmlWriter writer = XmlWriter.Create("D:/test6.xml"))
+                    {
 
 
-            // Серіалізуємо тільки певні поля.
+                        writer.WriteStartDocument();
+                        writer.WriteStartElement("Account");
+
+                        foreach (Account ac in account)
+                        {
+                            writer.WriteStartElement("Account");
+                            writer.WriteElementString("TotalSum", ac.totalSum.ToString());
+                            writer.WriteElementString("PenaltySum", ac.penaltySum.ToString());
+                            writer.WriteElementString("FinishSum", ac.finishSum.ToString());
 
 
-            //if (Account.ResSerialize = false)
-            //{
-            //    using (XmlWriter writer = XmlWriter.Create("D:/test5.xml"))
-            //    {
+                            writer.WriteEndElement();
+                        }
 
-
-            //        writer.WriteStartDocument();
-            //        writer.WriteStartElement("Account");
-
-            //        foreach (Account ac in account)
-            //        {
-            //            writer.WriteStartElement("Account");
-            //            writer.WriteElementString("TotalSum", ac.totalSum.ToString());
-            //            writer.WriteElementString("PenaltySum", ac.penaltySum.ToString());
-            //            writer.WriteElementString("FinishSum", ac.finishSum.ToString());
-
-
-            //            writer.WriteEndElement();
-            //        }
-
-            //        writer.WriteEndElement();
-            //        writer.WriteEndDocument();
-            //    }
-            //}
+                        writer.WriteEndElement();
+                        writer.WriteEndDocument();
+                    }
+                }
+            }
 
         }
 
