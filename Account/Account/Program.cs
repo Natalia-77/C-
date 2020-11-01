@@ -70,38 +70,50 @@ namespace Account
 
 
             // Щоб перевірити-розкоментуйте.
-            // Серіалізуємо все.
-            //string path1 = "D:/test3.xml";
-            //var serializer = new XmlSerializer(typeof(List<Account>));       
+            //Серіалізуємо все.
 
-            //using (var stream = File.OpenWrite(path1))
-            //{
-            //    serializer.Serialize(stream, account);
-            //}
+            if (Account.ResSerialize)
+            {
+               
+                string path1 = "D:/test5.xml";
+                var serializer = new XmlSerializer(typeof(List<Account>));
+
+                using (var stream = File.OpenWrite(path1))
+                {
+                    serializer.Serialize(stream, account);
+                }
+            }
 
 
 
 
             // Серіалізуємо тільки певні поля.
-            using (XmlWriter writer = XmlWriter.Create("D:/test4.xml"))
-            {
-                writer.WriteStartDocument();
-                writer.WriteStartElement("Account");
-
-                foreach (Account ac in account)
-                {
-                    writer.WriteStartElement("Account");
-                    writer.WriteElementString("TotalSum", ac.totalSum.ToString());
-                    writer.WriteElementString("PenaltySum", ac.penaltySum.ToString());
-                    writer.WriteElementString("FinishSum", ac.finishSum.ToString());
 
 
-                    writer.WriteEndElement();
-                }
+            //if (Account.ResSerialize = false)
+            //{
+            //    using (XmlWriter writer = XmlWriter.Create("D:/test5.xml"))
+            //    {
 
-                writer.WriteEndElement();
-                writer.WriteEndDocument();
-            }
+
+            //        writer.WriteStartDocument();
+            //        writer.WriteStartElement("Account");
+
+            //        foreach (Account ac in account)
+            //        {
+            //            writer.WriteStartElement("Account");
+            //            writer.WriteElementString("TotalSum", ac.totalSum.ToString());
+            //            writer.WriteElementString("PenaltySum", ac.penaltySum.ToString());
+            //            writer.WriteElementString("FinishSum", ac.finishSum.ToString());
+
+
+            //            writer.WriteEndElement();
+            //        }
+
+            //        writer.WriteEndElement();
+            //        writer.WriteEndDocument();
+            //    }
+            //}
 
         }
 
