@@ -71,7 +71,7 @@ namespace Account
             ConsoleKeyInfo keys = Console.ReadKey();
             if (keys.KeyChar == '+')
             {
-                // Щоб перевірити-розкоментуйте.
+                
                 //Серіалізуємо все.
 
                 if (Account.ResSerialize)
