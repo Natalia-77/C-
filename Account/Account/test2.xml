@@ -1,38 +1,21 @@
 <?xml version="1.0"?>
-<ArrayOfAccount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />  <Account>
+<ArrayOfAccount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Account>
+    <payday>23</payday>
+    <day>12</day>
+    <penaltyday>7</penaltyday>
+    <countday>3</countday>
+    <totalSum>276</totalSum>
+    <penaltySum>21</penaltySum>
+    <finishSum>27621</finishSum>
+  </Account>
+  <Account>
     <payday>20</payday>
-    <day>15</day>
-    <penaltyday>10</penaltyday>
-    <countday>2</countday>
-    <totalSum>300</totalSum>
-    <penaltySum>20</penaltySum>
-    <finishSum>30020</finishSum>
-  </Account>
-  <Account>
-    <payday>10</payday>
-    <day>10</day>
-    <penaltyday>12</penaltyday>
-    <countday>2</countday>
-    <totalSum>100</totalSum>
-    <penaltySum>24</penaltySum>
-    <finishSum>10024</finishSum>
-  </Account>
-  <Account>
-    <payday>12</payday>
-    <day>10</day>
-    <penaltyday>11</penaltyday>
-    <countday>2</countday>
-    <totalSum>120</totalSum>
-    <penaltySum>22</penaltySum>
-    <finishSum>12022</finishSum>
-  </Account>
-  <Account>
-    <payday>1</payday>
-    <day>10</day>
-    <penaltyday>1</penaltyday>
-    <countday>2</countday>
-    <totalSum>10</totalSum>
-    <penaltySum>2</penaltySum>
-    <finishSum>102</finishSum>
+    <day>1</day>
+    <penaltyday>5</penaltyday>
+    <countday>3</countday>
+    <totalSum>20</totalSum>
+    <penaltySum>15</penaltySum>
+    <finishSum>2015</finishSum>
   </Account>
 </ArrayOfAccount>
