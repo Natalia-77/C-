@@ -17,6 +17,7 @@ namespace Account
             Console.OutputEncoding = Encoding.Unicode;
             Console.InputEncoding = Encoding.Unicode;
 
+
             Account ac1 = new Account("23", "12", "7", "3");
             Account ac2 = new Account("20", "1", "5", "3");
             Account[] account = new Account[] { ac1, ac2 };
