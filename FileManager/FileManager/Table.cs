@@ -13,13 +13,13 @@ namespace FileManager
             Console.BackgroundColor = ConsoleColor.DarkBlue;
 
             Console.SetCursorPosition(0,2);
-            Console.WriteLine("╔════════════╤═══════════╤══════════╤═════════╗");
+            Console.WriteLine("╔═══════════════╤═══════════╤══════════╤═════════╗");
             Console.SetCursorPosition(0,3);
             Console.Write("║    ");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("Name");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("    │   ");
+            Console.Write("       │   ");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("Size");
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -36,7 +36,7 @@ namespace FileManager
             for (int i = 1; i < 20; i++)
             {
                 Console.SetCursorPosition(0,3 + i);
-                Console.WriteLine("║            │           │          │         ║");
+                Console.WriteLine("║               │           │          │         ║");
             }
             Console.SetCursorPosition(0,23);
             Console.WriteLine("╟────────────┴─────────┴────────┴──────╢");
@@ -91,7 +91,7 @@ namespace FileManager
         public void Left()
         {
 
-            string dirName = "D:/SkillUp";
+            string dirName = "C:\\";
             if (System.IO.Directory.Exists(dirName))
             {
 
@@ -108,8 +108,7 @@ namespace FileManager
 
                     if (s.Length > 10)
                     {                       
-                        Console.SetCursorPosition(2, 4);
-                       // {new FileInfo(dirName).CreationTime.ToString($"{0:dd/MM/yy}")}");                      
+                        Console.SetCursorPosition(2, 4);                                          
                         Console.WriteLine(s.Substring(3, 8) + (char)16);
                         count++;
                     }
@@ -118,8 +117,7 @@ namespace FileManager
                     {
                         
                         Console.SetCursorPosition(2, 4+ count);
-                        Console.WriteLine(s.Substring(3)); 
-                        //{new FileInfo(dirName).CreationTime.ToString($"{0:dd/MM/yy}")}");
+                        Console.WriteLine(s.Substring(3));                        
                         count++;
                     }
 
@@ -135,8 +133,12 @@ namespace FileManager
                         {
                             Console.SetCursorPosition(2, 4 + count);
                             Console.WriteLine(item.Name.Substring(0, item.Name.Length - 6) + (char)16);
-                            Console.SetCursorPosition(26, 4+count);
+                            Console.SetCursorPosition(22, 4 + count);
+                            Console.WriteLine($"{ item.Length,6}");                           
+                            Console.SetCursorPosition(29, 4+count);
                             Console.WriteLine(item.CreationTime.ToString($"{0:dd/MM/yyyy}"));
+                            Console.SetCursorPosition(41, 4 + count);
+                            Console.WriteLine(item.CreationTime.ToString($"{0:hh:mm:ss}"));
                             count++;
                         }
 
@@ -144,8 +146,12 @@ namespace FileManager
                         {
                             Console.SetCursorPosition(2, 4 + count);
                             Console.WriteLine(item.Name.Substring(0, item.Name.Length - 5));
-                            Console.SetCursorPosition(26, 4 + count);
+                            Console.SetCursorPosition(22, 4 + count);
+                            Console.WriteLine($"{ item.Length,6}");
+                            Console.SetCursorPosition(29, 4 + count);
                             Console.WriteLine(item.CreationTime.ToString($"{0:dd/MM/yyyy}"));
+                            Console.SetCursorPosition(41, 4 + count);
+                            Console.WriteLine(item.CreationTime.ToString($"{0:hh:mm:ss}"));
                             count++;
                         }
 
