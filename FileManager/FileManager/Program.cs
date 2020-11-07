@@ -10,8 +10,18 @@ namespace FileManager
         static void Main(string[] args)
         {
             Console.CursorVisible = false;           
-            Table table = new Table();          
-            table.Tables();
+            Table tab = new Table();
+            tab.MainTableft();
+            tab.MainTabright();
+            tab.Left();
+
+            // tab.TablesLeft();
+            //tab.TablesRight();
+           
+          
+           
+           
+           
 
 
 
