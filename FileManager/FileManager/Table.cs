@@ -92,7 +92,7 @@ namespace FileManager
         public void Left()
         {
 
-            string dirName = "C:\\";
+            string dirName = "D:/SkillUp";
             if (System.IO.Directory.Exists(dirName))
             {
                                
@@ -133,8 +133,8 @@ namespace FileManager
                         Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 5)}  ");
                         Console.SetCursorPosition(16, 4 + i + dirs.Length);
                         Console.WriteLine($"{ Path.GetExtension(extention).Substring(1)}");
-                        Console.SetCursorPosition(26, 4+i+dirs.Length );
-                        Console.WriteLine($"{ files[i].Length,6}");
+                        Console.SetCursorPosition(22, 4+i+dirs.Length );
+                        Console.WriteLine($"{ files[i].Length,2}");
                         Console.SetCursorPosition(36, 4+ i+dirs.Length);
                         Console.WriteLine(files[i].CreationTime.ToString($"{0:dd/MM/yyyy}"));
                         Console.SetCursorPosition(50, 4 +i+dirs.Length);
@@ -150,8 +150,8 @@ namespace FileManager
                         Console.SetCursorPosition(16, 4 + i + dirs.Length);
                         Console.WriteLine($"{ Path.GetExtension(extention).Substring(1)}");
                         //Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 5) + (char)16}");
-                        Console.SetCursorPosition(26, 4 + i + dirs.Length);
-                        Console.WriteLine($"{ files[i].Length,6}");
+                        Console.SetCursorPosition(22, 4 + i + dirs.Length);
+                        Console.WriteLine($"{ files[i].Length,2}");
                         Console.SetCursorPosition(36, 4 + i + dirs.Length);
                         Console.WriteLine(files[i].CreationTime.ToString($"{0:dd/MM/yyyy}"));
                         Console.SetCursorPosition(50, 4 + i + dirs.Length);
