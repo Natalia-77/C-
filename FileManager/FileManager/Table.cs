@@ -14,13 +14,13 @@ namespace FileManager
             Console.BackgroundColor = ConsoleColor.DarkBlue;
 
             Console.SetCursorPosition(0,2);
-            Console.WriteLine("╔═══════════════╤═══════════╤══════════╤═════════╗");
+            Console.WriteLine("╔════════════════════╤═══════════╤═════════════╤════════════╗");
             Console.SetCursorPosition(0,3);
             Console.Write("║    ");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("Name");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("       │   ");
+            Console.Write("            │   ");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("Size");
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -28,23 +28,23 @@ namespace FileManager
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("Date");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("    │ ");
+            Console.Write("       │ ");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("Time");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("    ║");
+            Console.Write("       ║");
 
             for (int i = 1; i < 20; i++)
             {
                 Console.SetCursorPosition(0,3 + i);
-                Console.WriteLine("║               │           │          │         ║");
+                Console.WriteLine("║                    │           │             │            ║");
             }
             Console.SetCursorPosition(0,23);
-            Console.WriteLine("╟────────────┴─────────┴────────┴──────╢");
+            Console.WriteLine("╟────────────────────┴───────────┴─────────────┴────────────╢");
             Console.SetCursorPosition(0,24);
-            Console.WriteLine("║                                      ║");
+            Console.WriteLine("║                                                           ║");
             Console.SetCursorPosition(0,25);
-            Console.WriteLine("╚══════════════════════════════════════╝");
+            Console.WriteLine("╚═══════════════════════════════════════════════════════════╝");
             Console.ResetColor();
 
         }
@@ -92,7 +92,7 @@ namespace FileManager
         public void Left()
         {
 
-            string dirName = "D:/SkillUp";
+            string dirName = "C:\\";
             if (System.IO.Directory.Exists(dirName))
             {
                                
@@ -127,33 +127,34 @@ namespace FileManager
                                        
                     if (files[i].Name.Length <= 10)
                     {
-                        Console.SetCursorPosition(2, 4 +i+dirs.Length);
-                        //Console.WriteLine(files[i].Name.Substring(0, files[i].Name.Length - 5));
+                        Console.SetCursorPosition(2, 4 +i+dirs.Length);                       
                         var extention = Directory.GetFiles(dirName, files[i].Name + ".*").FirstOrDefault();
                         var res=Path.GetFileNameWithoutExtension(files[i].Name);
-                        Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 5)}  {Path.GetExtension(extention).Substring(1)}");
-                        Console.SetCursorPosition(22, 4+i+dirs.Length );
+                        Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 5)}  ");
+                        Console.SetCursorPosition(16, 4 + i + dirs.Length);
+                        Console.WriteLine($"{ Path.GetExtension(extention).Substring(1)}");
+                        Console.SetCursorPosition(26, 4+i+dirs.Length );
                         Console.WriteLine($"{ files[i].Length,6}");
-                        Console.SetCursorPosition(29, 4+ i+dirs.Length);
+                        Console.SetCursorPosition(36, 4+ i+dirs.Length);
                         Console.WriteLine(files[i].CreationTime.ToString($"{0:dd/MM/yyyy}"));
-                        Console.SetCursorPosition(41, 4 +i+dirs.Length);
+                        Console.SetCursorPosition(50, 4 +i+dirs.Length);
                         Console.WriteLine(files[i].CreationTime.ToString($"{0:hh:mm:ss}"));
 
                     }
                     else
                     {
                         Console.SetCursorPosition(2, 4 + i + dirs.Length);
-                        //Console.WriteLine(files[i].Name.Substring(0, files[i].Name.Length - 6) + (char)16);
-                        // Console.WriteLine(files[i].Name);
                         var extention = Directory.GetFiles(dirName, files[i].Name + ".*").FirstOrDefault();
                         var res = Path.GetFileNameWithoutExtension(files[i].Name);
-                        Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 5)+(char)16}  {Path.GetExtension(extention).Substring(1)}");
+                        Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 6)+(char)16}");
+                        Console.SetCursorPosition(16, 4 + i + dirs.Length);
+                        Console.WriteLine($"{ Path.GetExtension(extention).Substring(1)}");
                         //Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 5) + (char)16}");
-                        Console.SetCursorPosition(22, 4 + i + dirs.Length);
+                        Console.SetCursorPosition(26, 4 + i + dirs.Length);
                         Console.WriteLine($"{ files[i].Length,6}");
-                        Console.SetCursorPosition(29, 4 + i + dirs.Length);
+                        Console.SetCursorPosition(36, 4 + i + dirs.Length);
                         Console.WriteLine(files[i].CreationTime.ToString($"{0:dd/MM/yyyy}"));
-                        Console.SetCursorPosition(41, 4 + i + dirs.Length);
+                        Console.SetCursorPosition(50, 4 + i + dirs.Length);
                         Console.WriteLine(files[i].CreationTime.ToString($"{0:hh:mm:ss}"));
 
                     }
