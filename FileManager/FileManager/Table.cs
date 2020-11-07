@@ -91,73 +91,121 @@ namespace FileManager
         public void Left()
         {
 
-            string dirName = "C:\\";
+            string dirName = "D:/SkillUp";
             if (System.IO.Directory.Exists(dirName))
             {
-
-                int count = 0;
+                               
 
                 string[] dirs = Directory.GetDirectories(dirName);//папки.
                 var dir = new DirectoryInfo(dirName);
                 FileInfo[] files = dir.GetFiles();// файли.              
 
                 Console.BackgroundColor = ConsoleColor.DarkBlue;
-                Console.ForegroundColor = ConsoleColor.Yellow;                  
-                foreach (var s in dirs)
+                Console.ForegroundColor = ConsoleColor.Yellow;
+
+                for (int j = 0; j < dirs.Length; j++)
                 {
 
-                    if (s.Length > 10)
-                    {                       
-                        Console.SetCursorPosition(2, 4);                                          
-                        Console.WriteLine(s.Substring(3, 8) + (char)16);
-                        count++;
+                    if (dirs[j].Length > 10)
+                    {
+                        Console.SetCursorPosition(2, 4 + j);
+                        Console.WriteLine(dirs[j].Substring(3, 8) + (char)16);
                     }
 
                     else
                     {
-                        
-                        Console.SetCursorPosition(2, 4+ count);
-                        Console.WriteLine(s.Substring(3));                        
-                        count++;
-                    }
 
+                        Console.SetCursorPosition(2, 4 + j);
+                        Console.WriteLine(dirs[j].Substring(3));
+
+                    }
+                }
+
+                for(int i=0;i<files.Length;i++)
+                {
+                    if (files[i].Length >= 10)
+                    {
+                        Console.SetCursorPosition(2, 4 + i+dirs.Length);
+                        Console.WriteLine(files[i].Name.Substring(0, files[i].Name.Length - 6) + (char)16); 
+                        Console.SetCursorPosition(22, 4 +i+dirs.Length);
+                        Console.WriteLine($"{ files[i].Length,6}");
+                        Console.SetCursorPosition(29, 4+i+dirs.Length);
+                        Console.WriteLine(files[i].CreationTime.ToString($"{0:dd/MM/yyyy}"));
+                        Console.SetCursorPosition(41, 4 +i+dirs.Length);
+                        Console.WriteLine(files[i].CreationTime.ToString($"{0:hh:mm:ss}"));
+
+                    }
+                    else
+                    {
+                        Console.SetCursorPosition(2, 4 +i+dirs.Length);
+                        Console.WriteLine(files[i].Name.Substring(0, files[i].Name.Length - 5));
+                        Console.SetCursorPosition(22, 4+i+dirs.Length );
+                        Console.WriteLine($"{ files[i].Length,6}");
+                        Console.SetCursorPosition(29, 4+ i+dirs.Length);
+                        Console.WriteLine(files[i].CreationTime.ToString($"{0:dd/MM/yyyy}"));
+                        Console.SetCursorPosition(41, 4 +i+dirs.Length);
+                        Console.WriteLine(files[i].CreationTime.ToString($"{0:hh:mm:ss}"));
+
+                    }
 
 
                 }
 
-                if (dirs.Length >= count)
-                {
-                    foreach (var item in files)
-                    {
-                        if (item.Name.Length >= 10)
-                        {
-                            Console.SetCursorPosition(2, 4 + count);
-                            Console.WriteLine(item.Name.Substring(0, item.Name.Length - 6) + (char)16);
-                            Console.SetCursorPosition(22, 4 + count);
-                            Console.WriteLine($"{ item.Length,6}");                           
-                            Console.SetCursorPosition(29, 4+count);
-                            Console.WriteLine(item.CreationTime.ToString($"{0:dd/MM/yyyy}"));
-                            Console.SetCursorPosition(41, 4 + count);
-                            Console.WriteLine(item.CreationTime.ToString($"{0:hh:mm:ss}"));
-                            count++;
-                        }
+                //foreach (var s in dirs)
+                //{
 
-                        else
-                        {
-                            Console.SetCursorPosition(2, 4 + count);
-                            Console.WriteLine(item.Name.Substring(0, item.Name.Length - 5));
-                            Console.SetCursorPosition(22, 4 + count);
-                            Console.WriteLine($"{ item.Length,6}");
-                            Console.SetCursorPosition(29, 4 + count);
-                            Console.WriteLine(item.CreationTime.ToString($"{0:dd/MM/yyyy}"));
-                            Console.SetCursorPosition(41, 4 + count);
-                            Console.WriteLine(item.CreationTime.ToString($"{0:hh:mm:ss}"));
-                            count++;
-                        }
+                //    if (s.Length > 10)
+                //    {                       
+                //        Console.SetCursorPosition(2, 4);                                          
+                //        Console.WriteLine(s.Substring(3, 8) + (char)16);
+                //        //count++;
+                //    }
 
-                    }
+                //    else
+                //    {
 
-                }               
+                //        Console.SetCursorPosition(2, 4+count);
+                //        Console.WriteLine(s.Substring(3));                        
+                //        //count++;
+                //    }
+
+
+
+
+
+                // if (dirs.Length >= count)
+                //{
+                //foreach (var item in files)
+                //{
+                //    if (item.Name.Length >= 10)
+                //    {
+                //        Console.SetCursorPosition(2, 4 + count);
+                //        Console.WriteLine(item.Name.Substring(0, item.Name.Length - 6) + (char)16);
+                //        Console.SetCursorPosition(22, 4 + count);
+                //        Console.WriteLine($"{ item.Length,6}");                           
+                //        Console.SetCursorPosition(29, 4+count);
+                //        Console.WriteLine(item.CreationTime.ToString($"{0:dd/MM/yyyy}"));
+                //        Console.SetCursorPosition(41, 4 + count);
+                //        Console.WriteLine(item.CreationTime.ToString($"{0:hh:mm:ss}"));
+
+                //    }
+
+                //    else
+                //    {
+                //        Console.SetCursorPosition(2, 4 + count);
+                //        Console.WriteLine(item.Name.Substring(0, item.Name.Length - 5));
+                //        Console.SetCursorPosition(22, 4 + count);
+                //        Console.WriteLine($"{ item.Length,6}");
+                //        Console.SetCursorPosition(29, 4 + count);
+                //        Console.WriteLine(item.CreationTime.ToString($"{0:dd/MM/yyyy}"));
+                //        Console.SetCursorPosition(41, 4 + count);
+                //        Console.WriteLine(item.CreationTime.ToString($"{0:hh:mm:ss}"));
+                //       // count++;
+                //    }
+
+                //}
+
+                // }               
 
 
 
