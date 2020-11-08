@@ -49,6 +49,9 @@ namespace FileManager
 
         }
 
+        
+
+
         public void MainTabright()
         {
             Console.BackgroundColor = ConsoleColor.DarkBlue;
@@ -165,74 +168,274 @@ namespace FileManager
         public void Left()
         {
 
-            string dirName = "D:/SkillUp";
+            string dirName = "C:\\";
             if (System.IO.Directory.Exists(dirName))
             {
-                               
+                // Записала два масива(з директоріями і файлами) в ліст.
+                IEnumerable<string> Allfiles;
 
+                // Масив з директорями.
                 string[] dirs = Directory.GetDirectories(dirName);//папки.
                 var dir = new DirectoryInfo(dirName);
+                
+                //Масив з файлами.
                 FileInfo[] files = dir.GetFiles();// файли.              
 
                 Console.BackgroundColor = ConsoleColor.DarkBlue;
                 Console.ForegroundColor = ConsoleColor.Yellow;
 
-                for (int j = 0; j < dirs.Length; j++)
+                // З"єднані два масива.
+                var items = new string[dirs.Length + files.Length];
+                for (var i = 0; i < dirs.Length; i++)
+                    items[i] = dirs[i];
+                for (var i = 0; i < files.Length; i++)
+                    items[dirs.Length + i] = files[i].ToString();
+
+               // int counter = 0;
+                int identity = 0;
+
+                // Значення з масиву тепер всі додані до ліста.
+                Allfiles = items;
+
+                //Сумарна довжина нового списку на основі суми двох масивів.
+                int listlength = dirs.Length + files.Length;
+
+                // Перевірка виводу всього ліста в консоль.
+                //foreach (var item in Allfiles)
+                //{
+                //    Console.SetCursorPosition(2, 4 + identity);
+                //    Console.WriteLine(item);
+                //    identity++;
+                //}
+
+                // Розмір кроку для пагінації.
+                int step = listlength - 20;
+
+                // Якщо довжина менше 20,то крок=0.
+                if (listlength < 20)
                 {
-
-                    if (dirs[j].Length > 10)
-                    {
-                        Console.SetCursorPosition(2, 4 + j);
-                        Console.WriteLine(dirs[j].Substring(3, 8) + (char)16);
-                    }
-
-                    else
-                    {
-
-                        Console.SetCursorPosition(2, 4 + j);
-                        Console.WriteLine(dirs[j].Substring(3));
-
-                    }
+                    step = 0;
                 }
 
-                for(int i=0;i<files.Length;i++)
-                {
-                                       
-                    if (files[i].Name.Length <= 10)
+                // Якщо кількість записів в лісті більше 20-пагінація.
+                //if (Allfiles.Count() > 20)
+               // {
+                    foreach (var item in Allfiles.Skip(0).Take(19))
                     {
-                        Console.SetCursorPosition(2, 4 +i+dirs.Length);                       
-                        var extention = Directory.GetFiles(dirName, files[i].Name + ".*").FirstOrDefault();
-                        var res=Path.GetFileNameWithoutExtension(files[i].Name);
-                        Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 5)}  ");
-                        Console.SetCursorPosition(16, 4 + i + dirs.Length);
-                        Console.WriteLine($"{ Path.GetExtension(extention).Substring(1)}");
-                        Console.SetCursorPosition(22, 4+i+dirs.Length );
-                        Console.WriteLine($"{ files[i].Length,2}");
-                        Console.SetCursorPosition(36, 4+ i+dirs.Length);
-                        Console.WriteLine(files[i].CreationTime.ToString($"{0:dd/MM/yyyy}"));
-                        Console.SetCursorPosition(50, 4 +i+dirs.Length);
-                        Console.WriteLine(files[i].CreationTime.ToString($"{0:hh:mm:ss}"));
 
+
+                        if (item.Contains('.'))
+                        {
+                            Console.SetCursorPosition(2, 4 + identity);
+                            ///Console.WriteLine(item.Substring(item.LastIndexOf("\\")+1) + (char)16);   
+                            var name = item.Substring(item.LastIndexOf("\\") + 1) + (char)16;
+                            ///Console.WriteLine(name.Split(".").Last());//тільки розширення.
+                            Console.WriteLine(name.Substring(0, name.LastIndexOf(".") ));
+                            identity++;
+                        }
+                        else
+                        {
+                             if(item.Length<20)
+                             {
+                                Console.SetCursorPosition(2, 4 + identity);
+                                var name = item.Substring(item.IndexOf("\\") + 1) + (char)16;
+                                Console.WriteLine(name);
+                                identity++;
+                             }
+                            else
+                            {
+
+                                Console.SetCursorPosition(2, 4 + identity);
+                                var name = item.Substring(item.IndexOf("\\") + 1,8) + (char)16;
+                                Console.WriteLine(name);
+                                identity++;
+                            }
+                           
+                        }                        
+                   
+                        
                     }
-                    else
-                    {
-                        Console.SetCursorPosition(2, 4 + i + dirs.Length);
-                        var extention = Directory.GetFiles(dirName, files[i].Name + ".*").FirstOrDefault();
-                        var res = Path.GetFileNameWithoutExtension(files[i].Name);
-                        Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 6)+(char)16}");
-                        Console.SetCursorPosition(16, 4 + i + dirs.Length);
-                        Console.WriteLine($"{ Path.GetExtension(extention).Substring(1)}");
-                        Console.SetCursorPosition(22, 4 + i + dirs.Length);
-                        Console.WriteLine($"{ files[i].Length,2}");
-                        Console.SetCursorPosition(36, 4 + i + dirs.Length);
-                        Console.WriteLine(files[i].CreationTime.ToString($"{0:dd/MM/yyyy}"));
-                        Console.SetCursorPosition(50, 4 + i + dirs.Length);
-                        Console.WriteLine(files[i].CreationTime.ToString($"{0:hh:mm:ss}"));
+                //}
+                // Якщо менше 20-просто виводимо в консоль.
+                //else
+                //{
+                //    foreach (var item in Allfiles)
+                //    {
+                //        Console.SetCursorPosition(2, 4 + identity);
+                //        Console.WriteLine(item);
+                //        identity++;
+                //    }
 
-                    }
+                //}
 
 
-                }
+
+
+                //    ConsoleKeyInfo key = new ConsoleKeyInfo();
+                //    do
+                //    {
+                //        if (key.Key == ConsoleKey.UpArrow)
+                //        {
+                //            if (counter == 0)
+                //                counter = items.Length - 1;
+                //            else counter--;
+                //        }
+                //        else if (key.Key == ConsoleKey.DownArrow)
+                //        {
+                //            if (counter == items.Length - 1)
+                //                counter = 0;
+                //            else
+                //                counter++;
+                //        }
+
+                //        //for (int i = 0; i < items.Length; i++)
+                //        //{
+                //        //    if (i == counter)
+                //        //    {
+                //        //        Console.BackgroundColor = ConsoleColor.White;
+                //        //        Console.ForegroundColor = ConsoleColor.Black;
+                //        //        Console.WriteLine(items[i]);
+                //        //        Console.ResetColor();
+                //        //    }
+                //        //    else
+                //        //        Console.WriteLine(items[i]);
+                //        //}
+
+
+
+
+                //        for (int j = 0; j < dirs.Length; j++)
+                //        {
+
+                //            if (dirs[j].Length > 10)
+                //            {
+                //                if (j == counter)
+                //                {
+                //                    Console.BackgroundColor = ConsoleColor.White;
+                //                    Console.ForegroundColor = ConsoleColor.Black;
+                //                    Console.SetCursorPosition(2, 4 + j);
+                //                    Console.WriteLine(dirs[j].Substring(3, 8) + (char)16);
+                //                    Console.ResetColor();
+                //                }
+                //                else
+                //                {
+                //                    Console.BackgroundColor = ConsoleColor.DarkBlue;
+                //                    Console.ForegroundColor = ConsoleColor.Yellow;
+                //                    Console.SetCursorPosition(2, 4 + j);
+                //                    Console.WriteLine(dirs[j].Substring(3, 8) + (char)16);
+                //                    Console.ResetColor();
+                //                }
+                //            }
+
+                //            else
+                //            {
+                //                if (j == counter)
+                //                {
+                //                    Console.BackgroundColor = ConsoleColor.White;
+                //                    Console.ForegroundColor = ConsoleColor.Black;
+                //                    Console.SetCursorPosition(2, 4 + j);
+                //                    Console.WriteLine(dirs[j].Substring(3));
+                //                    Console.ResetColor();
+                //                }
+                //                else
+                //                {
+                //                    Console.BackgroundColor = ConsoleColor.DarkBlue;
+                //                    Console.ForegroundColor = ConsoleColor.Yellow;
+                //                    Console.SetCursorPosition(2, 4 + j);
+                //                    Console.WriteLine(dirs[j].Substring(3));
+                //                    Console.ResetColor();
+                //                }
+
+                //            }
+                //        }
+
+                //        for (int i = 0; i < files.Length; i++)
+                //        {
+
+                //            if (files[i].Name.Length <= 10)
+                //            {
+                //                if (i == counter)
+                //                {
+                //                    Console.BackgroundColor = ConsoleColor.White;
+                //                    Console.ForegroundColor = ConsoleColor.Black;
+                //                    Console.SetCursorPosition(2, 4 + i + dirs.Length);
+                //                    var extention = Directory.GetFiles(dirName, files[i].Name + ".*").FirstOrDefault();
+                //                    var res = Path.GetFileNameWithoutExtension(files[i].Name);
+                //                    Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 5)}  ");
+                //                    Console.SetCursorPosition(16, 4 + i + dirs.Length);
+                //                    Console.WriteLine($"{ Path.GetExtension(extention).Substring(1)}");
+                //                    Console.SetCursorPosition(22, 4 + i + dirs.Length);
+                //                    Console.WriteLine($"{ files[i].Length,2}");
+                //                    Console.SetCursorPosition(36, 4 + i + dirs.Length);
+                //                    Console.WriteLine(files[i].CreationTime.ToString($"{0:dd/MM/yyyy}"));
+                //                    Console.SetCursorPosition(50, 4 + i + dirs.Length);
+                //                    Console.WriteLine(files[i].CreationTime.ToString($"{0:hh:mm:ss}"));
+                //                    Console.ResetColor();
+                //                }
+                //                else
+                //                {
+                //                    Console.BackgroundColor = ConsoleColor.DarkBlue;
+                //                    Console.ForegroundColor = ConsoleColor.Yellow;
+                //                    Console.SetCursorPosition(2, 4 + i + dirs.Length);
+                //                    var extention = Directory.GetFiles(dirName, files[i].Name + ".*").FirstOrDefault();
+                //                    var res = Path.GetFileNameWithoutExtension(files[i].Name);
+                //                    Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 5)}  ");
+                //                    Console.SetCursorPosition(16, 4 + i + dirs.Length);
+                //                    Console.WriteLine($"{ Path.GetExtension(extention).Substring(1)}");
+                //                    Console.SetCursorPosition(22, 4 + i + dirs.Length);
+                //                    Console.WriteLine($"{ files[i].Length,2}");
+                //                    Console.SetCursorPosition(36, 4 + i + dirs.Length);
+                //                    Console.WriteLine(files[i].CreationTime.ToString($"{0:dd/MM/yyyy}"));
+                //                    Console.SetCursorPosition(50, 4 + i + dirs.Length);
+                //                    Console.WriteLine(files[i].CreationTime.ToString($"{0:hh:mm:ss}"));
+                //                    Console.ResetColor();
+                //                }
+
+                //            }
+                //            else
+                //            {
+                //                if (i == counter)
+                //                {
+                //                    Console.BackgroundColor = ConsoleColor.White;
+                //                    Console.ForegroundColor = ConsoleColor.Black;
+                //                    Console.SetCursorPosition(2, 4 + i + dirs.Length);
+                //                    var extention = Directory.GetFiles(dirName, files[i].Name + ".*").FirstOrDefault();
+                //                    var res = Path.GetFileNameWithoutExtension(files[i].Name);
+                //                    Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 6) + (char)16}");
+                //                    Console.SetCursorPosition(16, 4 + i + dirs.Length);
+                //                    Console.WriteLine($"{ Path.GetExtension(extention).Substring(1)}");
+                //                    Console.SetCursorPosition(22, 4 + i + dirs.Length);
+                //                    Console.WriteLine($"{ files[i].Length,2}");
+                //                    Console.SetCursorPosition(36, 4 + i + dirs.Length);
+                //                    Console.WriteLine(files[i].CreationTime.ToString($"{0:dd/MM/yyyy}"));
+                //                    Console.SetCursorPosition(50, 4 + i + dirs.Length);
+                //                    Console.WriteLine(files[i].CreationTime.ToString($"{0:hh:mm:ss}"));
+                //                    Console.ResetColor();
+                //                }
+                //                else
+                //                {
+                //                    Console.BackgroundColor = ConsoleColor.DarkBlue;
+                //                    Console.ForegroundColor = ConsoleColor.Yellow;
+                //                    Console.SetCursorPosition(2, 4 + i + dirs.Length);
+                //                    var extention = Directory.GetFiles(dirName, files[i].Name + ".*").FirstOrDefault();
+                //                    var res = Path.GetFileNameWithoutExtension(files[i].Name);
+                //                    Console.WriteLine($"{res.Substring(0, files[i].Name.Length - 6) + (char)16}");
+                //                    Console.SetCursorPosition(16, 4 + i + dirs.Length);
+                //                    Console.WriteLine($"{ Path.GetExtension(extention).Substring(1)}");
+                //                    Console.SetCursorPosition(22, 4 + i + dirs.Length);
+                //                    Console.WriteLine($"{ files[i].Length,2}");
+                //                    Console.SetCursorPosition(36, 4 + i + dirs.Length);
+                //                    Console.WriteLine(files[i].CreationTime.ToString($"{0:dd/MM/yyyy}"));
+                //                    Console.SetCursorPosition(50, 4 + i + dirs.Length);
+                //                    Console.WriteLine(files[i].CreationTime.ToString($"{0:hh:mm:ss}"));
+                //                    Console.ResetColor();
+                //                }
+
+                //            }
+
+
+                //        }
+                //    } while ((key = Console.ReadKey()).Key != ConsoleKey.Enter);
 
             }
 
@@ -242,10 +445,10 @@ namespace FileManager
 
 
 
-       
 
-       
-      
+
+
+
 
 
 

@@ -14,7 +14,7 @@ namespace FileManager
             tab.MainTableft();
             tab.MainTabright();
             tab.Left();
-            tab.Right();
+           // tab.Right();
 
 
            
