@@ -191,7 +191,7 @@ namespace FileManager
                 for (var i = 0; i < files.Length; i++)
                     items[dirs.Length + i] = files[i].ToString();
 
-               // int counter = 0;
+                int counter = 0;
                 int identity = 0;
 
                 // Значення з масиву тепер всі додані до ліста.
@@ -219,42 +219,106 @@ namespace FileManager
 
                 // Якщо кількість записів в лісті більше 20-пагінація.
                 //if (Allfiles.Count() > 20)
-               // {
+                // {
+
+
+                ConsoleKeyInfo key = new ConsoleKeyInfo();
+                do
+                {
+                    if (key.Key == ConsoleKey.UpArrow)
+                    {
+                        if (counter == 0)
+                            counter =  Allfiles.Count() - 1;
+                        else counter--;
+                    }
+                    else if (key.Key == ConsoleKey.DownArrow)
+                    {
+                        if (counter == Allfiles.Count() - 1)
+                            counter = 0;
+                        else
+                            counter++;
+                    }
+
+
                     foreach (var item in Allfiles.Skip(0).Take(19))
                     {
 
 
                         if (item.Contains('.'))
                         {
-                            Console.SetCursorPosition(2, 4 + identity);
-                            ///Console.WriteLine(item.Substring(item.LastIndexOf("\\")+1) + (char)16);   
-                            var name = item.Substring(item.LastIndexOf("\\") + 1) + (char)16;
-                            ///Console.WriteLine(name.Split(".").Last());//тільки розширення.
-                            Console.WriteLine(name.Substring(0, name.LastIndexOf(".") ));
-                            identity++;
+                            if (item[counter] == counter)
+                            {
+                                Console.BackgroundColor = ConsoleColor.White;
+                                Console.ForegroundColor = ConsoleColor.Black;
+                                Console.SetCursorPosition(2, 4 + identity);
+                                ///Console.WriteLine(item.Substring(item.LastIndexOf("\\")+1) + (char)16);   
+                                var name = item.Substring(item.LastIndexOf("\\") + 1) + (char)16;
+                                ///Console.WriteLine(name.Split(".").Last());//тільки розширення.
+                                Console.WriteLine(name.Substring(0, name.LastIndexOf(".")));
+                                identity++;
+                                Console.ResetColor();
+                            }
+                            else
+                            {
+                                Console.SetCursorPosition(2, 4 + identity);
+                                ///Console.WriteLine(item.Substring(item.LastIndexOf("\\")+1) + (char)16);   
+                                var name = item.Substring(item.LastIndexOf("\\") + 1) + (char)16;
+                                ///Console.WriteLine(name.Split(".").Last());//тільки розширення.
+                                Console.WriteLine(name.Substring(0, name.LastIndexOf(".")));
+                                identity++;
+
+                            }
+
+
                         }
                         else
                         {
-                             if(item.Length<20)
-                             {
-                                Console.SetCursorPosition(2, 4 + identity);
-                                var name = item.Substring(item.IndexOf("\\") + 1) + (char)16;
-                                Console.WriteLine(name);
-                                identity++;
-                             }
+                            if (item.Length < 20)
+                            {
+                                if (item[counter] == counter)
+                                {
+                                    Console.BackgroundColor = ConsoleColor.White;
+                                    Console.ForegroundColor = ConsoleColor.Black;
+                                    Console.SetCursorPosition(2, 4 + identity);
+                                    var name = item.Substring(item.IndexOf("\\") + 1) + (char)16;
+                                    Console.WriteLine(name);
+                                    identity++;
+                                    Console.ResetColor();
+                                }
+                                else
+                                {
+                                    Console.SetCursorPosition(2, 4 + identity);
+                                    var name = item.Substring(item.IndexOf("\\") + 1) + (char)16;
+                                    Console.WriteLine(name);
+                                    identity++;
+                                }
+                            }
                             else
                             {
-
-                                Console.SetCursorPosition(2, 4 + identity);
-                                var name = item.Substring(item.IndexOf("\\") + 1,8) + (char)16;
-                                Console.WriteLine(name);
-                                identity++;
+                                if (item[counter] == counter)
+                                {
+                                    Console.BackgroundColor = ConsoleColor.White;
+                                    Console.ForegroundColor = ConsoleColor.Black;
+                                    Console.SetCursorPosition(2, 4 + identity);
+                                    var name = item.Substring(item.IndexOf("\\") + 1, 8) + (char)16;
+                                    Console.WriteLine(name);
+                                    identity++;
+                                    Console.ResetColor();
+                                }
+                                else
+                                {
+                                    Console.SetCursorPosition(2, 4 + identity);
+                                    var name = item.Substring(item.IndexOf("\\") + 1, 8) + (char)16;
+                                    Console.WriteLine(name);
+                                    identity++;
+                                }
                             }
-                           
-                        }                        
-                   
-                        
+
+                        }
+
+
                     }
+                } while ((key = Console.ReadKey()).Key != ConsoleKey.Enter);
                 //}
                 // Якщо менше 20-просто виводимо в консоль.
                 //else
