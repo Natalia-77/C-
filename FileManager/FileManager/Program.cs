@@ -11,10 +11,11 @@ namespace FileManager
         {
             Console.CursorVisible = false;           
             Table tab = new Table();
+           
             tab.MainTableft();
             tab.MainTabright();
             tab.Left();
-           // tab.Right();
+            tab.Right();
 
 
            
