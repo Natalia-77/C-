@@ -17,8 +17,8 @@ namespace Total_Commander
         static FileManager()
         {
             Console.CursorVisible = false;
-           // Console.SetWindowSize(180, 41);
-           // Console.SetBufferSize(180, 41);
+            //Console.SetWindowSize(120, 41);
+            //Console.SetBufferSize(120, 41);
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.BackgroundColor = ConsoleColor.Black;
         }
@@ -27,9 +27,14 @@ namespace Total_Commander
         {
             Table tab = new Table();
             FilePanel filePanel = new FilePanel();
+            filePanel.Top = 0;
+            filePanel.Left =0;
             panels.Add(filePanel);
 
-            filePanel = new FilePanel();           
+            filePanel = new FilePanel();
+
+            filePanel.Top = FilePanel.console_height;           
+            filePanel.Left = 0;
             panels.Add(filePanel);
 
             activePanelIndex = 0;
@@ -42,7 +47,7 @@ namespace Total_Commander
                 fp.Show();
             }
 
-            tab.Keys(0,0);
+            //tab.Keys(0,0);
         }
 
 

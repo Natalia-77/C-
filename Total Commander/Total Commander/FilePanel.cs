@@ -8,11 +8,54 @@ namespace Total_Commander
     class FilePanel
     {
 
-        public static int console_height = 18;
-        public static int console_width = 180;
+        public static int console_height = 16;
+        public static int console_width = 120;
         private List<FileSystemInfo> fileobject = new List<FileSystemInfo>();
 
+
+        private int top;
+        public int Top
+        {
+            get
+            {
+                return top;
+            }
+            set
+            {
+                if (0 <= value )//&& value <= Console.WindowHeight - console_height)
+                {
+                    top = value;
+                }
+                else
+                {
+                    throw new Exception(String.Format("Вихід за межі вікна", value));
+                }
+            }
+        }
+
+        private int left;
+        public int Left
+        {
+            get
+            {
+                return left;
+            }
+            set
+            {
+                if (0 <= value )//&& value <= Console.WindowWidth - console_width)
+                {
+                    left = value;
+                }
+                else
+                {
+                    throw new Exception(String.Format("Вихід за межі вікна", value));
+                }
+            }
+        }
+
+
         private int height = console_height;
+        
         public int Height
         {
             get
@@ -27,12 +70,13 @@ namespace Total_Commander
                 }
                 else
                 {
-                    throw new Exception(String.Format("Висота більше {0} розміру вікна", value));
+                    throw new Exception(String.Format("Висота більше розміру вікна", value));
                 }
             }
         }
 
         private int width = console_width;
+        
         public int Width
         {
             get
@@ -47,7 +91,7 @@ namespace Total_Commander
                 }
                 else
                 {
-                    throw new Exception(String.Format("Ширина більше {0} розміру вікна", value));
+                    throw new Exception(String.Format("Ширина більше розміру вікна", value));
                 }
             }
         }
@@ -70,7 +114,7 @@ namespace Total_Commander
                 }
                 else
                 {
-                    throw new Exception(String.Format("Такого шляху {0} немає", value));
+                    throw new Exception(String.Format("Такого шляху немає", value));
                 }
             }
         }
@@ -80,11 +124,11 @@ namespace Total_Commander
         {
             get
             {
-                return this.active;
+                return active;
             }
             set
             {
-                this.active = value;
+                active = value;
             }
         }
 
@@ -93,7 +137,7 @@ namespace Total_Commander
         {
             get
             {
-                return this.discs;
+                return discs;
             }
         }
 
@@ -107,6 +151,7 @@ namespace Total_Commander
 
         // Кількість елементів на сторінці.
         private int objectamount = console_height;
+       
 
 
         public FilePanel()
@@ -191,10 +236,10 @@ namespace Total_Commander
         // Очистка консолі.
         public void Clear()
         {
-            for (int i = 0; i < height; i++)
+            for (int i = 1; i < height+1; i++)
             {
                 string space = new String(' ', width);
-                Console.SetCursorPosition(0, i);
+                Console.SetCursorPosition(left,top+ i);
                 Console.Write(space);
             }
         }
@@ -206,13 +251,13 @@ namespace Total_Commander
             active_index = 0;
             Show();
         }
-
+                
         // Вивід обєктів в консоль.
         private void PrintObject(int index)
         {
             if (index < 0 || fileobject.Count <= index)
             {
-                throw new Exception(String.Format("Неможливо вивести обєкт з індексом {0}. Вихід за межі діапазона", index));
+                throw new Exception(String.Format("Вихід за межі діапазона", index));
             }
            
             if (!discs && index == 0)
@@ -224,16 +269,16 @@ namespace Total_Commander
             int currentCursorTopPosition = Console.CursorTop;
             int currentCursorLeftPosition = Console.CursorLeft;
 
-            Console.Write("{0}", fileobject[index].Name);
+            Console.Write(" {0}", fileobject[index].Name);
             Console.SetCursorPosition(currentCursorLeftPosition + width / 5, currentCursorTopPosition);
             
             if (fileobject[index] is DirectoryInfo)
             {
-                Console.Write("{0}", ((DirectoryInfo)fileobject[index]).LastWriteTime);
+                Console.Write(" {0}", ((DirectoryInfo)fileobject[index]).LastWriteTime);
             }
             else
             {
-                Console.Write("{0}", ((FileInfo)fileobject[index]).Length);
+                Console.Write(" {0}", ((FileInfo)fileobject[index]).Length);
             }
         }
 
@@ -260,7 +305,7 @@ namespace Total_Commander
 
             for (int i = first_index; i < lastElement; i++)
             {
-                Console.SetCursorPosition(0, 0 + count+1 );
+                Console.SetCursorPosition(left, top + count + 1);
 
                 if (i == active_index && active == true)
                 {
@@ -280,14 +325,14 @@ namespace Total_Commander
             Clear();
 
             StringBuilder caption = new StringBuilder();
-            if (discs)
-            {
-                caption.Append(' ').Append("Диски").Append(' ');
-            }
-            else
-            {
-                caption.Append(' ').Append(path).Append(' ');
-            }
+            //if (discs)
+            //{
+            //    caption.Append(' ').Append("Диски").Append(' ');
+            //}
+            //else
+            //{
+            //    caption.Append(' ').Append(path).Append(' ');
+            //}
 
             //Console.SetCursorPosition( width / 2 - caption.ToString().Length / 2, 0);
             Console.SetCursorPosition(width/2 - caption.ToString().Length, 0);
@@ -301,7 +346,7 @@ namespace Total_Commander
         private void Activate_object(int index)
         {
             int offsetY = active_index - first_index;
-            Console.SetCursorPosition(1, offsetY + 1);
+            Console.SetCursorPosition(0, offsetY + 1);
 
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;
@@ -325,10 +370,10 @@ namespace Total_Commander
 
         private void ClearContent()
         {
-            for (int i = 1; i < this.height - 1; i++)
+            for (int i = 1; i < height ; i++)
             {
-                string space = new String(' ', this.width - 2);
-                Console.SetCursorPosition(0 + 1, 0 + i);
+                string space = new String(' ', width );
+                Console.SetCursorPosition(left+1, top + i);
                 Console.Write(space);
             }
         }
@@ -348,10 +393,10 @@ namespace Total_Commander
             switch (key.Key)
             {
                 case ConsoleKey.UpArrow:
-                    this.Up();
+                    Up();
                     break;
                 case ConsoleKey.DownArrow:
-                    this.Down();
+                    Down();
                     break;
                 default:
                     break;
