@@ -17,8 +17,8 @@ namespace Total_Commander
         static FileManager()
         {
             Console.CursorVisible = false;
-            Console.SetWindowSize(120, 41);
-            Console.SetBufferSize(120, 41);
+           // Console.SetWindowSize(180, 41);
+           // Console.SetBufferSize(180, 41);
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.BackgroundColor = ConsoleColor.Black;
         }
@@ -122,9 +122,9 @@ namespace Total_Commander
                         return;
                     }
 
-                    //panels[activePanelIndex].Path = fsInfo.FullName;
-                   // panels[activePanelIndex].SetLists();
-                    //panels[activePanelIndex].UpdatePanel();
+                    panels[activePanelIndex].Path = fsInfo.FullName;
+                    panels[activePanelIndex].SetLists();
+                    panels[activePanelIndex].UpdatePanel();
                 }
                 else
                 {

@@ -8,10 +8,10 @@ namespace Total_Commander
 
         static void Main(string[] args)
         {
-            //Table tab = new Table();
-            //tab.MainTab(0, 0);
-            //tab.MainTab(61, 0);
-            //tab.Keys(0, 0);
+            Table tab = new Table();
+            tab.MainTab(0, 0);
+            tab.MainTab(61, 0);
+            tab.Keys(0, 0);
 
 
             FileManager manager = new FileManager();

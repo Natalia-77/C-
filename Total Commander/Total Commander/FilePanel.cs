@@ -9,7 +9,7 @@ namespace Total_Commander
     {
 
         public static int console_height = 18;
-        public static int console_width = 120;
+        public static int console_width = 180;
         private List<FileSystemInfo> fileobject = new List<FileSystemInfo>();
 
         private int height = console_height;
@@ -106,7 +106,7 @@ namespace Total_Commander
         private int first_index = 0;
 
         // Кількість елементів на сторінці.
-        private int objectamount = console_height - 2;
+        private int objectamount = console_height;
 
 
         public FilePanel()
@@ -215,9 +215,7 @@ namespace Total_Commander
                 throw new Exception(String.Format("Неможливо вивести обєкт з індексом {0}. Вихід за межі діапазона", index));
             }
 
-            int currentCursorTopPosition = Console.CursorTop;
-            int currentCursorLeftPosition = Console.CursorLeft;
-
+           
             if (!discs && index == 0)
             {
                 Console.Write("..");
@@ -225,7 +223,8 @@ namespace Total_Commander
             }
 
             Console.Write("{0}", fileobject[index].Name);
-            Console.SetCursorPosition(currentCursorLeftPosition + width / 2, currentCursorTopPosition);
+            // Console.SetCursorPosition(currentCursorLeftPosition + width / 2, currentCursorTopPosition);
+            Console.SetCursorPosition(0, 0);
             if (fileobject[index] is DirectoryInfo)
             {
                 Console.Write("{0}", ((DirectoryInfo)fileobject[index]).LastWriteTime);
@@ -278,15 +277,16 @@ namespace Total_Commander
             Clear();
 
             StringBuilder caption = new StringBuilder();
-            if (discs)
-            {
-                caption.Append(' ').Append("Диски").Append(' ');
-            }
-            else
-            {
-                caption.Append(' ').Append(path).Append(' ');
-            }
-            Console.SetCursorPosition(0 + width / 2 - caption.ToString().Length / 2, 0);
+            //if (discs)
+            //{
+            //    caption.Append(' ').Append("Диски").Append(' ');
+            //}
+            //else
+            //{
+            //    caption.Append(' ').Append(path).Append(' ');
+            //}
+            //Console.SetCursorPosition(0 + width / 2 - caption.ToString().Length / 2, 0);
+            Console.SetCursorPosition(0, 0);
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
             Console.WriteLine(caption.ToString());
