@@ -154,7 +154,7 @@ namespace Total_Commander
 
             //Files
 
-            string[] files = Directory.GetFiles(this.path);
+            string[] files = Directory.GetFiles(path);
             foreach (string file in files)
             {
                 FileInfo fi = new FileInfo(file);
@@ -194,7 +194,7 @@ namespace Total_Commander
             for (int i = 0; i < height; i++)
             {
                 string space = new String(' ', width);
-                Console.SetCursorPosition(0, 0 + i);
+                Console.SetCursorPosition(0, i);
                 Console.Write(space);
             }
         }
@@ -207,14 +207,13 @@ namespace Total_Commander
             Show();
         }
 
-        // Вивід обєкта по індексу.
+        // Вивід обєктів в консоль.
         private void PrintObject(int index)
         {
             if (index < 0 || fileobject.Count <= index)
             {
                 throw new Exception(String.Format("Неможливо вивести обєкт з індексом {0}. Вихід за межі діапазона", index));
             }
-
            
             if (!discs && index == 0)
             {
@@ -222,9 +221,12 @@ namespace Total_Commander
                 return;
             }
 
+            int currentCursorTopPosition = Console.CursorTop;
+            int currentCursorLeftPosition = Console.CursorLeft;
+
             Console.Write("{0}", fileobject[index].Name);
-            // Console.SetCursorPosition(currentCursorLeftPosition + width / 2, currentCursorTopPosition);
-            Console.SetCursorPosition(0, 0);
+            Console.SetCursorPosition(currentCursorLeftPosition + width / 5, currentCursorTopPosition);
+            
             if (fileobject[index] is DirectoryInfo)
             {
                 Console.Write("{0}", ((DirectoryInfo)fileobject[index]).LastWriteTime);
@@ -245,6 +247,7 @@ namespace Total_Commander
             int count = 0;
 
             int lastElement = first_index + objectamount;
+
             if (lastElement > fileobject.Count)
             {
                 lastElement = fileobject.Count;
@@ -257,7 +260,7 @@ namespace Total_Commander
 
             for (int i = first_index; i < lastElement; i++)
             {
-                Console.SetCursorPosition(0 + 1, 0 + count + 1);
+                Console.SetCursorPosition(0, 0 + count+1 );
 
                 if (i == active_index && active == true)
                 {
@@ -277,19 +280,20 @@ namespace Total_Commander
             Clear();
 
             StringBuilder caption = new StringBuilder();
-            //if (discs)
-            //{
-            //    caption.Append(' ').Append("Диски").Append(' ');
-            //}
-            //else
-            //{
-            //    caption.Append(' ').Append(path).Append(' ');
-            //}
-            //Console.SetCursorPosition(0 + width / 2 - caption.ToString().Length / 2, 0);
-            Console.SetCursorPosition(0, 0);
+            if (discs)
+            {
+                caption.Append(' ').Append("Диски").Append(' ');
+            }
+            else
+            {
+                caption.Append(' ').Append(path).Append(' ');
+            }
+
+            //Console.SetCursorPosition( width / 2 - caption.ToString().Length / 2, 0);
+            Console.SetCursorPosition(width/2 - caption.ToString().Length, 0);
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine(caption.ToString());
+            //Console.WriteLine(caption.ToString());
             PrintContent();
         }
 
