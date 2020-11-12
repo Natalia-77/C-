@@ -296,9 +296,9 @@ namespace Total_Commander
             if (lastElement > fileobject.Count)
             {
                 lastElement = fileobject.Count;
-            }
+                }
 
-            if (active_index >= fileobject.Count)
+                if (active_index >= fileobject.Count)
             {
                 active_index = 0;
             }
@@ -319,6 +319,54 @@ namespace Total_Commander
             }
         }
 
+        private void PrintContent2()
+        {
+            if (fileobject.Count == 0)
+            {
+                return;
+            }
+            int count = 0;
+
+            int lastElement = first_index + objectamount;
+
+            if (lastElement > fileobject.Count)
+            {
+                lastElement = fileobject.Count;
+            }
+
+            if (active_index >= fileobject.Count)
+            {
+                active_index = 0;
+            }
+
+            for (int i = first_index; i < lastElement; i++)
+            {
+                Console.SetCursorPosition(left, 30);
+
+                if (i == active_index && active == true)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.BackgroundColor = ConsoleColor.White;
+                }
+                PrintObject(i);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Black;
+                count++;
+            }
+        }
+
+        public void UpdateContent2(bool updateList)
+        {
+            // якщо true,то отримуємо новий список з файлами і папками.
+            if (updateList)
+            {
+                SetLists();
+            }
+
+            // якщо в аргументі false,то очищаємо панель і виводимо дані.
+            ClearContent();
+            PrintContent2();
+        }
 
         public void Show()
         {
@@ -361,10 +409,10 @@ namespace Total_Commander
 
         private void ClearContent()
         {
-            for (int i = 1; i < height ; i++)
+            for (int i = 1; i < height-1 ; i++)
             {
-                string space = new String(' ', width );
-                Console.SetCursorPosition(left+1, top + i);
+                string space = new String(' ', width - 2);
+                Console.SetCursorPosition(left + 1, top + i);
                 Console.Write(space);
             }
         }

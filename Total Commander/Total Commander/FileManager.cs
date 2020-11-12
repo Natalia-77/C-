@@ -76,7 +76,7 @@ namespace Total_Commander
                           
                             break;
                         case ConsoleKey.End:
-                            Copy();
+                           //Copy();
                             break;
                         case ConsoleKey.F6:
                             //Move();
@@ -140,7 +140,7 @@ namespace Total_Commander
 
             panels[activePanelIndex].Active = true;
             KeyPress += panels[activePanelIndex].KeyboardProcessing;
-            panels[activePanelIndex].UpdateContent(false);
+            panels[activePanelIndex].UpdateContent2(false);
 
 
         }
