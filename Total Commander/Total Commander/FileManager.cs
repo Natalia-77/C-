@@ -75,8 +75,8 @@ namespace Total_Commander
                         case ConsoleKey.F4:
                           
                             break;
-                        case ConsoleKey.F5:
-                            //Copy();
+                        case ConsoleKey.End:
+                            Copy();
                             break;
                         case ConsoleKey.F6:
                             //Move();
@@ -109,6 +109,21 @@ namespace Total_Commander
             }
         }
 
+        //private void RefreshPannels()
+        //{
+        //    if (panels == null || panels.Count == 0)
+        //    {
+        //        return;
+        //    }
+
+        //    foreach (FilePanel panel in panels)
+        //    {
+        //        if (!panel.isDiscs)
+        //        {
+        //            panel.UpdateContent(true);
+        //        }
+        //    }
+        //}
 
         private void ChangePanel()
         {
@@ -174,6 +189,76 @@ namespace Total_Commander
                     panels[activePanelIndex].SetDiscs();
                     panels[activePanelIndex].UpdatePanel();
                 }
+            }
+        }
+
+        private void CopyDirectory(string sourceDirName, string destDirName)
+        {
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+            DirectoryInfo[] dirs = dir.GetDirectories();
+
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+            }
+
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, true);
+            }
+
+            foreach (DirectoryInfo subdir in dirs)
+            {
+                string temppath = Path.Combine(destDirName, subdir.Name);
+                CopyDirectory(subdir.FullName, temppath);
+            }
+        }
+
+
+        private void Copy()
+        {
+            foreach (FilePanel panel in panels)
+            {
+                if (panel.isDiscs)
+                {
+                    return;
+                }
+            }
+
+            if (panels[0].Path == panels[1].Path)
+            {
+                return;
+            }
+
+            try
+            {
+                string destPath = activePanelIndex == 0 ? panels[1].Path : panels[0].Path;
+
+                FileSystemInfo fileObject = panels[activePanelIndex].GetActiveObject();
+                FileInfo currentFile = fileObject as FileInfo;
+
+                if (currentFile != null)
+                {
+                    string fileName = currentFile.Name;
+                    string destName = Path.Combine(destPath, fileName);
+                    File.Copy(currentFile.FullName, destName, true);
+                }
+
+                else
+                {
+                    string currentDir = ((DirectoryInfo)fileObject).FullName;
+                    string destDir = Path.Combine(destPath, ((DirectoryInfo)fileObject).Name);
+                    CopyDirectory(currentDir, destDir);
+                }
+
+                //RefreshPannels();
+            }
+            catch 
+            {
+                throw new Exception(String.Format("Щось не так"));
+                
             }
         }
 

@@ -371,11 +371,13 @@ namespace Total_Commander
 
         public void UpdateContent(bool updateList)
         {
-            // якщо true,то отримуємо список з файлами і папками.
+            // якщо true,то отримуємо новий список з файлами і папками.
             if (updateList)
             {
                 SetLists();
             }
+
+            // якщо в аргументі false,то очищаємо панель і виводимо дані.
             ClearContent();
             PrintContent();
         }
