@@ -64,7 +64,7 @@ namespace Total_Commander
                     switch (userKey.Key)
                     {
                         case ConsoleKey.Tab:
-                            
+                            ChangePanel();
                             break;
                         case ConsoleKey.Enter:
                            Choise();
@@ -76,10 +76,10 @@ namespace Total_Commander
                           
                             break;
                         case ConsoleKey.F5:
-                           
+                            //Copy();
                             break;
                         case ConsoleKey.F6:
-                          
+                            //Move();
                             break;
                         case ConsoleKey.F7:
                           
@@ -88,7 +88,7 @@ namespace Total_Commander
                           
                             break;
                         case ConsoleKey.F9:
-                            
+                            //Delete();
                             break;
                         case ConsoleKey.F10:
                             exit = true;
@@ -109,6 +109,26 @@ namespace Total_Commander
             }
         }
 
+
+        private void ChangePanel()
+        {
+            panels[activePanelIndex].Active = false;
+            KeyPress -= panels[activePanelIndex].KeyboardProcessing;
+            panels[activePanelIndex].UpdateContent(false);
+
+            activePanelIndex++;
+
+            if (activePanelIndex >= panels.Count)
+            {
+                activePanelIndex = 0;
+            }
+
+            panels[activePanelIndex].Active = true;
+            KeyPress += panels[activePanelIndex].KeyboardProcessing;
+            panels[activePanelIndex].UpdateContent(false);
+
+
+        }
 
         private void Choise()
         {

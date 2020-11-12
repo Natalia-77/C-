@@ -325,20 +325,11 @@ namespace Total_Commander
             Clear();
 
             StringBuilder caption = new StringBuilder();
-            //if (discs)
-            //{
-            //    caption.Append(' ').Append("Диски").Append(' ');
-            //}
-            //else
-            //{
-            //    caption.Append(' ').Append(path).Append(' ');
-            //}
-
-            //Console.SetCursorPosition( width / 2 - caption.ToString().Length / 2, 0);
+           
             Console.SetCursorPosition(width/2 - caption.ToString().Length, 0);
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
-            //Console.WriteLine(caption.ToString());
+           
             PrintContent();
         }
 
@@ -380,6 +371,7 @@ namespace Total_Commander
 
         public void UpdateContent(bool updateList)
         {
+            // якщо true,то отримуємо список з файлами і папками.
             if (updateList)
             {
                 SetLists();
