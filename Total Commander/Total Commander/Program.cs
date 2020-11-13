@@ -11,7 +11,7 @@ namespace FileManager
         static void Main(string[] args)
         {
             FileManager manager = new FileManager();
-            manager.Explore();
+            manager.Explore(); 
         }
     }
 }
