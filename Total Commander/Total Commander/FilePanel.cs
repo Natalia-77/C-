@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Total_Commander
+
+namespace FileManager
 {
     class FilePanel
     {
+        //========================== Static ==========================
 
-        public static int console_height = 16;
-        public static int console_width = 120;
-        private List<FileSystemInfo> fileobject = new List<FileSystemInfo>();
+        public static int panel_height = 18;
+        public static int panel_width = 100;
 
+        //========================== Поля ==========================        
 
         private int top;
         public int Top
@@ -22,13 +24,13 @@ namespace Total_Commander
             }
             set
             {
-                if (0 <= value )//&& value <= Console.WindowHeight - console_height)
+                if (0 <= value && value <= Console.WindowHeight - panel_height)
                 {
                     top = value;
                 }
                 else
                 {
-                    throw new Exception(String.Format("Вихід за межі вікна", value));
+                    throw new Exception(String.Format("Вихід за межі", value));
                 }
             }
         }
@@ -38,45 +40,42 @@ namespace Total_Commander
         {
             get
             {
-                return left;
+                return this.left;
             }
             set
             {
-                if (0 <= value )//&& value <= Console.WindowWidth - console_width)
+                if (0 <= value && value <= Console.WindowWidth - panel_width)
                 {
-                    left = value;
+                    this.left = value;
                 }
                 else
                 {
-                    throw new Exception(String.Format("Вихід за межі вікна", value));
+                    throw new Exception(String.Format("Вихід за межі", value));
                 }
             }
         }
 
-
-        private int height = console_height;
-        
+        private int height = panel_height;
         public int Height
         {
             get
             {
-                return height;
+                return this.height;
             }
             set
             {
                 if (0 < value && value <= Console.WindowHeight)
                 {
-                    height = value;
+                    this.height = value;
                 }
                 else
                 {
-                    throw new Exception(String.Format("Висота більше розміру вікна", value));
+                    throw new Exception(String.Format("Вихід за межі", value));
                 }
             }
         }
 
-        private int width = console_width;
-        
+        private int width = FilePanel.panel_width;
         public int Width
         {
             get
@@ -91,7 +90,7 @@ namespace Total_Commander
                 }
                 else
                 {
-                    throw new Exception(String.Format("Ширина більше розміру вікна", value));
+                    throw new Exception(String.Format("Вихід за межі", value));
                 }
             }
         }
@@ -119,6 +118,10 @@ namespace Total_Commander
             }
         }
 
+        private int activeObjectIndex = 0;
+        private int firstObjectIndex = 0;
+        private int displayedObjectsAmount = panel_height - 2;
+
         private bool active;
         public bool Active
         {
@@ -131,7 +134,6 @@ namespace Total_Commander
                 active = value;
             }
         }
-
         private bool discs;
         public bool isDiscs
         {
@@ -143,15 +145,10 @@ namespace Total_Commander
 
 
 
-        // Індекс активного елемента.
-        private int active_index = 0;
+        private List<FileSystemInfo> fsObjects = new List<FileSystemInfo>();
 
-        // Індекс першого елемента.
-        private int first_index = 0;
+        //========================== Методи ==========================
 
-        // Кількість елементів на сторінці.
-        private int objectamount = console_height;
-       
 
 
         public FilePanel()
@@ -165,270 +162,17 @@ namespace Total_Commander
             SetLists();
         }
 
-        // Отримуємо обєкт активний обєкт у вікні.
+
+
         public FileSystemInfo GetActiveObject()
         {
-            if (fileobject != null && fileobject.Count != 0)
+            if (fsObjects != null && fsObjects.Count != 0)
             {
-                return fileobject[active_index];
+                return fsObjects[activeObjectIndex];
             }
             throw new Exception("Список пустий");
         }
 
-        // Отримуємо весь список з файлами.
-        public void SetLists()
-        {
-            if (fileobject.Count != 0)
-            {
-                fileobject.Clear();
-            }
-
-            discs = false;
-
-            DirectoryInfo newDir = null;
-            fileobject.Add(newDir);
-
-            //Directories
-
-            string[] directories = Directory.GetDirectories(path);
-            foreach (string directory in directories)
-            {
-                DirectoryInfo di = new DirectoryInfo(directory);
-                fileobject.Add(di);
-            }
-
-            //Files
-
-            string[] files = Directory.GetFiles(path);
-            foreach (string file in files)
-            {
-                FileInfo fi = new FileInfo(file);
-                fileobject.Add(fi);
-            }
-        }
-
-
-        // Отримуємо директорії.
-        public void SetDiscs()
-        {
-            // Якщо є елементи.
-            if (fileobject.Count != 0)
-            {
-                // Очищаю консоль.
-                fileobject.Clear();
-            }
-
-            this.discs = true;
-
-            DriveInfo[] discs = DriveInfo.GetDrives();
-
-            // Проходимо по елементам масиву з директоріями.
-            foreach (DriveInfo disc in discs)
-            {
-                if (disc.IsReady)
-                {
-                    DirectoryInfo dir = new DirectoryInfo(disc.Name);
-                    fileobject.Add(dir);
-                }
-            }
-        }
-
-        // Очистка консолі.
-        public void Clear()
-        {
-            for (int i = 1; i < height+1; i++)
-            {
-                string space = new String(' ', width);
-                Console.SetCursorPosition(left,top+ i);
-                Console.Write(space);
-            }
-        }
-
-        // Встановлення значень на початкові індекси.
-        public void UpdatePanel()
-        {
-            first_index = 0;
-            active_index = 0;
-            Show();
-        }
-                
-        // Вивід обєктів в консоль.
-        private void PrintObject(int index)
-        {
-            if (index < 0 || fileobject.Count <= index)
-            {
-                throw new Exception(String.Format("Вихід за межі діапазона", index));
-            }
-           
-            if (!discs && index == 0)
-            {
-                Console.Write("..");
-                return;
-            }
-
-            int currentCursorTopPosition = Console.CursorTop;
-            int currentCursorLeftPosition = Console.CursorLeft;
-
-            Console.Write(" {0}", fileobject[index].Name);
-            Console.SetCursorPosition(currentCursorLeftPosition + width / 5, currentCursorTopPosition);
-            
-            if (fileobject[index] is DirectoryInfo)
-            {
-                Console.Write(" {0}", ((DirectoryInfo)fileobject[index]).LastWriteTime);
-            }
-            else
-            {
-                Console.Write(" {0}", ((FileInfo)fileobject[index]).Length);
-            }
-        }
-
-        // Виділення кольором активного елемента вікна.
-        private void PrintContent()
-        {
-            if (fileobject.Count == 0)
-            {
-                return;
-            }
-            int count = 0;
-
-            int lastElement = first_index + objectamount;
-
-            if (lastElement > fileobject.Count)
-            {
-                lastElement = fileobject.Count;
-                }
-
-                if (active_index >= fileobject.Count)
-            {
-                active_index = 0;
-            }
-
-            for (int i = first_index; i < lastElement; i++)
-            {
-                Console.SetCursorPosition(left, top + count + 1);
-
-                if (i == active_index && active == true)
-                {
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.BackgroundColor = ConsoleColor.White;
-                }
-                PrintObject(i);
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.BackgroundColor = ConsoleColor.Black;
-                count++;
-            }
-        }
-
-        private void PrintContent2()
-        {
-            if (fileobject.Count == 0)
-            {
-                return;
-            }
-            int count = 0;
-
-            int lastElement = first_index + objectamount;
-
-            if (lastElement > fileobject.Count)
-            {
-                lastElement = fileobject.Count;
-            }
-
-            if (active_index >= fileobject.Count)
-            {
-                active_index = 0;
-            }
-
-            for (int i = first_index; i < lastElement; i++)
-            {
-                Console.SetCursorPosition(left, 30);
-
-                if (i == active_index && active == true)
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.BackgroundColor = ConsoleColor.White;
-                }
-                PrintObject(i);
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.BackgroundColor = ConsoleColor.Black;
-                count++;
-            }
-        }
-
-        public void UpdateContent2(bool updateList)
-        {
-            // якщо true,то отримуємо новий список з файлами і папками.
-            if (updateList)
-            {
-                SetLists();
-            }
-
-            // якщо в аргументі false,то очищаємо панель і виводимо дані.
-            ClearContent();
-            PrintContent2();
-        }
-
-        public void Show()
-        {
-            Clear();
-
-            StringBuilder caption = new StringBuilder();
-           
-            Console.SetCursorPosition(width/2 - caption.ToString().Length, 0);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.Black;
-           
-            PrintContent();
-        }
-
-
-        private void Activate_object(int index)
-        {
-            int offsetY = active_index - first_index;
-            Console.SetCursorPosition(0, offsetY + 1);
-
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.BackgroundColor = ConsoleColor.White;
-
-            PrintObject(index);
-
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.Black;
-        }
-
-        private void Deactivate_object(int index)
-        {
-            int offsetY = active_index - first_index;
-            Console.SetCursorPosition(0, offsetY + 1);
-
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.BackgroundColor = ConsoleColor.Black;
-
-            PrintObject(index);
-        }
-
-        private void ClearContent()
-        {
-            for (int i = 1; i < height-1 ; i++)
-            {
-                string space = new String(' ', width - 2);
-                Console.SetCursorPosition(left + 1, top + i);
-                Console.Write(space);
-            }
-        }
-
-        public void UpdateContent(bool updateList)
-        {
-            // якщо true,то отримуємо новий список з файлами і папками.
-            if (updateList)
-            {
-                SetLists();
-            }
-
-            // якщо в аргументі false,то очищаємо панель і виводимо дані.
-            ClearContent();
-            PrintContent();
-        }
 
         public void KeyboardProcessing(ConsoleKeyInfo key)
         {
@@ -447,48 +191,250 @@ namespace Total_Commander
 
         private void Down()
         {
-            if (active_index >= first_index + objectamount - 1)
+            if (this.activeObjectIndex >= this.firstObjectIndex + this.displayedObjectsAmount - 1)
             {
-                first_index++;
-                if (first_index + objectamount >= fileobject.Count)
+                this.firstObjectIndex += 1;
+                if (this.firstObjectIndex + this.displayedObjectsAmount >= this.fsObjects.Count)
                 {
-                    first_index = fileobject.Count - objectamount;
+                    this.firstObjectIndex = this.fsObjects.Count - this.displayedObjectsAmount;
                 }
-                active_index = first_index + objectamount - 1;
-                UpdateContent(false);
+                this.activeObjectIndex = this.firstObjectIndex + this.displayedObjectsAmount - 1;
+                this.UpdateContent(false);
             }
 
             else
             {
-                if (active_index >= fileobject.Count - 1)
+                if (this.activeObjectIndex >= this.fsObjects.Count - 1)
                 {
                     return;
                 }
-                Deactivate_object(active_index);
-                active_index++;
-                Activate_object(active_index);
+                this.DeactivateObject(this.activeObjectIndex);
+                this.activeObjectIndex++;
+                this.ActivateObject(this.activeObjectIndex);
             }
         }
 
         private void Up()
         {
-            if (active_index <= first_index)
+            if (this.activeObjectIndex <= this.firstObjectIndex)
             {
-                first_index --;
-                if (first_index < 0)
+                this.firstObjectIndex -= 1;
+                if (this.firstObjectIndex < 0)
                 {
-                    first_index = 0;
+                    this.firstObjectIndex = 0;
                 }
-                active_index = first_index;
-                UpdateContent(false);
+                this.activeObjectIndex = firstObjectIndex;
+                this.UpdateContent(false);
             }
             else
             {
-                Deactivate_object(active_index);
-                active_index --;
-                Activate_object(active_index);
+                this.DeactivateObject(this.activeObjectIndex);
+                this.activeObjectIndex--;
+                this.ActivateObject(this.activeObjectIndex);
             }
         }
 
+
+
+
+        public void SetLists()
+        {
+            if (this.fsObjects.Count != 0)
+            {
+                this.fsObjects.Clear();
+            }
+
+            this.discs = false;
+
+            DirectoryInfo levelUpDirectory = null;
+            this.fsObjects.Add(levelUpDirectory);
+
+            //Directories
+
+            string[] directories = Directory.GetDirectories(this.path);
+            foreach (string directory in directories)
+            {
+                DirectoryInfo di = new DirectoryInfo(directory);
+                this.fsObjects.Add(di);
+            }
+
+            //Files
+
+            string[] files = Directory.GetFiles(this.path);
+            foreach (string file in files)
+            {
+                FileInfo fi = new FileInfo(file);
+                this.fsObjects.Add(fi);
+            }
+        }
+
+        public void SetDiscs()
+        {
+            if (fsObjects.Count != 0)
+            {
+                fsObjects.Clear();
+            }
+
+            this.discs = true;
+
+            DriveInfo[] discs = DriveInfo.GetDrives();
+            foreach (DriveInfo disc in discs)
+            {
+                if (disc.IsReady)
+                {
+                    DirectoryInfo di = new DirectoryInfo(disc.Name);
+                    this.fsObjects.Add(di);
+                }
+            }
+        }
+
+
+        public void Show()
+        {
+            Clear();
+
+            PsCon.PsCon.PrintFrameDoubleLine(left, top, width, height, ConsoleColor.White, ConsoleColor.Black);
+
+            StringBuilder caption = new StringBuilder();
+            if (discs)
+            {
+                caption.Append(' ').Append("Диски").Append(' ');
+            }
+            else
+            {
+                caption.Append(' ').Append(path).Append(' ');
+            }
+            PsCon.PsCon.PrintString(caption.ToString(), left + width / 3 - caption.ToString().Length / 3, top, ConsoleColor.White, ConsoleColor.Black);
+
+            PrintContent();
+        }
+
+        public void Clear()
+        {
+            for (int i = 0; i < this.height; i++)
+            {
+                string space = new String(' ', this.width);
+                Console.SetCursorPosition(this.left, this.top + i);
+                Console.Write(space);
+            }
+        }
+
+        private void PrintContent()
+        {
+            if (this.fsObjects.Count == 0)
+            {
+                return;
+            }
+            int count = 0;
+
+            int lastElement = this.firstObjectIndex + this.displayedObjectsAmount;
+            if (lastElement > this.fsObjects.Count)
+            {
+                lastElement = this.fsObjects.Count;
+            }
+
+
+            if (this.activeObjectIndex >= this.fsObjects.Count)
+            {
+                activeObjectIndex = 0;
+            }
+
+            for (int i = this.firstObjectIndex; i < lastElement; i++)
+            {
+                Console.SetCursorPosition(this.left + 1, this.top + count + 1);
+
+                if (i == this.activeObjectIndex && this.active == true)
+                {
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.BackgroundColor = ConsoleColor.White;
+                }
+                this.PrintObject(i);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Black;
+                count++;
+            }
+        }
+
+        private void ClearContent()
+        {
+            for (int i = 1; i < this.height - 1; i++)
+            {
+                string space = new String(' ', this.width - 2);
+                Console.SetCursorPosition(this.left + 1, this.top + i);
+                Console.Write(space);
+            }
+        }
+
+        private void PrintObject(int index)
+        {
+            if (index < 0 || this.fsObjects.Count <= index)
+            {
+                throw new Exception(String.Format("Вихід за межі.", index));
+            }
+
+            int currentCursorTopPosition = Console.CursorTop;
+            int currentCursorLeftPosition = Console.CursorLeft;
+
+            if (!this.discs && index == 0)
+            {
+                Console.Write("..");
+                return;
+            }
+
+            Console.Write("{0}", fsObjects[index].Name);
+            Console.SetCursorPosition(currentCursorLeftPosition + this.width / 2, currentCursorTopPosition);
+            if (fsObjects[index] is DirectoryInfo)
+            {
+                Console.Write("{0}", ((DirectoryInfo)fsObjects[index]).LastWriteTime);
+            }
+            else
+            {
+                Console.Write("{0}", ((FileInfo)fsObjects[index]).Length);
+            }
+        }
+
+        public void UpdatePanel()
+        {
+            this.firstObjectIndex = 0;
+            this.activeObjectIndex = 0;
+            this.Show();
+        }
+
+        public void UpdateContent(bool updateList)
+        {
+            if (updateList)
+            {
+                this.SetLists();
+            }
+            this.ClearContent();
+            this.PrintContent();
+        }
+
+        private void ActivateObject(int index)
+        {
+            int offsetY = this.activeObjectIndex - this.firstObjectIndex;
+            Console.SetCursorPosition(this.left + 1, this.top + offsetY + 1);
+
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.White;
+
+            this.PrintObject(index);
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+
+        private void DeactivateObject(int index)
+        {
+            int offsetY = this.activeObjectIndex - this.firstObjectIndex;
+            Console.SetCursorPosition(this.left + 1, this.top + offsetY + 1);
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+
+            this.PrintObject(index);
+        }
     }
+
 }
+

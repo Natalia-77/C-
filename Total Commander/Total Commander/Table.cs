@@ -3,80 +3,184 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Total_Commander
+namespace PsCon
 {
-    class Table
+
+    struct FrameLine
     {
-       
+        public string topLeft;
+        public string topRight;
+        public string bottomLeft;
+        public string bottomRight;
+        public string lineX;
+        public string lineY;
 
-        /// <summary>
-        ///  каркас таблиці для виводу лівої і правої таблиці.
-        /// </summary>
-
-        public void MainTab(int x,int y)
+        public FrameLine(int n)
         {
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
-            ///x=0;y=2;
-            Console.SetCursorPosition(x, y);
-            Console.WriteLine("╔════════════════════╤═══════════╤═════════════╤════════════╗");
-            Console.SetCursorPosition(x, y+1);
-            Console.Write("║    ");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("Name");
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("            │   ");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("Size");
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("    │  ");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("Date");
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("       │ ");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("Time");
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("       ║");
+            topLeft = "┌";
+            topRight = "┐";
+            bottomLeft = "└";
+            bottomRight = "┘";
+            lineX = "─";
+            lineY = "│";
+        }
+    }
 
-            for (int i = 1; i < 20; i++)
+    struct FrameDoubleLine
+    {
+        public string topLeft;
+        public string topRight;
+        public string bottomLeft;
+        public string bottomRight;
+        public string lineA;
+        public string lineB;
+
+        public FrameDoubleLine(int n)
+        {
+            topLeft = "╔";
+            topRight = "╗";
+            bottomLeft = "╚";
+            bottomRight = "╝";
+            lineA = "═";
+            lineB = "║";
+        }
+    }
+
+
+    class PsCon
+    {
+
+        // Відмальовую рамочки для кнопок.
+        public static void PrintFrameLine(int positionX, int positionY, int sizeX, int sizeY, ConsoleColor text, ConsoleColor background)
+        {
+            int SizeX = positionX + sizeX;
+            int SizeY = positionY + sizeY;
+            FrameLine f = new FrameLine(0);
+
+            Console.ForegroundColor = text;
+            Console.BackgroundColor = background;
+
+            for (int y = positionY; y < SizeY; y++)
             {
-                Console.SetCursorPosition(x, y + 1 + i);
-                Console.WriteLine("║                    │           │             │            ║");
-            }
-            Console.SetCursorPosition(x,y+21 );
-            Console.WriteLine("╟────────────────────┴───────────┴─────────────┴────────────╢");
-            Console.SetCursorPosition(x, y + 22);
-            Console.WriteLine("║                                                           ║");
-            Console.SetCursorPosition(x, y+23);
-            Console.WriteLine("╚═══════════════════════════════════════════════════════════╝");
-            Console.ResetColor();
+                for (int x = positionX; x < SizeX; x++)
+                {
+                    if (y == positionY && x == positionX)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.topLeft);
+                    }
 
+                    if (y == positionY && x > positionX && x < SizeX - 1)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.lineX);
+                    }
+
+                    if (y == positionY && x == SizeX - 1)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.topRight);
+                    }
+
+                    if (y > positionY && y < SizeY - 1 && x == positionX || y > positionY && y < SizeY - 1 && x == SizeX - 1)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.lineY);
+                    }
+
+                    if (y == SizeY - 1 && x == positionX)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.bottomLeft);
+                    }
+
+                    if (y == SizeY - 1 && x > positionX && x < SizeX - 1)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.lineX);
+                    }
+
+                    if (y == SizeY - 1 && x == SizeX - 1)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.bottomRight);
+                    }
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+
+        public static void PrintFrameDoubleLine(int positionX, int positionY, int sizeX, int sizeY, ConsoleColor text, ConsoleColor background)
+        {
+            int SizeY = positionY + sizeY;
+            int SizeX = positionX + sizeX;
+
+            FrameDoubleLine f = new FrameDoubleLine(0);
+            Console.ForegroundColor = text;
+            Console.BackgroundColor = background;
+
+            for (int y = positionY; y < SizeY; y++)
+            {
+                for (int x = positionX; x < SizeX; x++)
+                {
+                    if (y == positionY && x == positionX)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.topLeft);
+                    }
+                    if (y == positionY && x > positionX && x < SizeX - 1)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.lineA);
+                    }
+                    if (y == positionY && x == SizeX - 1)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.topRight);
+                    }
+                    if (y > positionY && y < SizeY - 1 && x == positionX || y > positionY && y < SizeY - 1 && x == SizeX - 1)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.lineB);
+                    }
+                    if (y == SizeY - 1 && x == positionX)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.bottomLeft);
+                    }
+                    if (y == SizeY - 1 && x > positionX && x < SizeX - 1)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.lineA);
+                    }
+                    if (y == SizeY - 1 && x == SizeX - 1)
+                    {
+                        Console.SetCursorPosition(x, y);
+                        Console.Write(f.bottomRight);
+                    }
+                }
+            }
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
+        }
+
+        // кнопки меню.
+        public static void PrintString(string str, int X, int Y, ConsoleColor text, ConsoleColor background)
+        {
+            Console.ForegroundColor = text;
+            Console.BackgroundColor = background;
+
+            Console.SetCursorPosition(X, Y);
+            Console.Write(str);
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Black;
         }
 
 
-        /// <summary>
-        ///  Меню з вказаними клавішами в нижній частині основної таблиці.
-        /// </summary>
-        /// 
-        public void Keys(int x,int y)
-        {
-          
-            string[] menu = { "F3 View" ,"F4 Edit", "F5 Copy",
-                "F6 Move", "F7 Create", "F8 Rename",
-                "F9 Delete", "F10 Exit" };
-
-            int item_width = FilePanel.console_width / menu.Length;
-          
-            for (int i=0;i<menu.Length;i++)
-            {
-                Console.BackgroundColor = ConsoleColor.Gray;
-                Console.ForegroundColor = ConsoleColor.DarkBlue;
-                Console.SetCursorPosition(x+i*item_width, y + 24 );
-                Console.Write(menu[i]+'\t');
-                Console.ResetColor();
-            }
-
-        }
 
     }
 }
