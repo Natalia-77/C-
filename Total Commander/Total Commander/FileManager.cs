@@ -13,8 +13,7 @@ namespace FileManager
         //========================== Static ==========================
 
         public static int HEIGHT_KEYS = 3;
-        public static int BOTTOM_OFFSET = 2;
-
+        
         //========================== Поля ==========================
 
         public event OnKey KeyPress;
@@ -67,8 +66,7 @@ namespace FileManager
             while (!exit)
             {
                 if (Console.KeyAvailable)
-                {
-                    this.ClearMessage();
+                {                    
 
                     ConsoleKeyInfo userKey = Console.ReadKey(true);
                     switch (userKey.Key)
@@ -146,9 +144,10 @@ namespace FileManager
 
                 this.RefreshPannels();
             }
-            catch (Exception e)
+            catch (Exception )
             {
-                this.ShowMessage(e.Message);
+                
+                Console.WriteLine("Щось пішло не так...");
                 return;
             }
         }
@@ -197,9 +196,10 @@ namespace FileManager
                 }
                 this.RefreshPannels();
             }
-            catch (Exception e)
+            catch (Exception )
             {
-                this.ShowMessage(e.Message);
+                
+                Console.WriteLine("Щось пішло не так...");
                 return;
             }
         }
@@ -240,9 +240,10 @@ namespace FileManager
 
                 this.RefreshPannels();
             }
-            catch (Exception e)
+            catch (Exception )
             {
-                this.ShowMessage(e.Message);
+                
+                Console.WriteLine("Щось пішло не так...");
                 return;
             }
 
@@ -345,15 +346,7 @@ namespace FileManager
             }
         }
 
-        private void ShowMessage(string message)
-        {
-            PsCon.PsCon.PrintString(message, 0, Console.WindowHeight - BOTTOM_OFFSET, ConsoleColor.White, ConsoleColor.Black);
-        }
-
-        private void ClearMessage()
-        {
-            PsCon.PsCon.PrintString(new String(' ', Console.WindowWidth), 0, Console.WindowHeight - BOTTOM_OFFSET, ConsoleColor.White, ConsoleColor.Black);
-        }
+        
     }
 
 }
