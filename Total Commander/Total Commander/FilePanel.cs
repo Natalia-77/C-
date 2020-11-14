@@ -378,7 +378,7 @@ namespace FileManager
             int currentCursorTopPosition = Console.CursorTop;
             int currentCursorLeftPosition = Console.CursorLeft;
 
-            if (!this.discs && index == 0)
+            if (!discs && index == 0)
             {
                 Console.Write("..");
                 return;
@@ -415,8 +415,8 @@ namespace FileManager
 
         private void ActivateObject(int index)
         {
-            int offsetY = activeObjectIndex -firstObjectIndex;
-            Console.SetCursorPosition(left + 1, top + offsetY + 1);
+            int offsetY = activeObjectIndex - firstObjectIndex;
+            Console.SetCursorPosition(left + 1, top+offsetY  + 1);
 
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;

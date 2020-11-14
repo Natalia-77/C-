@@ -133,6 +133,7 @@ namespace FileManager
                     string fileName = currentFile.Name;
                     string destName = Path.Combine(destPath, fileName);
                   
+                    // true-перезаписувати файл.
                     File.Copy(currentFile.FullName, destName, true);
                 }
 
@@ -189,6 +190,7 @@ namespace FileManager
             {
                 if (fileObject is DirectoryInfo)
                 {
+                    // true- видаляти з всім вмістом директорії.
                     ((DirectoryInfo)fileObject).Delete(true);
                 }
                 else
