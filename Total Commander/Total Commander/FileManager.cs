@@ -239,7 +239,7 @@ namespace FileManager
                     ((DirectoryInfo)fileObject).MoveTo(destName);
                 }
 
-                this.RefreshPannels();
+                RefreshPannels();
             }
             catch (Exception )
             {
@@ -335,10 +335,10 @@ namespace FileManager
         {
             string[] menu = { "F5 Copy", "F6 Move", "F9 Delete", "F10 Exit" };
 
-            int cellLeft = this.panels[0].Left;
+            int cellLeft = panels[0].Left;
             int cellTop = FilePanel.panel_height * panels.Count;
             int cellWidth = FilePanel.panel_width / menu.Length;
-            int cellHeight = FileManager.HEIGHT_KEYS;
+            int cellHeight = HEIGHT_KEYS;
 
             for (int i = 0; i < menu.Length; i++)
             {

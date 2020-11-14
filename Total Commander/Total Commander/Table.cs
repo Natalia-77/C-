@@ -167,7 +167,7 @@ namespace PsCon
             Console.BackgroundColor = ConsoleColor.Black;
         }
 
-        // кнопки меню.
+       
         public static void PrintString(string str, int X, int Y, ConsoleColor text, ConsoleColor background)
         {
             Console.ForegroundColor = text;
