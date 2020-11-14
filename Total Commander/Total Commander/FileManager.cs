@@ -132,7 +132,7 @@ namespace FileManager
                 {
                     string fileName = currentFile.Name;
                     string destName = Path.Combine(destPath, fileName);
-                    // копіювання .
+                  
                     File.Copy(currentFile.FullName, destName, true);
                 }
 
@@ -336,13 +336,13 @@ namespace FileManager
             string[] menu = { "F5 Copy", "F6 Move", "F9 Delete", "F10 Exit" };
 
             int cellLeft = panels[0].Left;
-            int cellTop = FilePanel.panel_height * panels.Count;
-            int cellWidth = FilePanel.panel_width / menu.Length;
+            int cellTop = FilePanel.panel_height * panels.Count;// висота .
+            int cellWidth = FilePanel.panel_width / menu.Length;// ширина однієї--ширина панелі/довжину масиву.
             int cellHeight = HEIGHT_KEYS;
 
             for (int i = 0; i < menu.Length; i++)
             {
-                PsCon.PsCon.PrintFrameLine(cellLeft + i * cellWidth, cellTop, cellWidth, cellHeight, ConsoleColor.Red, ConsoleColor.Black);
+                PsCon.PsCon.PrintFrameLine(cellLeft+i*cellWidth , cellTop, cellWidth, cellHeight, ConsoleColor.Red, ConsoleColor.Black);
                 PsCon.PsCon.PrintString(menu[i], cellLeft + i * cellWidth + 1, cellTop + 1, ConsoleColor.Green, ConsoleColor.Black);
             }
         }
