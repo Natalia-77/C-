@@ -191,46 +191,49 @@ namespace FileManager
 
         private void Down()
         {
-            if (this.activeObjectIndex >= this.firstObjectIndex + this.displayedObjectsAmount - 1)
+            // Якщо активний індекс більше /рівний кількості обєктів в консолі
+            if (activeObjectIndex >= firstObjectIndex + displayedObjectsAmount - 1)
             {
-                this.firstObjectIndex += 1;
-                if (this.firstObjectIndex + this.displayedObjectsAmount >= this.fsObjects.Count)
+                // збільшуємо  індекс першого обєкта,який буде зверху таблиці в консолі.
+                firstObjectIndex ++;
+                
+                if (firstObjectIndex + displayedObjectsAmount >= fsObjects.Count)
                 {
-                    this.firstObjectIndex = this.fsObjects.Count - this.displayedObjectsAmount;
+                    firstObjectIndex = fsObjects.Count - displayedObjectsAmount;
                 }
-                this.activeObjectIndex = this.firstObjectIndex + this.displayedObjectsAmount - 1;
-                this.UpdateContent(false);
+                activeObjectIndex = firstObjectIndex + displayedObjectsAmount - 1;
+                UpdateContent(false);
             }
 
             else
             {
-                if (this.activeObjectIndex >= this.fsObjects.Count - 1)
+                if (activeObjectIndex >= fsObjects.Count - 1)
                 {
                     return;
                 }
-                this.DeactivateObject(this.activeObjectIndex);
-                this.activeObjectIndex++;
-                this.ActivateObject(this.activeObjectIndex);
+                DeactivateObject(activeObjectIndex);
+                activeObjectIndex++;
+                ActivateObject(activeObjectIndex);
             }
         }
 
         private void Up()
         {
-            if (this.activeObjectIndex <= this.firstObjectIndex)
+            if (activeObjectIndex <= firstObjectIndex)
             {
-                this.firstObjectIndex -= 1;
-                if (this.firstObjectIndex < 0)
+                firstObjectIndex --;
+                if (firstObjectIndex < 0)
                 {
-                    this.firstObjectIndex = 0;
+                    firstObjectIndex = 0;
                 }
-                this.activeObjectIndex = firstObjectIndex;
-                this.UpdateContent(false);
+                activeObjectIndex = firstObjectIndex;
+                UpdateContent(false);
             }
             else
             {
-                this.DeactivateObject(this.activeObjectIndex);
-                this.activeObjectIndex--;
-                this.ActivateObject(this.activeObjectIndex);
+                DeactivateObject(activeObjectIndex);
+                activeObjectIndex--;
+                ActivateObject(activeObjectIndex);
             }
         }
 
@@ -328,27 +331,27 @@ namespace FileManager
             int count = 0;
 
             int lastElement = this.firstObjectIndex + this.displayedObjectsAmount;
-            if (lastElement > this.fsObjects.Count)
+            if (lastElement > fsObjects.Count)
             {
-                lastElement = this.fsObjects.Count;
+                lastElement = fsObjects.Count;
             }
 
 
-            if (this.activeObjectIndex >= this.fsObjects.Count)
+            if (activeObjectIndex >= fsObjects.Count)
             {
                 activeObjectIndex = 0;
             }
 
-            for (int i = this.firstObjectIndex; i < lastElement; i++)
+            for (int i = firstObjectIndex; i < lastElement; i++)
             {
-                Console.SetCursorPosition(this.left + 1, this.top + count + 1);
+                Console.SetCursorPosition(left + 1, top + count + 1);
 
-                if (i == this.activeObjectIndex && this.active == true)
+                if (i == activeObjectIndex && active == true)
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
                     Console.BackgroundColor = ConsoleColor.White;
                 }
-                this.PrintObject(i);
+                PrintObject(i);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.BackgroundColor = ConsoleColor.Black;
                 count++;
@@ -367,7 +370,7 @@ namespace FileManager
 
         private void PrintObject(int index)
         {
-            if (index < 0 || this.fsObjects.Count <= index)
+            if (index < 0 || fsObjects.Count <= index)
             {
                 throw new Exception(String.Format("Вихід за межі.", index));
             }
@@ -395,30 +398,30 @@ namespace FileManager
 
         public void UpdatePanel()
         {
-            this.firstObjectIndex = 0;
-            this.activeObjectIndex = 0;
-            this.Show();
+            firstObjectIndex = 0;
+            activeObjectIndex = 0;
+            Show();
         }
 
         public void UpdateContent(bool updateList)
         {
             if (updateList)
             {
-                this.SetLists();
+                SetLists();
             }
-            this.ClearContent();
-            this.PrintContent();
+            ClearContent();
+            PrintContent();
         }
 
         private void ActivateObject(int index)
         {
-            int offsetY = this.activeObjectIndex - this.firstObjectIndex;
-            Console.SetCursorPosition(this.left + 1, this.top + offsetY + 1);
+            int offsetY = activeObjectIndex -firstObjectIndex;
+            Console.SetCursorPosition(left + 1, top + offsetY + 1);
 
             Console.ForegroundColor = ConsoleColor.Black;
             Console.BackgroundColor = ConsoleColor.White;
 
-            this.PrintObject(index);
+            PrintObject(index);
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
@@ -426,13 +429,13 @@ namespace FileManager
 
         private void DeactivateObject(int index)
         {
-            int offsetY = this.activeObjectIndex - this.firstObjectIndex;
-            Console.SetCursorPosition(this.left + 1, this.top + offsetY + 1);
+            int offsetY = activeObjectIndex - firstObjectIndex;
+            Console.SetCursorPosition(left + 1, top + offsetY + 1);
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
 
-            this.PrintObject(index);
+            PrintObject(index);
         }
     }
 

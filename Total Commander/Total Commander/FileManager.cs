@@ -47,15 +47,15 @@ namespace FileManager
 
             activePanelIndex = 0;
 
-            this.panels[this.activePanelIndex].Active = true;
-            KeyPress += this.panels[this.activePanelIndex].KeyboardProcessing;
+            panels[activePanelIndex].Active = true;
+            KeyPress += panels[activePanelIndex].KeyboardProcessing;
 
             foreach (FilePanel fp in panels)
             {
                 fp.Show();
             }
 
-            this.ShowKeys();
+            ShowKeys();
         }
 
 
@@ -116,22 +116,23 @@ namespace FileManager
                 }
             }
 
-            if (this.panels[0].Path == this.panels[1].Path)
+            if (panels[0].Path == panels[1].Path)
             {
                 return;
             }
 
             try
             {
-                string destPath = this.activePanelIndex == 0 ? this.panels[1].Path : this.panels[0].Path;
+                string destPath = activePanelIndex == 0 ? panels[1].Path : panels[0].Path;
 
-                FileSystemInfo fileObject = this.panels[this.activePanelIndex].GetActiveObject();
+                FileSystemInfo fileObject = panels[activePanelIndex].GetActiveObject();
                 FileInfo currentFile = fileObject as FileInfo;
 
                 if (currentFile != null)
                 {
                     string fileName = currentFile.Name;
                     string destName = Path.Combine(destPath, fileName);
+                    // копіювання .
                     File.Copy(currentFile.FullName, destName, true);
                 }
 
@@ -142,7 +143,7 @@ namespace FileManager
                     CopyDirectory(currentDir, destDir);
                 }
 
-                this.RefreshPannels();
+                RefreshPannels();
             }
             catch (Exception )
             {
@@ -178,12 +179,12 @@ namespace FileManager
 
         private void Delete()
         {
-            if (this.panels[this.activePanelIndex].isDiscs)
+            if (panels[activePanelIndex].isDiscs)
             {
                 return;
             }
 
-            FileSystemInfo fileObject = this.panels[this.activePanelIndex].GetActiveObject();
+            FileSystemInfo fileObject = panels[activePanelIndex].GetActiveObject();
             try
             {
                 if (fileObject is DirectoryInfo)
@@ -194,7 +195,7 @@ namespace FileManager
                 {
                     ((FileInfo)fileObject).Delete();
                 }
-                this.RefreshPannels();
+                RefreshPannels();
             }
             catch (Exception )
             {
@@ -216,15 +217,15 @@ namespace FileManager
                 }
             }
 
-            if (this.panels[0].Path == this.panels[1].Path)
+            if (panels[0].Path == panels[1].Path)
             {
                 return;
             }
 
             try
             {
-                string destPath = this.activePanelIndex == 0 ? this.panels[1].Path : this.panels[0].Path;
-                FileSystemInfo fileObject = this.panels[this.activePanelIndex].GetActiveObject();
+                string destPath = activePanelIndex == 0 ? panels[1].Path : panels[0].Path;
+                FileSystemInfo fileObject = panels[activePanelIndex].GetActiveObject();
 
                 string objectName = fileObject.Name;
                 string destName = Path.Combine(destPath, objectName);
@@ -269,24 +270,24 @@ namespace FileManager
 
         private void ChangeActivePanel()
         {
-            this.panels[this.activePanelIndex].Active = false;
-            KeyPress -= this.panels[this.activePanelIndex].KeyboardProcessing;
-            this.panels[this.activePanelIndex].UpdateContent(false);
+            panels[activePanelIndex].Active = false;
+            KeyPress -= panels[activePanelIndex].KeyboardProcessing;
+            panels[activePanelIndex].UpdateContent(false);
 
-            this.activePanelIndex++;
-            if (this.activePanelIndex >= this.panels.Count)
+            activePanelIndex++;
+            if (activePanelIndex >= panels.Count)
             {
-                this.activePanelIndex = 0;
+                activePanelIndex = 0;
             }
 
-            this.panels[this.activePanelIndex].Active = true;
-            KeyPress += this.panels[this.activePanelIndex].KeyboardProcessing;
-            this.panels[this.activePanelIndex].UpdateContent(false);
+            panels[activePanelIndex].Active = true;
+            KeyPress += panels[activePanelIndex].KeyboardProcessing;
+            panels[activePanelIndex].UpdateContent(false);
         }
 
         private void ChangeDirectoryOrRunProcess()
         {
-            FileSystemInfo fsInfo = this.panels[this.activePanelIndex].GetActiveObject();
+            FileSystemInfo fsInfo = panels[activePanelIndex].GetActiveObject();
             if (fsInfo != null)
             {
                 if (fsInfo is DirectoryInfo)
@@ -300,9 +301,9 @@ namespace FileManager
                         return;
                     }
 
-                    this.panels[this.activePanelIndex].Path = fsInfo.FullName;
-                    this.panels[this.activePanelIndex].SetLists();
-                    this.panels[this.activePanelIndex].UpdatePanel();
+                    panels[activePanelIndex].Path = fsInfo.FullName;
+                    panels[activePanelIndex].SetLists();
+                    panels[activePanelIndex].UpdatePanel();
                 }
                 else
                 {
@@ -311,21 +312,21 @@ namespace FileManager
             }
             else
             {
-                string currentPath = this.panels[this.activePanelIndex].Path;
+                string currentPath = panels[activePanelIndex].Path;
                 DirectoryInfo currentDirectory = new DirectoryInfo(currentPath);
                 DirectoryInfo upLevelDirectory = currentDirectory.Parent;
 
                 if (upLevelDirectory != null)
                 {
-                    this.panels[this.activePanelIndex].Path = upLevelDirectory.FullName;
-                    this.panels[this.activePanelIndex].SetLists();
-                    this.panels[this.activePanelIndex].UpdatePanel();
+                    panels[activePanelIndex].Path = upLevelDirectory.FullName;
+                    panels[activePanelIndex].SetLists();
+                    panels[activePanelIndex].UpdatePanel();
                 }
 
                 else
                 {
-                    this.panels[this.activePanelIndex].SetDiscs();
-                    this.panels[this.activePanelIndex].UpdatePanel();
+                    panels[activePanelIndex].SetDiscs();
+                    panels[activePanelIndex].UpdatePanel();
                 }
             }
         }
