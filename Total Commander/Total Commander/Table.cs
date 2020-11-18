@@ -49,7 +49,7 @@ namespace PsCon
 
     class PsCon
     {
-          
+        
         // Відмальовую рамочки для кнопок.
         public static void PrintFrameLine(int positionX, int positionY, int sizeX, int sizeY, ConsoleColor text, ConsoleColor background)
         {
