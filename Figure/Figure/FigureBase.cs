@@ -5,7 +5,19 @@ namespace Figure
     abstract class FigureBase
     {
         string name{ get; set; }
-        string color { get; set; }       
+        string color { get; set; }     
+        
+        public string Name
+        {
+            get => name;
+            set => name = value;
+        }
+
+        public string Color
+        {
+            get => color;
+            set => color = value;
+        }
 
         public FigureBase(string name,string color)
         {

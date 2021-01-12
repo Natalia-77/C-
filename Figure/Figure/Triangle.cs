@@ -27,6 +27,12 @@ namespace Figure
             double perim = (a + b + c) / 2;
             return Math.Round(Math.Sqrt(perim*(perim-a)*(perim-b)*(perim-c)), 1);
         }
+
+        public override void ShowInfo()
+        {
+            //base.ShowInfo();            
+            Console.WriteLine($" Figure name: {Name}\n Color :{Color} Area: {Area()} \n Sides:{a},{b},{c} ");
+        }
     }
 }
 
