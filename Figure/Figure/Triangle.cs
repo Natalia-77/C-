@@ -30,8 +30,8 @@ namespace Figure
 
         public override void ShowInfo()
         {
-            //base.ShowInfo();            
-            Console.WriteLine($" Figure name: {Name}\n Color :{Color} Area: {Area()} \n Sides:{a},{b},{c} ");
+            base.ShowInfo();            
+            Console.Write($" Area: {Area()} \n Sides:{a},{b},{c} ");
         }
     }
 }
