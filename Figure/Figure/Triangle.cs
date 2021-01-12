@@ -38,7 +38,7 @@ namespace Figure
         public override void ShowInfo()
         {
             base.ShowInfo();            
-            Console.Write($" Area: {Area()} \n Sides:{side_a},{side_b},{side_c} ");
+            Console.Write($"Area: {Area()} \nSides:{side_a},{side_b},{side_c} ");
         }
     }
 }

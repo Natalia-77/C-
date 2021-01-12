@@ -31,6 +31,7 @@ namespace Figure
         public virtual void ShowInfo()
         {
             Console.WriteLine($"Figure name :{name} color :{color}");
+           // Console.WriteLine("-----------------------------\n");
         }
         
     }

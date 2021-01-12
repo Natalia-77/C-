@@ -39,7 +39,14 @@ namespace Figure
                 return side_first;
             }
         }
+
+        public override void ShowInfo()
+        {
+            base.ShowInfo();
+            Console.WriteLine($"Area: {Area()} \nSides:{side_first},{side_second}");
             
-       
+        }
+
+
     }
 }
