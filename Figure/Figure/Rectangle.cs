@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Figure
 {
@@ -20,13 +17,7 @@ namespace Figure
             side_second = second;
         }
 
-        public override double Area() => side_first * side_second;
-        
-        public void GetSide(out double one,out double two)
-        {           
-            one = side_first;
-            two = side_second;
-        }
+        public override double Area() => side_first * side_second;       
 
         public double GetBiggestSide()
         {
@@ -43,7 +34,7 @@ namespace Figure
         public override void ShowInfo()
         {
             base.ShowInfo();
-            Console.WriteLine($"Area: {Area()} \nSides:{side_first},{side_second}");
+            Console.WriteLine($"Area: {Area()} \nSides:{side_first},{side_second}\nBiggest side:{GetBiggestSide()}");
             
         }
 

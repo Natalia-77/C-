@@ -25,12 +25,11 @@ namespace Figure
             this.color = color;
         }
 
-        public abstract double Area();
-       // public abstract string Color();
+        public abstract double Area();      
 
         public virtual void ShowInfo()
         {
-            Console.WriteLine($"Figure name :{name} color :{color}");
+            Console.WriteLine($"Figure name : {name}\nColor :{color}");
            // Console.WriteLine("-----------------------------\n");
         }
         

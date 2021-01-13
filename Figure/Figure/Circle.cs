@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Figure
 {
@@ -19,7 +16,7 @@ namespace Figure
         public override void ShowInfo()
         {
             base.ShowInfo();
-            Console.Write($"Area: {Area()} \nRadius:{radius} ");
+            Console.Write($"Area: {Area()} \nRadius:{GetRadius()} ");
         }
 
         public double GetRadius()
