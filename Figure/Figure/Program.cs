@@ -28,6 +28,9 @@ namespace Figure
             Rectangle t = new Rectangle("Rectangle", "red", 10, 25);
             Console.WriteLine( $"{t.GetBiggestSide()}");
 
+            Circle c = new Circle("Circle", "blue", 55);
+            Console.WriteLine($"{c.GetRadius()}");
+
 
 
 
